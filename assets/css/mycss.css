@@ -1,0 +1,85 @@
+.form {
+  --text-color: #afafaf;
+  --input-height: 50px;
+  --transition-speed: 300ms;
+  max-width: 500px;
+}
+.field {
+  width: 100%;
+  position: relative;
+  border-bottom: 3px dashed var(--text-color);
+  margin: 3.2rem auto 1rem;
+  transition: 500ms;
+}
+.label {
+  color: var(--text-color);
+  font-size: 1.2rem;
+}
+.field .input {
+  outline: none;
+  border: none;
+  overflow: hidden;
+  margin: 0;
+  width: 100%;
+  padding: 0.25rem 0;
+  background: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: border 500ms;
+}
+
+.field::after {
+  content: "";
+  position: relative;
+  display: block;
+  height: 4px;
+  width: 100%;
+  background: #d16dff;
+  transform: scaleX(0);
+  transform-origin: 0%;
+  opacity: 0;
+  transition: all 500ms ease;
+  top: 2px;
+}
+
+.field:focus-within {
+  border-color: transparent;
+}
+.field:focus-within::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.label {
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    transform-origin: 0%;
+    transition: transform 400ms;
+}
+
+.field:focus-within .label,
+.field .input:not(:placeholder-shown) + .label {
+    transform: scale(0.8) translateY(-2.5rem);
+}
+
+.buttons {
+  margin-top: 4em;
+  display: flex;
+  justify-content: space-around;
+}
+.buttons button {
+  border: none;
+  padding: .5em .8em;
+  transition: transform 300ms ease;
+}
+.buttons button:hover {
+  transform: scale(1.4)
+}
+
+.btn-listing {
+  color: rgb(134, 108, 108);
+}
+.btn-save {
+  color: rgb(53, 161, 53);
+}

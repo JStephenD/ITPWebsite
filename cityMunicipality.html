@@ -23,6 +23,8 @@
         <!-- Simplebar -->
         <link type="text/css" href="assets/vendor/simplebar.css"
             rel="stylesheet">
+
+        <link rel="stylesheet" href="assets/css/mycss.css">
     </head>
 
     <body>
@@ -492,151 +494,57 @@
                             mdk-header-layout__content--scrollable h-100">
                             <!-- main content -->
 
-
-
-
+                            <!-- form -->
                             <div class="container-fluid">
-
-                                <div class="row">
-                                    <div class="col"></div>
-                                    <div class="col-lg-4">
-
-                                        <div class="card card-body card-profile
-                                            align-items-center
-                                            justify-content-center">
-                                            <img
-                                                src="assets/images/main2.jpg"
-                                                class="img-fluid rounded-circle
-                                                mr-2 mb-1" style="width:100%"
-                                                alt="">
-                                            <p class="h3 mb-0">John Stephen
-                                                Degillo</p>
-                                            <div class="text-center mb-2">
-                                                <span class="badge badge-warning
-                                                    mr-2 mb-1">JavaScript</span>
-                                                <span class="badge badge-primary
-                                                    mr-2 mb-1">NodeJs</span>
-                                                <span class="badge badge-danger
-                                                    mr-2 mb-1">Python</span>
-                                                <span class="badge badge-info
-                                                    mr-2 mb-1">Java</span>
-                                                <span class="badge badge-gray
-                                                    mr-2 mb-1">Hackdog</span>
-                                            </div>
-                                        </div>
+                                <form class="form">
+                                    <legend>City / Municipality Form</legend>
+                                    <div class="field">
+                                        <input 
+                                            type="text" 
+                                            class="input" 
+                                            autocomplete="off"
+                                            name="cmdesc" 
+                                            placeholder=" "
+                                            required>
+                                        <label for="cmdesc" class="label">City/Municipality Description</label>
                                     </div>
-                                    <div class="col"></div>
-                                    <div
-                                        class="table-responsive">
-                                        <table class="table
-                                            m-0">
-                                            <thead>
-                                                <tr
-                                                    class="bg-fade">
-                                                    <th
-                                                        style="width:
-                                                        120px;">Item</th>
-                                                    <th>Description</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-                                                <tr>
-                                                    <td
-                                                        class="align-middle">Age</td>
-                                                    <td
-                                                        class="align-middle">
-                                                        <div><i
-                                                                class="material-icons
-                                                                align-middle
-                                                                md-18
-                                                                text-link-color">cake</i>
-                                                            20
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td
-                                                        class="align-middle">Birth
-                                                        Date</td>
-                                                    <td
-                                                        class="align-middle">
-                                                        <div><i
-                                                                class="material-icons
-                                                                align-middle
-                                                                md-18
-                                                                text-link-color">event_note</i>
-                                                            15 September, 1999
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td
-                                                        class="align-middle">Full
-                                                        Name</td>
-                                                    <td
-                                                        class="align-middle">
-                                                        <div><i
-                                                                class="material-icons
-                                                                align-middle
-                                                                md-18
-                                                                text-link-color">brush</i>
-                                                            John Stephen Galon
-                                                            Degillo
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td
-                                                        class="align-middle">Address</td>
-                                                    <td
-                                                        class="align-middle">
-                                                        <div><i
-                                                                class="material-icons
-                                                                align-middle
-                                                                md-18
-                                                                text-link-color">pin_drop</i>
-                                                            Paglaum Village,
-                                                            Mansilingan, Bacolod
-                                                            City
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td
-                                                        class="align-middle">Program</td>
-                                                    <td
-                                                        class="align-middle">
-                                                        <div><i
-                                                                class="material-icons
-                                                                align-middle
-                                                                md-18
-                                                                text-link-color">code</i>
-                                                            Bachelor of Science
-                                                            in Information
-                                                            Technology
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td
-                                                        class="align-middle">Year
-                                                        Level</td>
-                                                    <td
-                                                        class="align-middle">
-                                                        <div><i
-                                                                class="material-icons
-                                                                align-middle
-                                                                md-18
-                                                                text-link-color">flight_takeoff</i>
-                                                            Third Year
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="field">
+                                        <input 
+                                            type="text" 
+                                            class="input" 
+                                            autocomplete="off"
+                                            name="latitude" 
+                                            placeholder=" "
+                                            required>
+                                        <label for="latitude" class="label">Latitude</label>
                                     </div>
-                                </div>
+                                    <div class="field">
+                                        <input 
+                                            type="text" 
+                                            class="input" 
+                                            autocomplete="off"
+                                            name="longitude" 
+                                            placeholder=" "
+                                            required>
+                                        <label for="longitude" class="label">Longitude</label>
+                                    </div>
+
+                                    <div class="field">
+                                        <input 
+                                            type="text" 
+                                            class="input" 
+                                            autocomplete="off"
+                                            name="remarks" 
+                                            placeholder=" "
+                                            required>
+                                        <label for="remarks" class="label">Remarks</label>
+                                    </div>
+
+                                    <div class="buttons">
+                                        <button class="btn-save" name="save">Save</button>
+                                        <button class="btn-listing" name="listing">Listing</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -660,18 +568,22 @@
                                         <!-- <a href="index.html"
                                                                 class="drawer-brand-circle
                                                                 mr-2">H</a> -->
-                                                                <a href="index.html">
-                                                                    <img src="assets/images/CIT logo.png" alt="H" width="50px" height="50px" />
-                                                                </a>
-                                                                <div
-                                                                    class="media-body">
-                                                                    <a
-                                                                        href="index.html"
-                                                                        class="h5
-                                                                        m-0
-                                                                        text-link">
-                                                                    &nbsp;&nbsp;ITP25533Z</a>
-                                                                </div>
+                                        <a href="index.html">
+                                            <img
+                                                src="assets/images/CIT logo.png"
+                                                alt="H"
+                                                width="50px"
+                                                height="50px" />
+                                        </a>
+                                        <div
+                                            class="media-body">
+                                            <a
+                                                href="index.html"
+                                                class="h5
+                                                m-0
+                                                text-link">
+                                                &nbsp;&nbsp;ITP25533Z</a>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- HEADING -->
@@ -684,7 +596,7 @@
                                     id="dasboardMenu"
                                     data-children=".drawer-submenu">
                                     <li
-                                        class="drawer-menu-item">
+                                        class="drawer-menu-item active">
                                         <a
                                             href="cityMunicipality.html">
                                             <i
@@ -698,7 +610,7 @@
                                         </a>
                                     </li>
                                     <li
-                                        class="drawer-menu-item active">
+                                        class="drawer-menu-item">
                                         <a href="personalDetails.html">
                                             <i class="material-icons">
                                                 face
