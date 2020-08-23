@@ -1,19 +1,62 @@
 .form {
-  --text-color: #afafaf;
+  --text-color: #494949;
   --input-height: 50px;
-  --transition-speed: 300ms;
+  --transition-speed-fast: 300ms;
+  --transition-speed-slow: 500ms;
+  --background-color: #1d1a49;
+  --border-color: rgb(55, 126, 185);
+  --border-color-dark: rgb(42, 44, 128);
+  font-size: 1.2em;
   max-width: 500px;
 }
+.sep {
+  width: 100%;
+  display: block;
+  border-top: 2px solid var(--border-color);
+  margin-bottom: 3em;
+}
+.citymun {
+  position: relative;
+  width: 50%;
+}
+.select {
+  padding: .5em .8em;
+  width: 100%;
+  color: var(--text-color);
+  background-color: white; 
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  border-radius: 5px;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.select:focus, 
+.select:hover {
+  outline: none;
+  border: 1px solid var(--border-color-dark);
+}
+.citymun img {
+  position: absolute;
+  pointer-events: none;
+  padding: .2em;
+  height: 2em;
+  right: .2em;
+  transform: rotate(0deg);
+  transition: transform var(--transition-speed-fast);
+}
+.select:focus + img {
+  transform: rotate(180deg);
+}
+.option:focus .citymun img{
+  transform: none;
+}
+
 .field {
   width: 100%;
   position: relative;
   border-bottom: 3px dashed var(--text-color);
-  margin: 3.2rem auto 1rem;
+  margin: 3.2em auto 1em;
   transition: 500ms;
-}
-.label {
-  color: var(--text-color);
-  font-size: 1.2rem;
 }
 .field .input {
   outline: none;
@@ -25,7 +68,7 @@
   background: none;
   font-size: 1.2rem;
   font-weight: bold;
-  transition: border 500ms;
+  transition: border var(--transition-speed-fast);
 }
 
 .field::after {
@@ -34,11 +77,11 @@
   display: block;
   height: 4px;
   width: 100%;
-  background: #d16dff;
+  background: var(--background-color);
   transform: scaleX(0);
   transform-origin: 0%;
   opacity: 0;
-  transition: all 500ms ease;
+  transition: all var(--transition-speed-slow) ease;
   top: 2px;
 }
 
@@ -51,27 +94,30 @@
 }
 
 .label {
+    color: var(--text-color);
+    font-size: 1.2em;
     z-index: -1;
     position: absolute;
     left: 0;
     transform-origin: 0%;
-    transition: transform 400ms;
+    transition: transform var(--transition-speed-slow);
 }
 
 .field:focus-within .label,
 .field .input:not(:placeholder-shown) + .label {
-    transform: scale(0.8) translateY(-2.5rem);
+    transform: scale(0.8) translateY(-2.5em);
 }
 
 .buttons {
   margin-top: 4em;
   display: flex;
   justify-content: space-around;
+  font-size: 1.3em;
 }
 .buttons button {
   border: none;
   padding: .5em .8em;
-  transition: transform 300ms ease;
+  transition: transform var(--transition-speed-fast) ease;
 }
 .buttons button:hover {
   transform: scale(1.4)
@@ -82,4 +128,19 @@
 }
 .btn-save {
   color: rgb(53, 161, 53);
+}
+
+.longlat {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.longlat .field {
+  width: 40%;
+}
+.longlat .field:nth-of-type(1) {
+  margin-right: 10%;
+}
+.longlat .field:nth-of-type(2) {
+  margin-left: 10%;
 }

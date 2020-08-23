@@ -498,6 +498,17 @@
                             <div class="container-fluid">
                                 <form class="form">
                                     <legend>City / Municipality Form</legend>
+                                    <span class="sep"></span>
+                                    <div class="citymun">
+                                        <select name="cmclass" class="select">
+                                            <option disabled selected>Select City/Municipality</option>
+                                            <option value="Bacolod/Mansilingan">Bacolod/Mansilingan</option>
+                                            <option value="Bacolod/Taculing">Bacolod/Taculing</option>
+                                            <option value="Bacolod/Lizares">Bacolod/Lizared</option>
+                                            <option value="Bacolod/Ants">Bacolod/Ants</option>
+                                        </select>
+                                        <img src="assets/images/caret-square-up-solid.svg" alt="caret">
+                                    </div>
                                     <div class="field">
                                         <input 
                                             type="text" 
@@ -508,27 +519,34 @@
                                             required>
                                         <label for="cmdesc" class="label">City/Municipality Description</label>
                                     </div>
-                                    <div class="field">
-                                        <input 
-                                            type="text" 
-                                            class="input" 
-                                            autocomplete="off"
-                                            name="latitude" 
-                                            placeholder=" "
-                                            required>
-                                        <label for="latitude" class="label">Latitude</label>
+                                    <div class="longlat">
+                                        <div class="field">
+                                            <input 
+                                                type="number" 
+                                                step=".01"
+                                                class="input" 
+                                                autocomplete="off"
+                                                name="latitude" 
+                                                min="-90"
+                                                max="90"
+                                                placeholder=" "
+                                                required>
+                                            <label for="latitude" class="label">Latitude</label>
+                                        </div>
+                                        <div class="field">
+                                            <input 
+                                                type="number" 
+                                                step=".01"
+                                                min="-180"
+                                                max="180"
+                                                class="input" 
+                                                autocomplete="off"
+                                                name="longitude" 
+                                                placeholder=" "
+                                                required>
+                                            <label for="longitude" class="label">Longitude</label>
+                                        </div>
                                     </div>
-                                    <div class="field">
-                                        <input 
-                                            type="text" 
-                                            class="input" 
-                                            autocomplete="off"
-                                            name="longitude" 
-                                            placeholder=" "
-                                            required>
-                                        <label for="longitude" class="label">Longitude</label>
-                                    </div>
-
                                     <div class="field">
                                         <input 
                                             type="text" 
@@ -1147,7 +1165,8 @@
             </div>
             <!-- // END drawer-layout -->
 
-
+            <!-- FONT AWESOME -->
+            <script src="https://kit.fontawesome.com/40784c0abc.js" crossorigin="anonymous"></script>
 
             <!-- jQuery -->
             <script src="assets/vendor/jquery.min.js"></script>
