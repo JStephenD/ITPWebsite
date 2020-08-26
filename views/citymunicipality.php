@@ -1,10 +1,3 @@
-<?php
-
-// echo $mdl_header;
-// echo $mdl_navbar;
-
-?>
-
 <!-- content here -->
 <div class="mdk-header-layout__content top-navbar
                             mdk-header-layout__content--scrollable h-100">
@@ -52,9 +45,3 @@
 </div>
 
 </div>
-
-<?php 
-
-// echo $mdl_sidebar;
-// echo $mdl_sidebar_right;
-// echo $mdl_footer;

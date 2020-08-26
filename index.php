@@ -1,6 +1,6 @@
 <?php
 
-echo __FILE__. '<br>';
+// echo __FILE__. '<br>';
 
 require 'loader.php';
 
@@ -20,7 +20,7 @@ if (false !== $pos = strpos($uri, '?')) {
     $uri = substr($uri, 0, $pos);
 }
 $uri = rawurldecode($uri);
-echo $uri.'<br>';
+// echo $uri.'<br>';
 
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 switch ($routeInfo[0]) {
@@ -37,13 +37,15 @@ switch ($routeInfo[0]) {
         $method = $routeInfo[1][1];
         $vars = $routeInfo[2];
 
-        // echo $mdl_header;
-        // echo $mdl_navbar;
+        echo $mdl_header;
+        echo $mdl_navbar;
+        
         $class = new $controller();
         call_user_func_array([$class, $method], [$vars]);
-        // echo $mdl_sidebar;
-        // echo $mdl_sidebar_right;
-        // echo $mdl_footer;
+
+        echo $mdl_sidebar;
+        echo $mdl_sidebar_right;
+        echo $mdl_footer;
         break;
 }
 

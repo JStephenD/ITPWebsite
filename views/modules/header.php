@@ -1,7 +1,7 @@
 <?php
 
 namespace views\modules;
-echo '<script>alert("hello header")</script>';
+// echo '<script>alert("hello header")</script>';
 
 class header
 {

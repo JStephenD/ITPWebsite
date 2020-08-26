@@ -17,5 +17,3 @@ $sidebar_right_class = new \views\modules\sidebar_right();
 $mdl_sidebar_right = $sidebar_right_class->get();
 
 $render = new classes\render();
-
-// $covidtraceContoller = new \controller\covidtraceController();
