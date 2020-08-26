@@ -1,0 +1,60 @@
+<?php
+
+// echo $mdl_header;
+// echo $mdl_navbar;
+
+?>
+
+<!-- content here -->
+<div class="mdk-header-layout__content top-navbar
+                            mdk-header-layout__content--scrollable h-100">
+    <!-- main content -->
+
+    <!-- form -->
+    <div class="container-fluid">
+        <form class="form">
+            <legend>City / Municipality Form</legend>
+            <span class="sep"></span>
+            <div class="citymun">
+                <select name="cmclass" class="select">
+                    <option disabled selected>Select Classification</option>
+                    <option value="City">City</option>
+                    <option value="Municipality">Municipality</option>
+                </select>
+                <img src="/assets/images/caret-square-up-solid.svg" alt="caret">
+            </div>
+            <div class="field">
+                <input type="text" class="input" autocomplete="off" name="cmdesc" placeholder=" " required>
+                <label for="cmdesc" class="label">City/Municipality Description</label>
+            </div>
+            <div class="longlat">
+                <div class="field">
+                    <input type="number" step=".01" class="input" autocomplete="off" name="latitude" min="-90" max="90" placeholder=" " required>
+                    <label for="latitude" class="label">Latitude</label>
+                </div>
+                <div class="field">
+                    <input type="number" step=".01" min="-180" max="180" class="input" autocomplete="off" name="longitude" placeholder=" " required>
+                    <label for="longitude" class="label">Longitude</label>
+                </div>
+            </div>
+            <div class="field">
+                <input type="text" class="input" autocomplete="off" name="remarks" placeholder=" " required>
+                <label for="remarks" class="label">Remarks</label>
+            </div>
+
+            <div class="buttons">
+                <button class="btn-save" name="save">Save</button>
+                <button class="btn-listing" name="listing">Listing</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+</div>
+
+<?php 
+
+// echo $mdl_sidebar;
+// echo $mdl_sidebar_right;
+// echo $mdl_footer;

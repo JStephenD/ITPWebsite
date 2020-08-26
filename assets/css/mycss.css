@@ -8,6 +8,7 @@
   --border-color-dark: rgb(42, 44, 128);
   font-size: 1.2em;
   max-width: 500px;
+  margin: 0 auto;
 }
 .sep {
   width: 100%;
@@ -70,7 +71,6 @@
   font-weight: bold;
   transition: border var(--transition-speed-fast);
 }
-
 .field::after {
   content: "";
   position: relative;
@@ -84,7 +84,6 @@
   transition: all var(--transition-speed-slow) ease;
   top: 2px;
 }
-
 .field:focus-within {
   border-color: transparent;
 }
@@ -92,7 +91,6 @@
   transform: scaleX(1);
   opacity: 1;
 }
-
 .label {
     color: var(--text-color);
     font-size: 1.2em;
@@ -102,12 +100,10 @@
     transform-origin: 0%;
     transition: transform var(--transition-speed-slow);
 }
-
 .field:focus-within .label,
 .field .input:not(:placeholder-shown) + .label {
     transform: scale(0.8) translateY(-2.5em);
 }
-
 .buttons {
   margin-top: 4em;
   display: flex;
