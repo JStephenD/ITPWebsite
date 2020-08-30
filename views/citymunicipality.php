@@ -1,15 +1,12 @@
-<!-- content here -->
-<div class="mdk-header-layout__content top-navbar
-                            mdk-header-layout__content--scrollable h-100">
     <!-- main content -->
 
     <!-- form -->
     <div class="container-fluid">
-        <form class="form">
+        <form method="POST" class="form">
             <legend>City / Municipality Form</legend>
             <span class="sep"></span>
             <div class="citymun">
-                <select name="cmclass" class="select">
+                <select name="cmclass" class="select" required>
                     <option disabled selected>Select Classification</option>
                     <option value="City">City</option>
                     <option value="Municipality">Municipality</option>
@@ -36,12 +33,8 @@
             </div>
 
             <div class="buttons">
-                <button class="btn-save" name="save">Save</button>
-                <button class="btn-listing" name="listing">Listing</button>
+                <button type="submit" class="btn-save" name="save">Save</button>
+                <button type="submit" class="btn-listing" name="listing">Listing</button>
             </div>
         </form>
     </div>
-</div>
-</div>
-
-</div>

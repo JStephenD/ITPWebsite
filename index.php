@@ -1,14 +1,12 @@
 <?php
-
-// echo __FILE__. '<br>';
-
+ob_start(); 
 require 'loader.php';
-
 require 'vendor/autoload.php';
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/', 'home.php');
-    $r->addRoute('GET', '/citymunicipality', ['covidtraceController', 'citymunicipality']);
+    // $r->addRoute('GET', '/', '', 'home.php');
+    $r->addRoute(['GET', 'POST'], '/citymunicipality', ['CovidTrace', 'citymunicipality']);
+    $r->addRoute(['GET', 'POST'], '/barangay', ['CovidTrace', 'barangay']);
 });
 
 // Fetch method and URI from somewhere
@@ -25,28 +23,39 @@ $uri = rawurldecode($uri);
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
-        echo 'not_found';
-        // ... 404 Not Found
+        require_once 'views/modules/header.php';
+        require_once 'views/modules/navbar.php';
+        
+        require_once 'views/home.php';
+        // var_dump($httpMethod, $uri);
+
+        require_once 'views/modules/sidebar.php';
+        require_once 'views/modules/sidebar_right.php';
+        require_once 'views/modules/footer.php';
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         $allowedMethods = $routeInfo[1];
         // ... 405 Method Not Allowed
         break;
     case FastRoute\Dispatcher::FOUND:
-        $controller = '\\controller\\'.$routeInfo[1][0];
+        $classname = $routeInfo[1][0];
+        $controller = 'controllers\\'.$classname;
+
         $method = $routeInfo[1][1];
         $vars = $routeInfo[2];
 
-        echo $mdl_header;
-        echo $mdl_navbar;
+        require_once 'views/modules/header.php';
+        require_once 'views/modules/navbar.php';
+        // echo '<script>alert('. $method .')</script>';
         
         $class = new $controller();
-        call_user_func_array([$class, $method], [$vars]);
+        call_user_func_array([$class, $method], [$vars, $httpMethod]);
 
-        echo $mdl_sidebar;
-        echo $mdl_sidebar_right;
-        echo $mdl_footer;
+        require_once 'views/modules/sidebar.php';
+        require_once 'views/modules/sidebar_right.php';
+        require_once 'views/modules/footer.php';
+
         break;
 }
-
+ob_end_flush();
 ?>

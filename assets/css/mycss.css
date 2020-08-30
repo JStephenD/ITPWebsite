@@ -18,10 +18,10 @@
 }
 .citymun {
   position: relative;
-  width: 50%;
+  display: inline-block;
 }
 .select {
-  padding: .5em .8em;
+  padding: .5em 4em .5em .8em;
   width: 100%;
   color: var(--text-color);
   background-color: white; 

@@ -1,0 +1,10 @@
+.fas {
+  margin: 0;
+  padding: 0;
+  width: 1.2em;
+}
+
+.fas + .sidebar-text {
+  margin-left: 1em;
+}
+/*# sourceMappingURL=main.css.map */

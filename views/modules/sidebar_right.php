@@ -1,12 +1,3 @@
-<?php
-
-namespace views\modules;
-
-class sidebar_right
-{
-    public function get()
-    {
-        return <<<HTML
 <!-- drawer -->
 <div class="mdk-drawer js-mdk-drawer" id="user-drawer" data-position="right" data-align="end">
     <div class="mdk-drawer__content">
@@ -84,6 +75,3 @@ class sidebar_right
 
 </div>
 <!-- // END drawer-layout -->
-HTML;
-    }
-}
