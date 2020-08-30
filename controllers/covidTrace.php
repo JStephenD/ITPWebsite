@@ -39,8 +39,8 @@ class CovidTrace
             }
             header('/citymunicipality');
         }
-
-        require_once 'views/citymunicipality.php';
+        
+        require_once $_SERVER['DOCUMENT_ROOT'] . '\\views\\citymunicipality.php';
     }
     public function barangay($vars, $httpmethod)
     {   

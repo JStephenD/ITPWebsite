@@ -15,7 +15,7 @@
                                     class="drawer-brand-circle
                                     mr-2">H</a> -->
                         <a href="index.html">
-                            <img src="assets/images/CIT logo.png" alt="H" width="50px" height="50px" />
+                            <img src="../assets/images/CIT logo.png" alt="H" width="50px" height="50px" />
                         </a>
                         <div class="media-body">
                             <a href="/index.html" class="h5

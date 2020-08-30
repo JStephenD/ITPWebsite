@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 ob_start(); 
 require 'loader.php';
 require 'vendor/autoload.php';
@@ -25,9 +28,8 @@ switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         require_once 'views/modules/header.php';
         require_once 'views/modules/navbar.php';
-        
+            
         require_once 'views/home.php';
-        // var_dump($httpMethod, $uri);
 
         require_once 'views/modules/sidebar.php';
         require_once 'views/modules/sidebar_right.php';
@@ -39,21 +41,20 @@ switch ($routeInfo[0]) {
         break;
     case FastRoute\Dispatcher::FOUND:
         $classname = $routeInfo[1][0];
-        $controller = 'controllers\\'.$classname;
+        $controller = '\\controllers\\'.$classname;
 
         $method = $routeInfo[1][1];
         $vars = $routeInfo[2];
 
-        require_once 'views/modules/header.php';
-        require_once 'views/modules/navbar.php';
-        // echo '<script>alert('. $method .')</script>';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/header.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/navbar.php';
         
         $class = new $controller();
         call_user_func_array([$class, $method], [$vars, $httpMethod]);
 
-        require_once 'views/modules/sidebar.php';
-        require_once 'views/modules/sidebar_right.php';
-        require_once 'views/modules/footer.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/sidebar.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/sidebar_right.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/footer.php';
 
         break;
 }
