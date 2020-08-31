@@ -233,7 +233,7 @@ mdk-header--fixed mdk-header-layout__content--scrollable">
                                                             <div class="media
                                             align-items-center">
                                                                 <a href="/profile.html">
-                                                                    <img src="/assets/images/avatars/person-1.jpg" class="img-fluid
+                                                                    <img src="<?= $utils::rfile_exists('assets/images/avatars/person-1.jpg') ;?>" class="img-fluid
                                                     rounded-circle
                                                     mr-2" width="35" alt="">
                                                                 </a>
@@ -255,7 +255,7 @@ mdk-header--fixed mdk-header-layout__content--scrollable">
                                                             <div class="media
                                             align-items-center">
                                                                 <a href="/profile.html">
-                                                                    <img src="/assets/images/avatars/person-11.jpg" class="img-fluid
+                                                                    <img src="<?= $utils::rfile_exists('assets/images/avatars/person-11.jpg') ;?>" class="img-fluid
                                                     rounded-circle
                                                     mr-2" width="35" alt="">
                                                                 </a>
@@ -276,7 +276,7 @@ mdk-header--fixed mdk-header-layout__content--scrollable">
                                                             <div class="media
                                             align-items-center">
                                                                 <a href="/profile.html">
-                                                                    <img src="/assets/images/avatars/person-12.jpg" class="img-fluid
+                                                                    <img src="<?= $utils::rfile_exists('assets/images/avatars/person-12.jpg') ;?>" class="img-fluid
                                                     rounded-circle
                                                     mr-2" width="35" alt="">
                                                                 </a>

@@ -1,10 +1,13 @@
 <?php
 
-use function PHPSTORM_META\type;
+// use function PHPSTORM_META\type;
 
 ob_start(); 
+
+// AUTOLOAD
 require 'loader.php';
 require 'vendor/autoload.php';
+//
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     // $r->addRoute('GET', '/', '', 'home.php');

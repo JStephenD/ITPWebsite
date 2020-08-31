@@ -8,18 +8,18 @@
     shrink-to-fit=no">
     <title>Hero</title>
     
-    <link type="text/css" href="../assets/css/vendor-morris.css" rel="stylesheet">
-    <link type="text/css" href="../assets/css/vendor-bootstrap-datepicker.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= $utils::rfile_exists('assets/css/vendor-morris.css') ;?>">
+    <link rel="stylesheet" href="<?= $utils::rfile_exists('assets/css/vendor-bootstrap-datepicker.css') ;?>">
 
     <!-- Prevent the demo from appearing in search engines -->
     <meta name="robots" content="noindex">
 
     <!-- App CSS -->
-    <link type="text/css" href="../assets/css/app.css" rel="stylesheet">
-    <link type="text/css" href="../assets/css/app.rtl.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= $utils::rfile_exists('assets/css/app.css') ;?>">
+    <link rel="stylesheet" href="<?= $utils::rfile_exists('assets/css/app.rtl.css') ;?>">
     <!-- Simplebar -->
-    <link type="text/css" href="../assets/vendor/simplebar.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= $utils::rfile_exists('assets/vendor/simplebar.css') ;?>">
 
-    <link type="text/css" rel="stylesheet" href="../assets/css/mycss.css">
-    <link rel="stylesheet" href="../assets/scss/main.css">
+    <link type="text/css" rel="stylesheet" href="<?= $utils::rfile_exists('assets/css/mycss.css') ;?>">
+    <link rel="stylesheet" href="<?= $utils::rfile_exists('assets/scss/main.css') ;?>">
 </head>
