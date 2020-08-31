@@ -14,7 +14,7 @@
                         <!-- <a href="index.html"
                                     class="drawer-brand-circle
                                     mr-2">H</a> -->
-                        <a href="index.html">
+                        <a href="/">
                             <img src="<?= $utils::rfile_exists('assets/images/CIT logo.png') ;?>" alt="H" width="50px" height="50px" />
                         </a>
                         <div class="media-body">
