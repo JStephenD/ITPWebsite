@@ -13668,12 +13668,12 @@ html [type="button"] {
   vertical-align: middle;
 }
 [dir="ltr"] nav.drawer .drawer-menu .drawer-menu-item a {
-  display: block;
-  height: 40px;
-  line-height: 40px;
-  padding: 0 0.625rem;
+  /* display: block; */
+  /* height: 40px; */
+  /* line-height: 40px; */
+  /* padding: 0 0.625rem; */
   text-decoration: none;
-  font-size: 16px;
+  /* font-size: 16px; */
 }
 [dir="ltr"] nav.drawer .drawer-menu .drawer-menu-item a .material-icons {
   position: absolute;

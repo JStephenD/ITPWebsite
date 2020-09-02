@@ -3,6 +3,7 @@
 // use function PHPSTORM_META\type;
 
 ob_start(); 
+session_start();
 
 // AUTOLOAD
 require 'loader.php';
@@ -11,8 +12,19 @@ require 'vendor/autoload.php';
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     // $r->addRoute('GET', '/', '', 'home.php');
-    $r->addRoute(['GET', 'POST'], '/citymunicipality', ['CovidTrace', 'citymunicipality']);
+    $r->addRoute(['GET', 'POST'], '/citymunicipality/add', ['CovidTrace', 'citymunicipality_add']);
+    $r->addRoute(['GET', 'POST'], '/citymunicipality/listing', ['CovidTrace', 'citymunicipality_listing']);
+    $r->addRoute(['GET', 'POST'], '/citymunicipality/edit/{id}', ['CovidTrace', 'citymunicipality_edit']);
+    $r->addRoute(['GET', 'POST'], '/citymunicipality/delete/{id}', ['CovidTrace', 'citymunicipality_delete']);
+
     $r->addRoute(['GET', 'POST'], '/barangay', ['CovidTrace', 'barangay']);
+    $r->addRoute(['GET', 'POST'], '/barangay/listing', ['CovidTrace', 'barangay_listing']);
+    $r->addRoute(['GET', 'POST'], '/barangay/edit/{id}', ['CovidTrace', 'barangay_edit']);
+    $r->addRoute(['GET', 'POST'], '/barangay/delete/{id}', ['CovidTrace', 'barangay_delete']);
+
+    $r->addRoute(['GET', 'POST'], '/user/signup', ['User', 'signup']);
+    $r->addRoute(['GET', 'POST'], '/user/login', ['User', 'login']);
+    $r->addRoute(['GET', 'POST'], '/user/logout', ['User', 'logout']);
 });
 
 // Fetch method and URI from somewhere

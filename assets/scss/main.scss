@@ -7,3 +7,133 @@
         margin-left: 1em;
     }
 }
+.action {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 30%;
+    .table-edit {
+        color: rgb(70, 70, 70);
+    }
+    .table-delete {
+        color: rgb(238, 113, 113);
+    }
+}
+.buttons {
+    button, a {
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+}
+.drawer-menu-item {
+    width: 100%;
+    overflow: hidden;
+    padding: 0 0.625em;
+    color: #708ca4;
+
+    transition: 300ms ease;
+
+    &:focus-within,
+    &:hover {
+        color: white;
+        border-left: .5em solid rgb(6, 214, 160);
+    }
+
+    &:focus-within .submenu {
+        max-height: 20em;
+    }
+
+    span, i {
+        padding: 0 0.625em;
+        margin: 1em 0;
+        font-size: 1.25em;
+    }
+
+    button, button:hover, button:focus {
+        display: block;
+        width: 100%;
+        all: unset;
+    }
+
+    .submenu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 500ms;
+        
+        ul {
+            padding: 0;
+            margin: .5em 0 1em 3em;
+    
+            list-style-type: none;
+    
+            li {
+                padding: .3em .3em;
+                margin: .5em;
+                border-left: 2px solid rgba(255, 209, 102, .3);
+
+                &:hover {
+                    color: white;
+                    border-left: 2px solid rgba(255, 209, 102, 1);
+                }
+
+                &:not(:hover) {
+                    color: #708ca4;
+                } 
+                
+                i {
+                    font-size: .9em;
+                    margin-right: 1em;
+                }
+            }
+        }
+    }
+}
+.signup-form,
+.login-form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    justify-content: center;
+    align-items: center;
+
+    width: 17em;
+    height: 25em;
+    border-radius: 1em;
+    background-color: rgba(12, 176, 169, .8);
+
+    .title {
+        font-size: 2em;
+        color: white;
+    }
+
+    .fields {
+        margin: 0 auto;
+
+        .field {
+            margin: 0 auto;
+            padding: 0;
+
+            i {
+                position: absolute;
+                top: 50%;
+                left: .5em;
+                font-size: 1.2em;
+                transform: translateY(-50%);
+            }
+
+            input {
+                box-sizing: border-box;
+                padding: .3em 2em;
+                margin: 1em auto;
+                margin-right: 0;
+                border: none;
+                width: 70%;
+            }
+        }
+    }
+}

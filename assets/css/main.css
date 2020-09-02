@@ -1,0 +1,164 @@
+.fas {
+  margin: 0;
+  padding: 0;
+  width: 1.2em;
+}
+
+.fas + .sidebar-text {
+  margin-left: 1em;
+}
+
+.action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 30%;
+}
+
+.action .table-edit {
+  color: #464646;
+}
+
+.action .table-delete {
+  color: #ee7171;
+}
+
+.buttons button:hover, .buttons a:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+.drawer-menu-item {
+  width: 100%;
+  overflow: hidden;
+  padding: 0 0.625em;
+  color: #708ca4;
+  -webkit-transition: 300ms ease;
+  transition: 300ms ease;
+}
+
+.drawer-menu-item:focus-within, .drawer-menu-item:hover {
+  color: white;
+  border-left: 0.5em solid #06d6a0;
+}
+
+.drawer-menu-item:focus-within .submenu {
+  max-height: 20em;
+}
+
+.drawer-menu-item span, .drawer-menu-item i {
+  padding: 0 0.625em;
+  margin: 1em 0;
+  font-size: 1.25em;
+}
+
+.drawer-menu-item button, .drawer-menu-item button:hover, .drawer-menu-item button:focus {
+  display: block;
+  width: 100%;
+  all: unset;
+}
+
+.drawer-menu-item .submenu {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 500ms;
+  transition: max-height 500ms;
+}
+
+.drawer-menu-item .submenu ul {
+  padding: 0;
+  margin: .5em 0 1em 3em;
+  list-style-type: none;
+}
+
+.drawer-menu-item .submenu ul li {
+  padding: .3em .3em;
+  margin: .5em;
+  border-left: 2px solid rgba(255, 209, 102, 0.3);
+}
+
+.drawer-menu-item .submenu ul li:hover {
+  color: white;
+  border-left: 2px solid #ffd166;
+}
+
+.drawer-menu-item .submenu ul li:not(:hover) {
+  color: #708ca4;
+}
+
+.drawer-menu-item .submenu ul li i {
+  font-size: .9em;
+  margin-right: 1em;
+}
+
+.signup-form,
+.login-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 17em;
+  height: 25em;
+  border-radius: 1em;
+  background-color: rgba(12, 176, 169, 0.8);
+}
+
+.signup-form .title,
+.login-form .title {
+  font-size: 2em;
+  color: white;
+}
+
+.signup-form .fields,
+.login-form .fields {
+  margin: 0 auto;
+}
+
+.signup-form .fields .field,
+.login-form .fields .field {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.signup-form .fields .field i,
+.login-form .fields .field i {
+  position: absolute;
+  top: 50%;
+  left: .5em;
+  font-size: 1.2em;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.signup-form .fields .field input,
+.login-form .fields .field input {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: .3em 2em;
+  margin: 1em auto;
+  margin-right: 0;
+  border: none;
+  width: 70%;
+}
+/*# sourceMappingURL=main.css.map */

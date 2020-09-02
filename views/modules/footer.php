@@ -1,37 +1,16 @@
 <script src="https://kit.fontawesome.com/40784c0abc.js" crossorigin="anonymous"></script>
 
-<!-- jQuery -->
-<script src="<?= $utils::rfile_exists('assets/vendor/jquery.min.js') ;?>">
-</script>
-<!-- Bootstrap -->
-<script src="<?= $utils::rfile_exists('assets/vendor/popper.js') ;?>">
-</script>
-<script src="<?= $utils::rfile_exists('assets/vendor/bootstrap.min.js') ;?>">
-</script>
-<!-- Simplebar -->
-<!-- Used for adding a custom scrollbar to the drawer -->
-<script src="<?= $utils::rfile_exists('assets/vendor/simplebar.js') ;?>">
-</script>
-<!-- Vendor -->
-<script src="<?= $utils::rfile_exists('assets/vendor/Chart.min.js') ;?>">
-</script>
-<script src="<?= $utils::rfile_exists('assets/vendor/moment.min.js') ;?>">
-</script>
-<!-- APP -->
-<script src="<?= $utils::rfile_exists('assets/js/color_variables.js') ;?>">
-</script>
-<script src="<?= $utils::rfile_exists('assets/js/app.js') ;?>">
-</script>
-
-
-<script src="<?= $utils::rfile_exists('assets/vendor/dom-factory.js') ;?>">
-</script>
-<!-- DOM Factory -->
-<script src="<?= $utils::rfile_exists('assets/vendor/material-design-kit.js') ;?>">
-</script>
-<!-- MDK -->
-
-
+<script src="/assets/vendor/jquery.min.js"></script>
+<script src="/assets/vendor/popper.js"></script>
+<script src="/assets/vendor/bootstrap.min.js"></script>
+<script src="/assets/vendor/simplebar.js"></script>
+<script src="/assets/vendor/Chart.min.js"></script>
+<script src="/assets/vendor/moment.min.js"></script>
+<script src="/assets/js/color_variables.js"></script>
+<script src="/assets/js/app.js"></script>
+<script src="/assets/vendor/dom-factory.js"></script>
+<script src="/assets/vendor/material-design-kit.js"></script>
+<script src="/assets/js/jquery.dataTables.min.js"></script>
 
 <script>
     (function() {
@@ -57,10 +36,10 @@
         })
     })()
 </script>
-<script src="<?= $utils::rfile_exists('assets/vendor/morris.min.js') ;?>"></script>
-<script src="<?= $utils::rfile_exists('assets/vendor/raphael.min.js') ;?>"></script>
-<script src="<?= $utils::rfile_exists('assets/vendor/bootstrap-datepicker.min.js') ;?>"></script>
-<script src="<?= $utils::rfile_exists('assets/js/datepicker.js') ;?>"></script>
+<script src="/assets/vendor/morris.min.js"></script>
+<script src="/assets/vendor/raphael.min.js"></script>
+<script src="/assets/vendor/bootstrap-datepicker.min.js"></script>
+<script src="/assets/js/datepicker.js"></script>
 <script>
     $(function() {
         window.morrisDashboardChart = new Morris.Area({
@@ -118,6 +97,8 @@
 
     });
 </script>
+
+<script src="/assets/js/myjs.js"></script>
 </body>
 
 </html>

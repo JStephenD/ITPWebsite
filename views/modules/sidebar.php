@@ -15,7 +15,7 @@
                                     class="drawer-brand-circle
                                     mr-2">H</a> -->
                         <a href="/">
-                            <img src="<?= $utils::rfile_exists('assets/images/CIT logo.png') ;?>" alt="H" width="50px" height="50px" />
+                            <img src="/assets/images/CIT logo.png" alt="H" width="50px" height="50px" />
                         </a>
                         <div class="media-body">
                             <a href="/" class="h5
@@ -33,21 +33,53 @@
                 <!-- DASHBOARDS MENU -->
                 <ul class="drawer-menu" id="dasboardMenu" data-children=".drawer-submenu">
                     <li 
-                        class="drawer-menu-item <?= ($method == 'citymunicipality') ? 'active' : '' ?>">
-                        <a href="/citymunicipality">
-                        <i class="fas fa-city"></i>
+                        class="drawer-menu-item <?= strpos($method, 'user') ? 'active' : '' ?>">
+                        <button>
+                            <i class="fas fa-user"></i>
+                            <span class="sidebar-text">
+                                User
+                            </span>
+                        </button>
+                        <div class="submenu">
+                            <ul>
+                                <?php if (isset($_SESSION['user'])) { ?>
+                                <li>Account</li>
+                                <li>Logout</li>
+                                <?php } else { ?>
+                                <li><a href="/user/signup"><i class="fas fa-user-plus"></i>Sign up</li></a>
+                                <li><a href="/user/login"><i class="fas fa-sign-in-alt"></i>Login</li></a>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    </li>
+                    <li 
+                        class="drawer-menu-item <?= strpos($method, 'citymunicipality') ? 'active' : '' ?>">
+                        <button>
+                            <i class="fas fa-city"></i>
                             <span class="sidebar-text">
                                 City/Municipality
                             </span>
-                        </a>
+                        </button>
+                        <div class="submenu">
+                            <ul>
+                                <li><a href="/citymunicipality/listing"><i class="fas fa-bars"></i>Listing</a></li>
+                                <li><a href="/citymunicipality/add"><i class="fas fa-plus-circle"></i>Add</a></li>
+                            </ul>
+                        </div>
                     </li>
-                    <li class="drawer-menu-item <?= ($method == 'barangay') ? 'active' : '' ?>">
-                        <a href="/barangay">
+                    <li class="drawer-menu-item <?= strpos($method, 'barangay') ? 'active' : '' ?>">
+                        <button>
                             <i class="fas fa-home"></i>
                             <span class="sidebar-text">
                                 Barangay
                             </span>
-                        </a>
+                        </button>
+                        <div class="submenu">
+                            <ul>
+                                <li><a href="/barangay/listing"><i class="fas fa-bars"></i>Listing</a></li>
+                                <li><a href="/barangay/add"><i class="fas fa-plus-circle"></i>Add</a></li>
+                            </ul>
+                        </div>
                     </li>
                     <!-- <li class="drawer-menu-item">
                         <a href="/personalDetails.html">

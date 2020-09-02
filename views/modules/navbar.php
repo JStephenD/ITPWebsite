@@ -233,7 +233,7 @@ mdk-header--fixed mdk-header-layout__content--scrollable">
                                                             <div class="media
                                             align-items-center">
                                                                 <a href="/profile.html">
-                                                                    <img src="<?= $utils::rfile_exists('assets/images/avatars/person-1.jpg') ;?>" class="img-fluid
+                                                                    <img src="/assets/images/avatars/person-1.jpg" class="img-fluid
                                                     rounded-circle
                                                     mr-2" width="35" alt="">
                                                                 </a>
@@ -255,7 +255,7 @@ mdk-header--fixed mdk-header-layout__content--scrollable">
                                                             <div class="media
                                             align-items-center">
                                                                 <a href="/profile.html">
-                                                                    <img src="<?= $utils::rfile_exists('assets/images/avatars/person-11.jpg') ;?>" class="img-fluid
+                                                                    <img src="/assets/images/avatars/person-11.jpg" class="img-fluid
                                                     rounded-circle
                                                     mr-2" width="35" alt="">
                                                                 </a>
@@ -276,7 +276,7 @@ mdk-header--fixed mdk-header-layout__content--scrollable">
                                                             <div class="media
                                             align-items-center">
                                                                 <a href="/profile.html">
-                                                                    <img src="<?= $utils::rfile_exists('assets/images/avatars/person-12.jpg') ;?>" class="img-fluid
+                                                                    <img src="/assets/images/avatars/person-12.jpg" class="img-fluid
                                                     rounded-circle
                                                     mr-2" width="35" alt="">
                                                                 </a>
@@ -315,8 +315,6 @@ mdk-header--fixed mdk-header-layout__content--scrollable">
                             dropdown-toggle
                             dropdown-clear-caret" data-toggle="sidebar" data-target="#user-drawer">
                                             Frontted
-                                            <img src="https://pbs.twimg.com/profile_images/928893978266697728/3enwe0fO_400x400.jpg" class="img-fluid
-                                rounded-circle ml-1" width="35" alt="">
                                         </a>
                                     </li>
                                 </ul>

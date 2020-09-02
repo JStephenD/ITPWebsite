@@ -12,8 +12,11 @@ class Utils
         return $var;
     }
 
-    static function rfile_exists($path)
+    static function find_file($path)
     {
-        return file_exists($path) ? $path : '../' . $path;
+        while (false == file_exists($path)) {
+            $path = '../' . $path;
+        }
+        return $path;
     }
 }

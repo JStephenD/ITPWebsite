@@ -1,6 +1,3 @@
-<!-- main content -->
-
-<!-- form -->
 <div class="container-fluid">
     <form method="POST" class="form">
         <legend>City / Municipality Form</legend>
@@ -33,8 +30,10 @@
         </div>
 
         <div class="buttons">
-            <button type="submit" class="btn-save" name="save">Save</button>
-            <button type="submit" class="btn-listing" name="listing">Listing</button>
+            <button type="submit" class="btn btn-lg btn-success" name="save">
+                <i class="fas fa-save"></i>Save</button>
+            <a type="button" class="btn btn-lg btn-primary" name="listing" href="/citymunicipality/listing">
+                <i class="fas fa-list-ul"></i>Listing</a>
         </div>
     </form>
 </div>
