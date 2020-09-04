@@ -7,7 +7,7 @@
   --border-color: rgb(55, 126, 185);
   --border-color-dark: rgb(42, 44, 128);
   font-size: 1.2em;
-  max-width: 500px;
+  max-width: 60%;
   margin: 0 auto;
 }
 .sep {
@@ -16,7 +16,8 @@
   border-top: 2px solid var(--border-color);
   margin-bottom: 3em;
 }
-.citymun {
+.citymun,
+.blevel {
   position: relative;
   display: inline-block;
 }
@@ -36,7 +37,8 @@
   outline: none;
   border: 1px solid var(--border-color-dark);
 }
-.citymun img {
+.citymun img,
+.blevel img {
   position: absolute;
   pointer-events: none;
   padding: .2em;
@@ -124,19 +126,4 @@
 }
 .btn-save {
   color: rgb(53, 161, 53);
-}
-
-.longlat {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.longlat .field {
-  width: 40%;
-}
-.longlat .field:nth-of-type(1) {
-  margin-right: 10%;
-}
-.longlat .field:nth-of-type(2) {
-  margin-left: 10%;
 }

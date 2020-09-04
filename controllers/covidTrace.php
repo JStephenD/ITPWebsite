@@ -38,7 +38,7 @@ class CovidTrace
                 }
 
             }
-            header('Location: /citymunicipality');
+            header('Location: /citymunicipality/listing');
         }
         
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/citymunicipality_add.php';
@@ -83,17 +83,19 @@ class CovidTrace
 
 // -------------------------------------------------------------------------------------
 
-    public function barangay($vars, $httpmethod)
+    public function barangay_add($vars, $httpmethod)
     {   
         if ($httpmethod == 'POST') {
             if (isset($_POST['save'])) {
                 $table = 'barangay';
                 $data = array(
                     "bname"=> $_POST['bname'],
-                    "latitude"=> $_POST['latitude'],
-                    "longitude"=> $_POST['longitude'],
+                    "latitude"=> floatval($_POST['latitude']),
+                    "longitude"=> floatval($_POST['longitude']),
                     "idcm"=> $_POST['idcm'],
-                    "remarks"=> $_POST['remarks']
+                    "remarks" => $_POST['remarks'],
+                    "estpop" => $_POST['estpop'],
+                    "blevel" => $_POST['blevel']
                 );
 
                 $resultset = Barangay::addBarangay($table, $data);
@@ -101,11 +103,11 @@ class CovidTrace
                     
                 }
             }            
-            header('Location: /barangay');
+            header('Location: /barangay/listing');
         }
         $cityMunicipalities = CityMunicipality::getCityMunicipalities('citymun');
 
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/barangay.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/barangay_add.php';
     }
 
     public function barangay_listing($vars, $httpmethod) {
@@ -122,7 +124,9 @@ class CovidTrace
                     "latitude"=> floatval($_POST['latitude']),
                     "longitude"=> floatval($_POST['longitude']),
                     "idcm"=> $_POST['idcm'],
-                    "remarks"=> $_POST['remarks']
+                    "remarks" => $_POST['remarks'],
+                    "estpop" => $_POST['estpop'],
+                    "blevel" => $_POST['blevel']
                 );
 
                 $result = Barangay::updateBarangay('barangay', $data);

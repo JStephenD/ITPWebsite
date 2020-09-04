@@ -8,7 +8,8 @@
     shrink-to-fit=no">
     <meta name="robots" content="noindex">
 
-    <title>Hero</title>
+    <title>Degillo</title>
+    <link rel="icon" href="/assets/images/icon.png">
     
     <link rel="stylesheet" href="/assets/css/vendor-morris.css">
     <link rel="stylesheet" href="/assets/css/vendor-bootstrap-datepicker.css">

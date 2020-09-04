@@ -15,11 +15,11 @@
             <label for="cmdesc" class="label">City/Municipality Description</label>
         </div>
         <div class="longlat">
-            <div class="field">
+            <div class="field input-latitude">
                 <input type="number" step=".01" class="input" autocomplete="off" name="latitude" min="-90" max="90" placeholder=" " required>
                 <label for="latitude" class="label">Latitude</label>
             </div>
-            <div class="field">
+            <div class="field input-longitude">
                 <input type="number" step=".01" min="-180" max="180" class="input" autocomplete="off" name="longitude" placeholder=" " required>
                 <label for="longitude" class="label">Longitude</label>
             </div>

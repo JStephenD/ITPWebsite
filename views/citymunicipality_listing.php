@@ -1,3 +1,17 @@
+<div class="confirm-delete" id="confirm-delete">
+    <div class="box">
+        <p class="message">Are you sure you want to delete ?
+        </p>
+        <div class="buttons">
+            <div class="confirm">
+                <a class="btn btn-danger btn-lg">Confirm</a>
+            </div>
+            <div class="cancel" id="cancel-delete">
+                <button class="btn btn-secondary btn-lg">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid">
     <table id="cmlist" class="hover row-borders">
         <thead>
@@ -19,10 +33,18 @@
                 <td><?= $row['longitude'] ;?></td>
                 <td><?= $row['remarks'] ;?></td>
                 <td class='action'>
-                    <a href="/citymunicipality/edit/<?= $row['id'] ;?>">
-                        <i class="fas fa-edit table-edit"></i></a>
-                    <a href="/citymunicipality/delete/<?= $row['id'] ;?>">
-                        <i class="fas fa-backspace table-delete"></i></a>
+                    <abbr title="Edit">
+                        <a href="/citymunicipality/edit/<?= $row['id'] ;?>">
+                            <i class="fas fa-edit table-edit abbr-edit"></i>
+                        </a>
+                    </abbr>
+                    <abbr title="Delete">
+                        <i 
+                            data-href="/citymunicipality/delete/<?= $row['id'] ;?>" 
+                            data-name="<?= $row['cmdesc'] ;?>" 
+                            class="fas fa-backspace table-delete abbr-delete">
+                        </i>
+                    </abbr>
                 </td>
             </tr>
             <?php } ?>
