@@ -2,12 +2,12 @@
 
 namespace controllers;
 use models\CityMunicipality, models\Barangay;
+use classes\Utils;
 
+class CovidTrace {
+    public function citymunicipality_add($vars, $httpmethod) {
+        Utils::login_required();
 
-class CovidTrace
-{
-    public function citymunicipality_add($vars, $httpmethod)
-    {
         if ($httpmethod == 'POST') {
             if (isset($_POST['save'])) {
                 $table = 'citymun';
@@ -45,11 +45,15 @@ class CovidTrace
     }
 
     public function citymunicipality_listing($vars, $httpmethod) {
+        Utils::login_required();
+
         $cms = CityMunicipality::getCityMunicipalities('citymun');
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/citymunicipality_listing.php';
     }
 
     public function citymunicipality_edit($vars, $httpmethod) {
+        Utils::login_required();
+        
         if ($httpmethod == 'POST') {
             if (isset($_POST['update'])) {
                 $data = array(
@@ -63,7 +67,6 @@ class CovidTrace
 
                 $result = CityMunicipality::updateCityMunicipality('citymun', $data);
             }
-            var_dump("what");
             header('Location: /citymunicipality/listing');
         }
 
@@ -73,6 +76,8 @@ class CovidTrace
     }
 
     public function citymunicipality_delete($vars, $httpmethod) {
+        Utils::login_required();
+
         $id = $vars['id'];
         $result = CityMunicipality::deleteCityMunicipality('citymun', 
             array('id' => $id,));
@@ -83,8 +88,9 @@ class CovidTrace
 
 // -------------------------------------------------------------------------------------
 
-    public function barangay_add($vars, $httpmethod)
-    {   
+    public function barangay_add($vars, $httpmethod) {   
+        Utils::login_required();
+
         if ($httpmethod == 'POST') {
             if (isset($_POST['save'])) {
                 $table = 'barangay';
@@ -111,11 +117,15 @@ class CovidTrace
     }
 
     public function barangay_listing($vars, $httpmethod) {
+        Utils::login_required();
+
         $brngys = Barangay::getBarangays('barangay');
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/barangay_listing.php';
     }
 
     public function barangay_edit($vars, $httpmethod) {
+        Utils::login_required();
+
         if ($httpmethod == 'POST') {
             if (isset($_POST['update'])) {
                 $data = array(
@@ -142,6 +152,8 @@ class CovidTrace
     }
 
     public function barangay_delete($vars, $httpmethod) {
+        Utils::login_required();
+
         $id = $vars['id'];
         $result = Barangay::deleteBarangay('barangay', 
             array('id' => $id,));

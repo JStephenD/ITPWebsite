@@ -1,7 +1,5 @@
 <?php
 
-// use function PHPSTORM_META\type;
-
 ob_start(); 
 session_start();
 
@@ -11,7 +9,6 @@ require 'vendor/autoload.php';
 //
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    // $r->addRoute('GET', '/', '', 'home.php');
     $r->addRoute(['GET', 'POST'], '/citymunicipality/add', ['CovidTrace', 'citymunicipality_add']);
     $r->addRoute(['GET', 'POST'], '/citymunicipality/listing', ['CovidTrace', 'citymunicipality_listing']);
     $r->addRoute(['GET', 'POST'], '/citymunicipality/edit/{id:\d+}', ['CovidTrace', 'citymunicipality_edit']);
@@ -25,6 +22,9 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute(['GET', 'POST'], '/user/signup', ['User', 'signup']);
     $r->addRoute(['GET', 'POST'], '/user/login', ['User', 'login']);
     $r->addRoute(['GET', 'POST'], '/user/logout', ['User', 'logout']);
+    $r->addRoute(['GET', 'POST'], '/user/account/{id:\d+}', ['User', 'account']);
+
+    $r->addRoute(['GET'], '/', ['Others', 'home']);
 });
 
 // Fetch method and URI from somewhere
@@ -43,6 +43,7 @@ switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         require_once 'views/modules/header.php';
         require_once 'views/modules/navbar.php';
+        $messages->show();
             
         require_once 'views/home.php';
 
@@ -63,6 +64,7 @@ switch ($routeInfo[0]) {
 
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/header.php';
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/navbar.php';
+        $messages->show();
         
         $class = new $controller();
         call_user_func_array([$class, $method], [$vars, $httpMethod]);

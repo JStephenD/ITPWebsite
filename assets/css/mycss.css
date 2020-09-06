@@ -105,6 +105,7 @@
 .field:focus-within .label,
 .field .input:not(:placeholder-shown) + .label {
     transform: scale(0.8) translateY(-2.5em);
+    opacity: 1;
 }
 .buttons {
   margin-top: 4em;

@@ -106,67 +106,230 @@ abbr .abbr-delete {
 }
 
 .signup-form,
-.login-form {
+.login-form,
+.account-form {
+  max-width: 500px;
+  width: 30%;
+  margin: 2em auto;
+}
+
+.signup-form .field,
+.login-form .field,
+.account-form .field {
+  position: relative;
+  margin: 4em auto 1em;
+  border-bottom: 2px dashed #073b4c;
+  -webkit-transition: border-color 300ms ease;
+  transition: border-color 300ms ease;
+}
+
+.signup-form .field::after,
+.login-form .field::after,
+.account-form .field::after {
+  content: "";
+  border-bottom: 3px solid #ef476f;
+  position: relative;
+  height: 4px;
+  width: 100%;
+  display: block;
+  top: 2px;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: 0%;
+          transform-origin: 0%;
+  opacity: 0;
+  -webkit-transition: opacity 300ms ease, -webkit-transform 300ms ease;
+  transition: opacity 300ms ease, -webkit-transform 300ms ease;
+  transition: transform 300ms ease, opacity 300ms ease;
+  transition: transform 300ms ease, opacity 300ms ease, -webkit-transform 300ms ease;
+}
+
+.signup-form .input,
+.login-form .input,
+.account-form .input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background: none;
+  color: #073b4c;
+  padding: 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  -webkit-transition: border 300ms;
+  transition: border 300ms;
+}
+
+.signup-form .input::-ms-reveal, .signup-form .input::-ms-clear,
+.login-form .input::-ms-reveal,
+.login-form .input::-ms-clear,
+.account-form .input::-ms-reveal,
+.account-form .input::-ms-clear {
+  display: none;
+}
+
+.signup-form .label,
+.login-form .label,
+.account-form .label {
+  z-index: -1;
+  position: absolute;
+  font-size: 1.2em;
+  color: #073b4c;
+  -webkit-transform-origin: 0%;
+          transform-origin: 0%;
+  -webkit-transition: -webkit-transform 300ms;
+  transition: -webkit-transform 300ms;
+  transition: transform 300ms;
+  transition: transform 300ms, -webkit-transform 300ms;
+}
+
+.signup-form .field:focus-within,
+.login-form .field:focus-within,
+.account-form .field:focus-within {
+  border-color: transparent;
+}
+
+.signup-form .field:focus-within::after,
+.login-form .field:focus-within::after,
+.account-form .field:focus-within::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  opacity: 1;
+}
+
+.signup-form .field:focus-within .label,
+.signup-form .input:not(:placeholder-shown) + .label,
+.login-form .field:focus-within .label,
+.login-form .input:not(:placeholder-shown) + .label,
+.account-form .field:focus-within .label,
+.account-form .input:not(:placeholder-shown) + .label {
+  -webkit-transform: scale(0.85) translateY(-2.5em);
+          transform: scale(0.85) translateY(-2.5em);
+  opacity: 1;
+}
+
+.signup-form .strength,
+.login-form .strength,
+.account-form .strength {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  position: relative;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 17em;
-  height: 25em;
-  border-radius: 1em;
-  background-color: rgba(12, 176, 169, 0.8);
+  height: 20px;
+  width: 100%;
 }
 
-.signup-form .title,
-.login-form .title {
-  font-size: 2em;
-  color: white;
+.signup-form .bar,
+.login-form .bar,
+.account-form .bar {
+  margin-right: 5px;
+  height: 100%;
+  width: 25%;
+  -webkit-transition: -webkit-box-shadow 500ms;
+  transition: -webkit-box-shadow 500ms;
+  transition: box-shadow 500ms;
+  transition: box-shadow 500ms, -webkit-box-shadow 500ms;
+  -webkit-box-shadow: inset 0px 20px #1f1f1f;
+          box-shadow: inset 0px 20px #1f1f1f;
 }
 
-.signup-form .fields,
-.login-form .fields {
-  margin: 0 auto;
+.signup-form .bar-show,
+.login-form .bar-show,
+.account-form .bar-show {
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
-.signup-form .fields .field,
-.login-form .fields .field {
-  margin: 0 auto;
-  padding: 0;
+.signup-form .bar-1,
+.login-form .bar-1,
+.account-form .bar-1 {
+  background: -webkit-gradient(linear, left top, right top, from(red), to(orangered));
+  background: linear-gradient(to right, red, orangered);
 }
 
-.signup-form .fields .field i,
-.login-form .fields .field i {
-  position: absolute;
-  top: 50%;
-  left: .5em;
-  font-size: 1.2em;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+.signup-form .bar-2,
+.login-form .bar-2,
+.account-form .bar-2 {
+  background: -webkit-gradient(linear, left top, right top, from(orangered), to(yellow));
+  background: linear-gradient(to right, orangered, yellow);
 }
 
-.signup-form .fields .field input,
-.login-form .fields .field input {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: .3em 2em;
-  margin: 1em auto;
+.signup-form .bar-3,
+.login-form .bar-3,
+.account-form .bar-3 {
+  background: -webkit-gradient(linear, left top, right top, from(yellow), to(yellowgreen));
+  background: linear-gradient(to right, yellow, yellowgreen);
+}
+
+.signup-form .bar-4,
+.login-form .bar-4,
+.account-form .bar-4 {
+  background: -webkit-gradient(linear, left top, right top, from(yellowgreen), to(#00f7ff));
+  background: linear-gradient(to right, yellowgreen, #00f7ff);
+}
+
+.signup-form .bar-5,
+.login-form .bar-5,
+.account-form .bar-5 {
+  background: -webkit-gradient(linear, left top, right top, from(#00f7ff), to(green));
+  background: linear-gradient(to right, #00f7ff, green);
+}
+
+.signup-form .bar:last-child,
+.login-form .bar:last-child,
+.account-form .bar:last-child {
   margin-right: 0;
-  border: none;
-  width: 70%;
+}
+
+.signup-form .strength-text,
+.login-form .strength-text,
+.account-form .strength-text {
+  margin-top: 20px;
+}
+
+.signup-form ul,
+.login-form ul,
+.account-form ul {
+  list-style-type: none;
+  margin: 10px 0;
+  padding: 0;
+  font-size: 1.1em;
+  text-align: left;
+}
+
+.signup-form button,
+.login-form button,
+.account-form button {
+  margin-top: 2em;
+  padding: 10px 30px;
+  font-weight: bold;
+  border: 2px solid greenyellow;
+  color: greenyellow;
+  border-radius: 100px;
+  background: transparent;
+  -webkit-transition: all 1000ms;
+  transition: all 1000ms;
+}
+
+.signup-form button:disabled,
+.login-form button:disabled,
+.account-form button:disabled {
+  border-color: #073b4c;
+  color: #073b4c;
+}
+
+.signup-form .toggle-password,
+.login-form .toggle-password,
+.account-form .toggle-password {
+  position: absolute;
+  cursor: help;
+  font-size: 1.3em;
+  right: 0.25em;
+  bottom: 0.5em;
+}
+
+.signup-form .date,
+.login-form .date,
+.account-form .date {
+  widtH: 100%;
 }
 
 .confirm-delete {
@@ -288,5 +451,11 @@ abbr .abbr-delete {
 .bnameestpop .input-estpop {
   width: 40%;
   margin-left: 10%;
+}
+
+.alert {
+  margin: 2em auto 1em;
+  width: 60%;
+  font-size: 1.1em;
 }
 /*# sourceMappingURL=main.css.map */

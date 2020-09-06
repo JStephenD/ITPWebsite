@@ -99,51 +99,145 @@ abbr {
     }
 }
 .signup-form,
-.login-form {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+.login-form,
+.account-form {
+    $text-color: #073b4c;
+    $border-color: #ef476f;
+    $transition-slow: 500ms;
+    $transition-fast: 300ms;
+    max-width: 500px;
+    width: 30%;
 
-    justify-content: center;
-    align-items: center;
+    margin: 2em auto;
 
-    width: 17em;
-    height: 25em;
-    border-radius: 1em;
-    background-color: rgba(12, 176, 169, .8);
+    .field {
+        position: relative;
+        margin: 4em auto 1em;
+        border-bottom: 2px dashed $text-color;
+        transition: border-color $transition-fast ease;
+    }
+    .field::after {
+        content: "";
+        border-bottom: 3px solid $border-color;
+        position: relative;
+        height: 4px;
+        width: 100%;
+        display: block;
+        top: 2px;
+        transform: scaleX(0);
+        transform-origin: 0%;
+        opacity: 0;
+        transition: transform $transition-fast ease, opacity $transition-fast ease;
+    }
+    .input {
+        border: none;
+        outline: none;
+        width: 100%;
+        background: none;
+        color: $text-color;
+        padding: 0;
+        font-size: 1.2em;
+        font-weight: bold;
+        transition: border $transition-fast;
 
-    .title {
-        font-size: 2em;
-        color: white;
+        &::-ms-reveal,
+        &::-ms-clear {
+            display: none;
+        }
+    }
+    .label {
+        z-index: -1;
+        position: absolute;
+        // left: 0;
+        // transform: translateY(-1.2em);
+        font-size: 1.2em;
+        color: $text-color;
+        transform-origin: 0%;
+        transition: transform $transition-fast;
+    }
+    .field:focus-within{ 
+        border-color: transparent;
+
+        &::after {
+            transform: scaleX(1);
+            opacity: 1;
+        }
+    }
+    .field:focus-within .label,
+    .input:not(:placeholder-shown) + .label {
+        transform: scale(0.85) translateY(-2.5em);
+        opacity: 1;
     }
 
-    .fields {
-        margin: 0 auto;
+    .strength {
+        display: flex;
+        height: 20px;
+        width: 100%;
+    }
+    .bar {
+        margin-right: 5px;
+        height: 100%;
+        width: 25%;
+        transition: box-shadow $transition-slow;
+        box-shadow: inset 0px 20px #1f1f1f;
+    }
+    .bar-show {
+        box-shadow: none;
+    }
+    .bar-1 {
+        background: linear-gradient(to right, red, orangered);
+    }
+    .bar-2 {
+        background: linear-gradient(to right, orangered, yellow);
+    }
+    .bar-3 {
+        background: linear-gradient(to right, yellow, yellowgreen);
+    }
+    .bar-4 {
+        background: linear-gradient(to right, yellowgreen, rgb(0, 247, 255));
+    }
+    .bar-5 {
+        background: linear-gradient(to right, rgb(0, 247, 255), green);
+    }
+    .bar:last-child {
+        margin-right: 0;
+    }
+    .strength-text {
+        margin-top: 20px;
+    }
+    ul {
+        list-style-type: none;
+        margin: 10px 0;
+        padding: 0;
+        font-size: 1.1em;
+        text-align: left;
+    }
 
-        .field {
-            margin: 0 auto;
-            padding: 0;
+    button {
+        margin-top: 2em;
+        padding: 10px 30px;
+        font-weight: bold;
+        border: 2px solid greenyellow;
+        color: greenyellow;
+        border-radius: 100px;
+        background: transparent;
+        transition: all 1000ms;
+    }
+    button:disabled {
+        border-color: $text-color;
+        color: $text-color;
+    }
 
-            i {
-                position: absolute;
-                top: 50%;
-                left: .5em;
-                font-size: 1.2em;
-                transform: translateY(-50%);
-            }
+    .toggle-password {
+        position: absolute;
+        cursor: help;
+        font-size: 1.3em;
+        right: 0.25em;
+        bottom: 0.5em;
+    }
 
-            input {
-                box-sizing: border-box;
-                padding: .3em 2em;
-                margin: 1em auto;
-                margin-right: 0;
-                border: none;
-                width: 70%;
-            }
-        }
+    .date {
+        widtH: 100%;
     }
 }
 .confirm-delete {
@@ -229,7 +323,6 @@ abbr {
         margin-left: 10%;
     }
 }
-  
 .bnameestpop {
     display: flex;
     justify-content: space-between;
@@ -241,4 +334,9 @@ abbr {
         width: 40%;
         margin-left: 10%;
     }
+}
+.alert {
+    margin: 2em auto 1em;
+    width: 60%;
+    font-size: 1.1em;
 }

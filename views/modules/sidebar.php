@@ -37,14 +37,14 @@
                         <button>
                             <i class="fas fa-user"></i>
                             <span class="sidebar-text">
-                                User
+                                User <?= isset($_SESSION['user']) ? ' ( ' . $_SESSION['user']['first_name'] . ' ) ' : '' ;?>
                             </span>
                         </button>
                         <div class="submenu">
                             <ul>
                                 <?php if (isset($_SESSION['user'])) { ?>
-                                <li>Account</li>
-                                <li>Logout</li>
+                                <li><a href="/user/account/<?= $_SESSION['user']['id'] ;?>"><i class="fas fa-user-circle"></i>Account</a></li>
+                                <li><a href="/user/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
                                 <?php } else { ?>
                                 <li><a href="/user/signup"><i class="fas fa-user-plus"></i>Sign up</li></a>
                                 <li><a href="/user/login"><i class="fas fa-sign-in-alt"></i>Login</li></a>

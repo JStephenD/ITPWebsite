@@ -17,6 +17,6 @@
     <link rel="stylesheet" href="/assets/css/app.rtl.css">
     <link rel="stylesheet" href="/assets/vendor/simplebar.css">      
     <link rel="stylesheet" href="/assets/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/mycss.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
 </head>

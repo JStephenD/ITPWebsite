@@ -11,20 +11,6 @@ class CityMunicipality {
         );
         $query->execute($data);
         $query = null;
-
-
-        // $query->bindParam(":cmdesc", $data['cmdesc'], PDO::PARAM_STR);
-        // $query->bindParam(":latitude", $data['latitude'], PDO::PARAM_STR);
-        // $query->bindParam(":longitude", $data['longitude'], PDO::PARAM_STR);
-        // $query->bindParam(":cmclass", $data['cmclass'], PDO::PARAM_STR);
-        // $query->bindParam(":remarks", $data['remarks'], PDO::PARAM_STR);
-
-        // if ($query->execute()) {
-        //     return 'ok';
-        // } else {
-        //     return 'error';
-        // }
-        // $stmt = null;
     }
 
     public static function getCityMunicipalities($table, $id=null) {
