@@ -2,7 +2,7 @@
 
 <!-- form -->
 <div class="container-fluid">
-    <form method="POST" class="form">
+    <form method="POST" class="form" id="form-add">
         <legend>Barangay Form</legend>
         <span class="sep"></span>
         <div class="select-section">
@@ -10,11 +10,12 @@
                 <select name="idcm" id="citymun" class="select" required>
                     <option value="-1" disabled selected>Select City</option>
                     <?php if (isset($cityMunicipalities)) {
-                    foreach ($cityMunicipalities as $row) { ?>
-                    <option value="<?=$row['id'];?>">
-                        <?=$row['cmdesc'];?>
-                    </option>
-                    <?php }} ?>
+                        foreach ($cityMunicipalities as $row) { ?>
+                            <option value="<?= $row['id']; ?>">
+                                <?= $row['cmdesc']; ?>
+                            </option>
+                    <?php }
+                    } ?>
                 </select>
                 <img src="/assets/images/caret-square-up-solid.svg" alt="caret">
             </div>
@@ -29,10 +30,10 @@
         </div>
         <div class="bnameestpop">
             <div class="field input-bname">
-                <input type="text" class="input" autocomplete="off" name="bname" placeholder=" " required>
+                <input type="text" id="bname" class="input" autocomplete="off" name="bname" placeholder=" " required>
                 <label for="bname" class="label">Barangay Name</label>
             </div>
-    `       <div class="field input-estpop">
+            ` <div class="field input-estpop">
                 <input id="estpop" type="number" class="input" autocomplete="off" name="estpop" placeholder=" " required>
                 <label for="estpop" class="label">Estimated Population</label>
             </div>
@@ -61,47 +62,68 @@
     </form>
 </div>
 
-<script defer>
-    document.querySelector('#submit').addEventListener('click', (ev) => {
-        let msg = '';
-        let citymun = document.querySelector('#citymun');
-        let blevel = document.querySelector('#blevel');
-
-        if (citymun.options[citymun.selectedIndex].value == '-1') {
-            msg += 'Please choose the city\n';
-        }
-        if (blevel.options[blevel.selectedIndex].value == '-1') {
-            msg += 'Please select the level';
-        }
-        if (msg.length > 0) {
-            alert(msg);
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector('#submit').addEventListener('click', (ev) => {
+            let msg = '';
+            let citymun = document.querySelector('#citymun');
+            let blevel = document.querySelector('#blevel');
+            let bname = document.querySelector('#bname');
             ev.preventDefault();
-            return false;
-        } else {
-            if (confirm('Are you sure to save new Barangay?')) {
-                return true;
-            } else {
-                return false;
+
+            if (citymun.options[citymun.selectedIndex].value == '-1') {
+                msg += 'Please choose the city<br>';
             }
-        }
-    });
-
-    let latitude = document.querySelector('#latitude');
-    let longitude = document.querySelector('#longitude');
-    let estpop = document.querySelector('#estpop');
-    let number_inputs = [latitude, longitude, estpop];
-
-    number_inputs.forEach((el) => {
-        el.addEventListener('keypress', (ev) => {
-            if (ev.key == 'e') {
-                ev.preventDefault();
+            if (blevel.options[blevel.selectedIndex].value == '-1') {
+                msg += 'Please select the level';
+            }
+            if (msg.length > 0) {
+                Swal.fire({
+                    title: 'Error!',
+                    icon: 'warning',
+                    html: msg,
+                });
+            } else {
+                Swal.fire({
+                    title: 'Add Barangay?',
+                    text: bname.value,
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Proceed',
+                }).then((res) => {
+                    if (res.value) {
+                        Swal.fire({
+                            title: 'Success!',
+                            icon: 'success',
+                            timer: 1000,
+                            timerProgressBar: true,
+                        }).then((res) => {
+                            document.querySelector('#form-add').submit();
+                        });
+                    }
+                });
             }
         });
-    });
-    estpop.addEventListener('change', (ev) => {
-        let target = ev.target;
-        if (target.value < 0) {
-            target.value = 0;
-        }
+
+        let latitude = document.querySelector('#latitude');
+        let longitude = document.querySelector('#longitude');
+        let estpop = document.querySelector('#estpop');
+        let number_inputs = [latitude, longitude, estpop];
+
+        number_inputs.forEach((el) => {
+            el.addEventListener('keypress', (ev) => {
+                if (ev.key == 'e') {
+                    ev.preventDefault();
+                }
+            });
+        });
+        estpop.addEventListener('change', (ev) => {
+            let target = ev.target;
+            if (target.value < 0) {
+                target.value = 0;
+            }
+        });
     });
 </script>

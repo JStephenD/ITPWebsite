@@ -1,57 +1,51 @@
 <div class="container-fluid">
-    <form method="POST" class="form">
+    <form method="POST" class="form" id="form-edit">
         <legend>Barangay Form</legend>
         <span class="sep"></span>
         <div class="select-section">
             <div class="citymun">
                 <select name="idcm" id="citymun" class="select" required>
                     <?php if (isset($cityMunicipalities)) {
-                    foreach ($cityMunicipalities as $row) { ?>
-                        <option value="<?=$row['id'];?>" 
-                            <?= $brngy['idcm'] == 
-                            $row['id'] ? 'selected' : '' ;?>>
-                            <?= $row['cmdesc']; ?>
-                        </option>
-                    <?php }} ?>
+                        foreach ($cityMunicipalities as $row) { ?>
+                            <option value="<?= $row['id']; ?>" <?= $brngy['idcm'] ==
+                                                                    $row['id'] ? 'selected' : ''; ?>>
+                                <?= $row['cmdesc']; ?>
+                            </option>
+                    <?php }
+                    } ?>
                 </select>
                 <img src="/assets/images/caret-square-up-solid.svg" alt="caret">
             </div>
             <div class="blevel">
                 <select name="blevel" id="blevel" class="select">
-                    <option value="Level 1" <?= $brngy['blevel'] == 'level 1' ? 'selected':'';?>>Level 1</option>
-                    <option value="Level 2" <?= $brngy['blevel'] == 'level 2' ? 'selected':'';?>>Level 2</option>
+                    <option value="Level 1" <?= $brngy['blevel'] == 'level 1' ? 'selected' : ''; ?>>Level 1</option>
+                    <option value="Level 2" <?= $brngy['blevel'] == 'level 2' ? 'selected' : ''; ?>>Level 2</option>
                 </select>
                 <img src="/assets/images/caret-square-up-solid.svg" alt="caret">
             </div>
         </div>
         <div class="bnameestpop">
             <div class="field input-bname">
-                <input type="text" class="input" autocomplete="off" name="bname" placeholder=" " required value="<?= $brngy['bname'] ;?>">
+                <input type="text" class="input" autocomplete="off" name="bname" placeholder=" " required value="<?= $brngy['bname']; ?>">
                 <label for="bname" class="label">Barangay Name</label>
             </div>
             <div class="field input-estpop">
-                <input id="estpop" type="number" class="input" autocomplete="off" name="estpop" placeholder=" " required value="<?= $brngy['estpop'] ;?>">
+                <input id="estpop" type="number" class="input" autocomplete="off" name="estpop" placeholder=" " required value="<?= $brngy['estpop']; ?>">
                 <label for="estpop" class="label">Estimated Population</label>
             </div>
         </div>
         <div class="longlat">
             <div class="field input-latitude">
-                <input id="latitude" type="number" step=".01" class="input" autocomplete="off" 
-                name="latitude" min="-90" max="90" placeholder=" " required
-                value="<?= $brngy['latitude'] ;?>">
+                <input id="latitude" type="number" step=".01" class="input" autocomplete="off" name="latitude" min="-90" max="90" placeholder=" " required value="<?= $brngy['latitude']; ?>">
                 <label for="latitude" class="label">Latitude</label>
             </div>
             <div class="field input-longitude">
-                <input id="longitude" type="number" step=".01" min="-180" max="180" class="input" 
-                autocomplete="off" name="longitude" placeholder=" " required
-                value="<?= $brngy['longitude'] ;?>">
+                <input id="longitude" type="number" step=".01" min="-180" max="180" class="input" autocomplete="off" name="longitude" placeholder=" " required value="<?= $brngy['longitude']; ?>">
                 <label for="longitude" class="label">Longitude</label>
             </div>
         </div>
         <div class="field">
-            <input type="text" class="input" autocomplete="off" name="remarks" 
-            placeholder=" " required
-            value="<?= $brngy['remarks'] ;?>">
+            <input type="text" class="input" autocomplete="off" name="remarks" placeholder=" " required value="<?= $brngy['remarks']; ?>">
             <label for="remarks" class="label">Remarks</label>
         </div>
 
@@ -67,11 +61,27 @@
 <script defer>
     let update = document.querySelector('#update');
     update.addEventListener('click', (ev) => {
-        if (confirm("Are you sure to update Barangay?")) {
-            return true;
-        } else {
-            return false;
-        }
+        ev.preventDefault();
+
+        Swal.fire({
+            title: 'Update Barangay data?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Proceed'
+        }).then((res) => {
+            if (res.value) {
+                Swal.fire({
+                    title: 'Success!',
+                    icon: 'success',
+                    timer: 1000,
+                    timerProgressBar: true,
+                }).then((res) => {
+                    document.querySelector('#form-edit').submit();
+                });
+            }
+        });
     });
 
     let latitude = document.querySelector('#latitude');

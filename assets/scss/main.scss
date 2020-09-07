@@ -240,69 +240,6 @@ abbr {
         widtH: 100%;
     }
 }
-.confirm-delete {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    visibility: hidden;
-
-    transition: opacity 300ms ease-in, hidden 300ms ease-in;
-
-    background: rgba(7, 59, 76, .2);
-    z-index: 1000;
-
-    .box {
-        position: relative;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        flex-direction: column;
-        background: rgba(17, 138, 178, .8);        
-
-        width: 50%;
-        height: 50%;
-
-        .message{
-            position: absolute;
-            top: 1em;
-            left: 1em;
-            width: 100%;
-            color: rgb(255, 209, 102);
-            font-size: 1.7em;
-            .action {
-                display: inline;
-                background: rgb(231, 55, 55);
-                border: 1px dashed gray;
-                border-radius: 1em;
-            }
-            .target {
-                border-bottom: 3px solid rgb(6, 214, 160);
-            }
-        }
-        .buttons {
-            margin-top: 5em;
-            color: white;
-
-            .confirm,
-            .cancel {
-                font-size: 1.65em;
-                width: 50%;
-                text-align: center;
-            }
-            .confirm {
-                bottom: 3em;
-                left: 3em;
-            }
-            .cancel {
-                bottom: 3em;
-                right: 3em;
-            }
-        }
-        
-    }
-}
 .select-section {
     display: flex;
     justify-content: space-around;
