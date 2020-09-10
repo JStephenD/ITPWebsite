@@ -44,7 +44,7 @@ class Barangay {
 
         } else {
             $result = Connection::connect()->query(
-                "SELECT * FROM $table"
+                "SELECT * FROM $table ORDER BY id"
             );
             return $result->fetchAll();
         }

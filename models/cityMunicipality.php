@@ -24,7 +24,7 @@ class CityMunicipality {
             $query = null;
         } else {
             $query = Connection::connect()->query(
-                "SELECT * FROM $table"
+                "SELECT * FROM $table ORDER BY id"
             );
             return $query->fetchAll();
         }

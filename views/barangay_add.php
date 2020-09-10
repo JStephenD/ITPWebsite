@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="field">
-            <input type="text" class="input" autocomplete="off" name="remarks" placeholder=" " required>
+            <input type="text" class="input" autocomplete="off" name="remarks" placeholder=" ">
             <label for="remarks" class="label">Remarks</label>
         </div>
 

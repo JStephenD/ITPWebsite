@@ -2,6 +2,7 @@
     <table id="blist" class="hover row-borders">
         <thead>
             <tr>
+                <th scope="col">Location</th>
                 <th scope="col">Barangay Name</th>
                 <th scope="col">Estimated Population</th>
                 <th scope="col">Category</th>
@@ -14,6 +15,7 @@
         <tbody>
             <?php foreach ($brngys as $row) { ?>
                 <tr>
+                    <td scope="row"><?= $cities[$row['idcm']] ;?></td>
                     <td scope="row"><?= $row['bname']; ?></td>
                     <td><?= $row['estpop']; ?></td>
                     <td><?= $row['blevel']; ?></td>

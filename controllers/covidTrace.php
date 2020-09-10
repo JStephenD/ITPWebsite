@@ -120,6 +120,11 @@ class CovidTrace {
         Utils::login_required();
 
         $brngys = Barangay::getBarangays('barangay');
+        $cms = CityMunicipality::getCityMunicipalities('citymun');
+        $cities = [];
+        foreach ($cms as $row) {
+            $cities[$row['id']] = $row['cmdesc'];
+        }
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/barangay_listing.php';
     }
 

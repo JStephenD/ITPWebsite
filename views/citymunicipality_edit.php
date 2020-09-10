@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="field">
-            <input type="text" class="input" autocomplete="off" name="remarks" placeholder=" " required value="<?= $cm['remarks']; ?>">
+            <input type="text" class="input" autocomplete="off" name="remarks" placeholder=" " value="<?= $cm['remarks']; ?>">
             <label for="remarks" class="label">Remarks</label>
         </div>
 

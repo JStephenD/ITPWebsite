@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="field">
-            <input type="text" class="input" autocomplete="off" name="remarks" placeholder=" " required value="<?= $brngy['remarks']; ?>">
+            <input type="text" class="input" autocomplete="off" name="remarks" placeholder=" " value="<?= $brngy['remarks']; ?>">
             <label for="remarks" class="label">Remarks</label>
         </div>
 
