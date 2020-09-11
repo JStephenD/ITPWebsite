@@ -40,31 +40,51 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        let update = document.querySelector('#update');
-        update.addEventListener('click', (ev) => {
+    window.onload = function() {
+        let url = window.location.href;
+        let form = document.querySelector('#form-edit');
+
+        document.querySelector('#update').addEventListener('click', (ev) => {
             ev.preventDefault();
+            let formdata = new FormData(form);
 
             Swal.fire({
                 title: 'Update City/Municipality data?',
-                icon: 'warning',
+                icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Proceed'
+                confirmButtonText: 'Proceed',
+                showLoaderOnConfirm: true,
+                preConfirm: () => {
+                    return fetch(url, {
+                            method: 'POST',
+                            body: formdata
+                        })
+                        .then((response) => {
+                            if (!response.ok) {
+                                throw new Error(response.statusText)
+                            }
+                        })
+                        .catch((error) => {
+                            Swal.showValidationMessage(
+                                `Request failed: ${error}`
+                            )
+                        })
+                },
+                allowOutsideClick: () => !Swal.isLoading()
             }).then((res) => {
-                if (res.value) {
+                if (res.isConfirmed) {
                     Swal.fire({
-                        title: 'Success!',
                         icon: 'success',
-                        timer: 1000,
-                        timerProgressBar: true,
-                    }).then((res) => {
-                        document.querySelector('#form-edit').submit();
-                    });
-                }
+                        title: 'Edited Successfully',
+                        timer: 1500,
+                        timerProgressBar: true
+                    })
+                };
             });
         });
+
 
         let latitude = document.querySelector('#latitude');
         let longitude = document.querySelector('#longitude');
@@ -77,5 +97,5 @@
                 }
             });
         });
-    });
+    };
 </script>

@@ -8,9 +8,9 @@
                                     drawer-spacer-border">
                     <div class="media
                                         align-items-center">
-                        <img src="https://pbs.twimg.com/profile_images/928893978266697728/3enwe0fO_400x400.jpg" class="img-fluid
+                        <!-- <img src="https://pbs.twimg.com/profile_images/928893978266697728/3enwe0fO_400x400.jpg" class="img-fluid
                                             rounded-circle
-                                            mr-2" width="35" alt="">
+                                            mr-2" width="35" alt=""> -->
                         <div class="media-body">
                             <a href="#" class="h5
                                                 m-0">Frontted</a>

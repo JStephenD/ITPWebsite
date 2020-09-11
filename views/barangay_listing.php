@@ -45,7 +45,7 @@
 
         const custSwal = Swal.mixin({
             customClass: {
-                confirmButton: 'btn btn-danger btn-lg mr-2',
+                confirmButton: 'btn btn-outline-warning btn-lg mr-2',
                 cancelButton: 'btn btn-secondary btn-lg ml-2'
             },
             buttonsStyling: false

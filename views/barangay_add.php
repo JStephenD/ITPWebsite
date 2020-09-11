@@ -63,12 +63,16 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    window.onload = function () {
+        let form = document.querySelector('#form-add');
+        let url = window.location.href;
+
         document.querySelector('#submit').addEventListener('click', (ev) => {
             let msg = '';
             let citymun = document.querySelector('#citymun');
             let blevel = document.querySelector('#blevel');
             let bname = document.querySelector('#bname');
+            let formdata = new FormData(form);
             ev.preventDefault();
 
             if (citymun.options[citymun.selectedIndex].value == '-1') {
@@ -92,16 +96,33 @@
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Proceed',
+                    showLoaderOnConfirm: true,
+                    preConfirm: () => {
+                        return fetch(url, {
+                            method: 'POST',
+                            body: formdata
+                        })
+                        .then((res) => {
+                            if (!res.ok) {
+                                throw new Error(res.responseText)
+                            }
+                        })
+                        .catch((error) => {
+                            Swal.showValidationMessage(
+                                `Response failed: ${error}`
+                            )
+                        })
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
                 }).then((res) => {
-                    if (res.value) {
+                    console.log(res);
+                    if (res.isConfirmed) {
                         Swal.fire({
                             title: 'Success!',
                             icon: 'success',
-                            timer: 1000,
+                            timer: 1500,
                             timerProgressBar: true,
-                        }).then((res) => {
-                            document.querySelector('#form-add').submit();
-                        });
+                        })
                     }
                 });
             }
@@ -125,5 +146,5 @@
                 target.value = 0;
             }
         });
-    });
+    };
 </script>

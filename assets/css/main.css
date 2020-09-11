@@ -20,12 +20,12 @@
 
 .action .table-edit {
   color: #464646;
-  margin: 0 .5em;
+  margin: 0 0.5em;
 }
 
 .action .table-delete {
   color: #ee7171;
-  margin: 0 .5em;
+  margin: 0 0.5em;
 }
 
 abbr .abbr-edit {
@@ -36,7 +36,8 @@ abbr .abbr-delete {
   cursor: pointer;
 }
 
-.buttons button:hover, .buttons a:hover {
+.buttons button:hover,
+.buttons a:hover {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
 }
@@ -59,13 +60,16 @@ abbr .abbr-delete {
   max-height: 20em;
 }
 
-.drawer-menu-item span, .drawer-menu-item i {
+.drawer-menu-item span,
+.drawer-menu-item i {
   padding: 0 0.625em;
   margin: 1em 0;
   font-size: 1.25em;
 }
 
-.drawer-menu-item button, .drawer-menu-item button:hover, .drawer-menu-item button:focus {
+.drawer-menu-item button,
+.drawer-menu-item button:hover,
+.drawer-menu-item button:focus {
   display: block;
   width: 100%;
   all: unset;
@@ -80,13 +84,13 @@ abbr .abbr-delete {
 
 .drawer-menu-item .submenu ul {
   padding: 0;
-  margin: .5em 0 1em 3em;
+  margin: 0.5em 0 1em 3em;
   list-style-type: none;
 }
 
 .drawer-menu-item .submenu ul li {
-  padding: .3em .3em;
-  margin: .5em;
+  padding: 0.3em 0.3em;
+  margin: 0.5em;
   border-left: 2px solid rgba(255, 209, 102, 0.3);
   font-size: 1.1em;
 }
@@ -101,7 +105,7 @@ abbr .abbr-delete {
 }
 
 .drawer-menu-item .submenu ul li i {
-  font-size: .9em;
+  font-size: 0.9em;
   margin-right: 1em;
 }
 
@@ -329,7 +333,7 @@ abbr .abbr-delete {
 .signup-form .date,
 .login-form .date,
 .account-form .date {
-  widtH: 100%;
+  width: 100%;
 }
 
 .select-section {
@@ -385,5 +389,24 @@ abbr .abbr-delete {
   margin: 2em auto 1em;
   width: 60%;
   font-size: 1.1em;
+}
+
+.link-unstyled, .link-unstyled:visited, .link-unstyled:hover, .link-unstyled:active, .link-unstyled:focus, .link-unstyled:active:hover {
+  font-style: inherit;
+  color: inherit;
+  background-color: transparent;
+  font-size: inherit;
+  text-decoration: none;
+  font-variant: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  border-radius: inherit;
+  border: inherit;
+  outline: inherit;
+  -webkit-box-shadow: inherit;
+          box-shadow: inherit;
+  padding: inherit;
+  vertical-align: inherit;
 }
 /*# sourceMappingURL=main.css.map */

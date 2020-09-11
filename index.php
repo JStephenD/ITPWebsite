@@ -58,20 +58,23 @@ switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::FOUND:
         $classname = $routeInfo[1][0];
         $controller = '\\controllers\\'.$classname;
-
         $method = $routeInfo[1][1];
         $vars = $routeInfo[2];
 
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/header.php';
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/navbar.php';
-        $messages->show();
+        if ($httpMethod != 'POST')  {
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/header.php';
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/navbar.php';
+            $messages->show();
+        }
         
         $class = new $controller();
         call_user_func_array([$class, $method], [$vars, $httpMethod]);
 
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/sidebar.php';
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/sidebar_right.php';
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/footer.php';
+        if ($httpMethod != 'POST') {
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/sidebar.php';
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/sidebar_right.php';
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/footer.php';
+        }
 
         break;
 }

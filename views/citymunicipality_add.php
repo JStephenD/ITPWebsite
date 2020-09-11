@@ -39,14 +39,21 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    window.onload = function () {
+        let form = document.querySelector('#form-add');
+        let url = window.location.href;
+
         document.querySelector('#submit').addEventListener('click', (ev) => {
             let msg = '';
             let cmclass = document.querySelector('#cmclass');
             let cmdesc = document.querySelector('#cmdesc');
+
+            let formdata = new FormData(form);
             ev.preventDefault();
 
-            if (cmclass.options[cmclass.selectedIndex].value == '-1') { msg += 'Please choose the classification<br>'; }
+            if (cmclass.options[cmclass.selectedIndex].value == '-1') {
+                msg += 'Please choose the classification<br>';
+            }
 
             if (msg.length > 0) {
                 Swal.fire({
@@ -63,16 +70,33 @@
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Proceed',
+                    showLoaderOnConfirm: true,
+                    preConfirm: () => {
+                        return fetch(url, {
+                                method: 'POST',
+                                body: formdata
+                            })
+                            .then((response) => {
+                                if (!response.ok) {
+                                    throw new Error(response.statusText)
+                                }
+                            })
+                            .catch((error) => {
+                                Swal.showValidationMessage(
+                                    `Request failed: ${error}`
+                                )
+                            })
+                    },
+                    allowOutsideClick: () => !Swal.isLoading(),
                 }).then((res) => {
-                    if (res.value) {
+                    if (res.isConfirmed) {
                         Swal.fire({
                             title: 'Success!',
                             icon: 'success',
-                            timer: 1000,
+                            timer: 1500,
                             timerProgressBar: true,
-                        }).then((res) => {
-                            document.querySelector('#form-add').submit();
                         });
+                        window.location = '/citymunicipality/listing'
                     }
                 });
             }
@@ -89,5 +113,5 @@
                 }
             });
         });
-    });
+    };
 </script>
