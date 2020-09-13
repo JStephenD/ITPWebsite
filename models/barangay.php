@@ -1,11 +1,12 @@
 <?php
 
-namespace models;
-use PDO;
-
 class Barangay {
-    public static function addBarangay($table, $data) {
-        $query = Connection::connect()->prepare(
+    function __construct($db) {
+        $this->db = $db;
+    }
+
+    function addBarangay($table, $data) {
+        $query = $this->db->prepare(
             "INSERT INTO 
             $table(
                 bname, 
@@ -31,9 +32,9 @@ class Barangay {
         $query = null;
     }
 
-    public static function getBarangays($table, $id=null) {
+    function getBarangays($table, $id=null) {
         if (isset($id)) {
-            $query = Connection::connect()->prepare(
+            $query = $this->db->prepare(
                 "SELECT * FROM $table WHERE id = :id"
             );
             $query->bindParam(':id', $id, PDO::PARAM_STR);
@@ -43,15 +44,15 @@ class Barangay {
             $query = null;
 
         } else {
-            $result = Connection::connect()->query(
+            $result = $this->db->query(
                 "SELECT * FROM $table ORDER BY id"
             );
             return $result->fetchAll();
         }
     }
 
-    public static function updateBarangay($table, $data) {
-        $query = Connection::connect()->prepare(
+    function updateBarangay($table, $data) {
+        $query = $this->db->prepare(
             "UPDATE $table SET 
                 bname = :bname,  
                 estpop = :estpop,
@@ -65,8 +66,8 @@ class Barangay {
         $query->execute($data);
     }
 
-    public static function deleteBarangay($table, $data) {
-        $query = Connection::connect()->prepare(
+    function deleteBarangay($table, $data) {
+        $query = $this->db->prepare(
             "DELETE FROM $table WHERE id = :id"
         );
         $query->execute($data);

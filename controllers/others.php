@@ -1,10 +1,12 @@
 <?php
-namespace controllers;
-use classes\Utils;
+class Others extends Controller{
+    function __construct($db) {
+        $this->db = $db;
+    }
 
-class Others {
-    public function home($vars, $httpmethod) {
-        Utils::login_required();
+    function home($vars, $httpmethod) {
+        $this->login_required();
+        
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/home.php';
     }
 }

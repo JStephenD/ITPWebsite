@@ -1,12 +1,15 @@
 <?php
 
-namespace controllers;
-use models\CityMunicipality, models\Barangay;
-use classes\Utils;
+class CovidTrace extends Controller {
+    function __construct($db) {
+        $this->db = $db;
+        $this->citymun = new CityMunicipality($this->db);
+        $this->brgy = new Barangay($this->db);
+        $this->utils = new Utils();
+    }
 
-class CovidTrace {
-    public function citymunicipality_add($vars, $httpmethod) {
-        Utils::login_required();
+    function citymunicipality_add($vars, $httpmethod) {
+        $this->utils->login_required();
 
         if ($httpmethod == 'POST') {
             $table = 'citymun';
@@ -20,21 +23,21 @@ class CovidTrace {
 
             sleep(1);
 
-            $resultset = CityMunicipality::addCityMunicipality($table, $data);
+            $resultset = $this->citymun->addCityMunicipality($table, $data);
         } else {
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/citymunicipality_add.php';
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/citymunicipality/citymunicipality_add.php';
         }
     }
 
-    public function citymunicipality_listing($vars, $httpmethod) {
-        Utils::login_required();
+    function citymunicipality_listing($vars, $httpmethod) {
+        $this->utils->login_required();
 
-        $cms = CityMunicipality::getCityMunicipalities('citymun');
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/citymunicipality_listing.php';
+        $cms = $this->citymun->getCityMunicipalities('citymun');
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/citymunicipality/citymunicipality_listing.php';
     }
 
-    public function citymunicipality_edit($vars, $httpmethod) {
-        Utils::login_required();
+    function citymunicipality_edit($vars, $httpmethod) {
+        $this->utils->login_required();
         
         if ($httpmethod == 'POST') {
             $data = array(
@@ -48,19 +51,21 @@ class CovidTrace {
 
             sleep(1);
 
-            $result = CityMunicipality::updateCityMunicipality('citymun', $data);
+            $result = $this->citymun->updateCityMunicipality('citymun', $data);
+            header('Content-Type: application/json');
+            echo json_encode(['1', '2', '3']);
         } else {
             $id = $vars['id'];
-            $cm = CityMunicipality::getCityMunicipalities('citymun', $id);
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/citymunicipality_edit.php';
+            $cm = $this->citymun->getCityMunicipalities('citymun', $id);
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/citymunicipality/citymunicipality_edit.php';
         }
     }
 
-    public function citymunicipality_delete($vars, $httpmethod) {
-        Utils::login_required();
+    function citymunicipality_delete($vars, $httpmethod) {
+        $this->utils->login_required();
 
         $id = $vars['id'];
-        $result = CityMunicipality::deleteCityMunicipality('citymun', 
+        $result = $this->citymun->deleteCityMunicipality('citymun', 
             array('id' => $id,));
 
         header('Location: /citymunicipality/listing');
@@ -69,8 +74,8 @@ class CovidTrace {
 
 // -------------------------------------------------------------------------------------
 
-    public function barangay_add($vars, $httpmethod) {   
-        Utils::login_required();
+    function barangay_add($vars, $httpmethod) {
+        $this->utils->login_required();
 
         if ($httpmethod == 'POST') {
             $table = 'barangay';
@@ -86,29 +91,29 @@ class CovidTrace {
 
             sleep(1);
 
-            $resultset = Barangay::addBarangay($table, $data);        
+            $resultset = $this->brgy->addBarangay($table, $data);        
             
         } else {
-            $cityMunicipalities = CityMunicipality::getCityMunicipalities('citymun');
+            $cityMunicipalities = $this->citymun->getCityMunicipalities('citymun');
 
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/barangay_add.php';
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/barangay/barangay_add.php';
         }
     }
 
-    public function barangay_listing($vars, $httpmethod) {
-        Utils::login_required();
+    function barangay_listing($vars, $httpmethod) {
+        $this->utils->login_required();
 
-        $brngys = Barangay::getBarangays('barangay');
-        $cms = CityMunicipality::getCityMunicipalities('citymun');
+        $brngys = $this->brgy->getBarangays('barangay');
+        $cms = $this->citymun->getCityMunicipalities('citymun');
         $cities = [];
         foreach ($cms as $row) {
             $cities[$row['id']] = $row['cmdesc'];
         }
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/barangay_listing.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/barangay/barangay_listing.php';
     }
 
-    public function barangay_edit($vars, $httpmethod) {
-        Utils::login_required();
+    function barangay_edit($vars, $httpmethod) {
+        $this->utils->login_required();
 
         if ($httpmethod == 'POST') {
             $data = array(
@@ -124,23 +129,24 @@ class CovidTrace {
 
             sleep(1);
 
-            $result = Barangay::updateBarangay('barangay', $data);
+            $result = $this->brgy->updateBarangay('barangay', $data);
+
             header('Content-Type: application/json');
             $temp = ['1', '2', '3'];
             echo json_encode($temp);
         } else {
             $id = $vars['id'];
-            $cityMunicipalities = CityMunicipality::getCityMunicipalities('citymun');
-            $brngy = Barangay::getBarangays('barangay', $id);
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/barangay_edit.php';
+            $cityMunicipalities = $this->citymun->getCityMunicipalities('citymun');
+            $brngy = $this->brgy->getBarangays('barangay', $id);
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/barangay/barangay_edit.php';
         }
     }
 
-    public function barangay_delete($vars, $httpmethod) {
-        Utils::login_required();
+    function barangay_delete($vars, $httpmethod) {
+        $this->utils->login_required();
 
         $id = $vars['id'];
-        $result = Barangay::deleteBarangay('barangay', 
+        $result = $this->brgy->deleteBarangay('barangay', 
             array('id' => $id,));
 
         header('Location: /barangay/listing');

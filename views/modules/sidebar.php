@@ -32,28 +32,23 @@
                 </div>
                 <!-- DASHBOARDS MENU -->
                 <ul class="drawer-menu" id="dasboardMenu" data-children=".drawer-submenu">
-                    <li 
-                        class="drawer-menu-item <?= strpos($method, 'user') ? 'active' : '' ?>">
+                    <li class="drawer-menu-item <?= strpos($method, 'user') ? 'active' : '' ?>">
                         <button>
                             <i class="fas fa-user"></i>
                             <span class="sidebar-text">
-                                User <?= isset($_SESSION['user']) ? ' ( ' . $_SESSION['user']['first_name'] . ' ) ' : '' ;?>
+                                User <?= isset($_SESSION['user']) ? ' ( ' . $_SESSION['user']['first_name'] . ' ) ' : ''; ?>
                             </span>
                         </button>
                         <div class="submenu">
                             <ul>
-                                <?php if (isset($_SESSION['user'])) { ?>
-                                <li><a href="/user/account/<?= $_SESSION['user']['id'] ;?>"><i class="fas fa-user-circle"></i>Account</a></li>
-                                <li><a href="/user/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
-                                <?php } else { ?>
-                                <li><a href="/user/signup"><i class="fas fa-user-plus"></i>Sign up</li></a>
-                                <li><a href="/user/login"><i class="fas fa-sign-in-alt"></i>Login</li></a>
-                                <?php } ?>
+                                <li class="<?= isset($_SESSION['user']) ? '' : 'd-none'; ?>"><a id='sidebar-account' href="/user/account/<?= $_SESSION['user']['id']; ?>"><i class="fas fa-user-circle"></i>Account</a></li>
+                                <li class="<?= isset($_SESSION['user']) ? '' : 'd-none'; ?>"><a id='sidebar-logout' href="/user/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                                <li class="<?= isset($_SESSION['user']) ? 'd-none' : ''; ?>"><a id='sidebar-signup' href="/user/signup"><i class="fas fa-user-plus"></i>Sign up</li></a>
+                                <li class="<?= isset($_SESSION['user']) ? 'd-none' : ''; ?>"><a id='sidebar-login' href="/user/login"><i class="fas fa-sign-in-alt"></i>Login</li></a>
                             </ul>
                         </div>
                     </li>
-                    <li 
-                        class="drawer-menu-item <?= strpos($method, 'citymunicipality') ? 'active' : '' ?>">
+                    <li class="drawer-menu-item <?= strpos($method, 'citymunicipality') ? 'active' : '' ?>">
                         <button>
                             <i class="fas fa-city"></i>
                             <span class="sidebar-text">
@@ -81,6 +76,22 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="drawer-menu-item <?= strpos($method, 'mapping') ? 'active' : '' ?>">
+                        <button>
+                            <i class="fas fa-map-signs"></i>
+                            <span class="sidebar-text">
+                                Mapping
+                            </span>
+                        </button>
+                        <div class="submenu">
+                            <ul>
+                                <li><a href="/mapping"><i class="fas fa-map-marked-alt"></i>Mapping</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+
+
                     <!-- <li class="drawer-menu-item">
                         <a href="/personalDetails.html">
                             <i class="material-icons">

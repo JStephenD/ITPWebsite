@@ -409,4 +409,24 @@ abbr .abbr-delete {
   padding: inherit;
   vertical-align: inherit;
 }
+
+.mapping-main {
+  padding: 1em 5em;
+  height: 100%;
+  width: 100%;
+}
+
+#covidTraceMap {
+  min-height: 90%;
+}
+
+.mapping-options {
+  margin: 2em auto;
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
 /*# sourceMappingURL=main.css.map */

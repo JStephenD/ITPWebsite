@@ -4,8 +4,32 @@ ob_start();
 session_start();
 
 // AUTOLOAD
-require 'loader.php';
+function loadClasses($class) {
+    $dirs = [
+        $_SERVER['DOCUMENT_ROOT'] . '/controllers/',
+        $_SERVER['DOCUMENT_ROOT'] . '/models/',
+        $_SERVER['DOCUMENT_ROOT'] . '/classes/',
+        $_SERVER['DOCUMENT_ROOT'] . '/ajaj/',
+    ];
+
+    foreach ($dirs as $dir) {
+        if (file_exists($dir . $class . '.php')) {
+            require_once $dir . $class . '.php';
+        }
+    }
+}
+
+spl_autoload_register('loadClasses');
+
+$messages = new Messages();
+$db = new Connection();
+
+require 'classes/loader.php';
 require 'vendor/autoload.php';
+
+require 'vendor/vlucas/phpdotenv/src/Dotenv.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 //
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
@@ -24,7 +48,9 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute(['GET', 'POST'], '/user/logout', ['User', 'logout']);
     $r->addRoute(['GET', 'POST'], '/user/account/{id:\d+}', ['User', 'account']);
 
-    $r->addRoute(['GET'], '/', ['Others', 'home']);
+    $r->addRoute(['GET'], '/mapping', ['Mapping', 'mapping']);    
+
+    // $r->addRoute(['GET'], '/', ['Others', 'home']);
 });
 
 // Fetch method and URI from somewhere
@@ -36,7 +62,6 @@ if (false !== $pos = strpos($uri, '?')) {
     $uri = substr($uri, 0, $pos);
 }
 $uri = rawurldecode($uri);
-// echo $uri.'<br>';
 
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 switch ($routeInfo[0]) {
@@ -57,23 +82,23 @@ switch ($routeInfo[0]) {
         break;
     case FastRoute\Dispatcher::FOUND:
         $classname = $routeInfo[1][0];
-        $controller = '\\controllers\\'.$classname;
         $method = $routeInfo[1][1];
+        
         $vars = $routeInfo[2];
 
-        if ($httpMethod != 'POST')  {
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/header.php';
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/navbar.php';
+        if ($httpMethod == 'GET')  {
+            require_once __DIR__.'/views/modules/header.php';
+            require_once __DIR__.'/views/modules/navbar.php';
             $messages->show();
         }
-        
-        $class = new $controller();
+
+        $class = new $classname($db->connect());
         call_user_func_array([$class, $method], [$vars, $httpMethod]);
 
-        if ($httpMethod != 'POST') {
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/sidebar.php';
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/sidebar_right.php';
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/modules/footer.php';
+        if ($httpMethod == 'GET') {
+            require_once __DIR__.'/views/modules/sidebar.php';
+            require_once __DIR__.'/views/modules/sidebar_right.php';
+            require_once __DIR__.'/views/modules/footer.php';
         }
 
         break;

@@ -1,36 +1,40 @@
 <?php
-namespace controllers;
-use models\User as UserModel;
-use classes\Messages;
-use classes\Utils;
 
-class User {
+class User extends Controller {
+    function __construct($db) {
+        $this->db = $db;
+        $this->userModel = new UserModel($this->db);
+        $this->utils = new Utils();
+    }
+
     public function signup($vars, $httpmethod){
         if ($httpmethod == 'POST') {
-            $username = $_POST['username'];
+            $username = isset($_POST['username']) ? $_POST['username'] : '';
+            $password = isset($_POST['password']) ? hash('sha256', $_POST['password']) : '';
+
             $data = [
-                'username' => $_POST['username'],
-                'password' => hash('sha256', $_POST['password']),
+                'username' => $username,
+                'password' => $password,
             ];
 
-            $result = UserModel::signup('user', $data);
-            if ($result == 'userAlreadyExists') {
-                Messages::add(
-                    "User <strong>". $username ."</strong> already exist.", 
-                    "danger"
-                );
-                header('Location: /user/signup');
-            } else {
-                Messages::add(
-                    "User account <strong>". $username. "</strong> created successfully.<hr>
-                    You can login now.", 
-                    "primary"
-                );
-                header('Location: /user/login?username=' . $username);
-            }
-        }
+            if ($this->userModel->getUserByUsername('user', $data)) {
+                $response = [
+                    "status" => "500",
+                    "statusText" => "Sign up Error",
+                    "responseText" => "User Already Exists"
+                ];
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            } 
+            if (!isset($_POST['checkUser'])) {
+                sleep(1);
 
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user_signup.php';
+                $result = $this->userModel->signUp('user', $data);
+            }
+            
+        } else {
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/user_signup.php';
+        }
     }
     
     public function login($vars, $httpmethod){
@@ -41,7 +45,7 @@ class User {
                 'password' => hash('sha256', $_POST['password'])
             ];
 
-            $result = UserModel::login('user', $data);
+            $result = $this->userModel->login('user', $data);
             if ($result == 'userDoesNotExist') {
                 Messages::add(
                     "User <strong>". $username ."</strong> does not exist. Please check your credentials.", 
@@ -62,13 +66,13 @@ class User {
                 );
                 header('Location: /user/account/' . $_SESSION['user']['id']);
             }
+        } else {
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/user_login.php';
         }
-
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user_login.php';
     }
 
     public function account($vars, $httpmethod) {
-        Utils::login_required();
+        $this->utils->login_required();
 
         if ($httpmethod == 'POST') {
             $data = [
@@ -80,34 +84,38 @@ class User {
 
             var_dump($_POST);
 
-            $result = UserModel::updateAccount('user', $data);
+            $result = $this->userModel->updateAccount('user', $data);
 
             Messages::add(
                 "User Profile updated successfully.",
                 "success"
             );
             $username = $_SESSION['user']['username'];
-            $_SESSION['user'] = UserModel::getUserByUsername('user', ['username' => $username]);
+            $_SESSION['user'] = $this->userModel->getUserByUsername('user', ['username' => $username]);
             header('Location: /user/account/' . $vars['id']);
+        } else {
+            $user = $_SESSION['user'];
+
+            $first_name = $user['first_name'];
+            $last_name = $user['last_name'];
+            $birthday = $user['birthday'];
+
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/user_account.php';
         }
-
-        $user = $_SESSION['user'];
-
-        $first_name = $user['first_name'];
-        $last_name = $user['last_name'];
-        $birthday = $user['birthday'];
-
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user_account.php';
     }
 
-    public function logout($vars, $httpmethod){
-        unset($_SESSION['user']);
+    public function logout($vars, $httpmethod) {
+        session_unset();
+        session_destroy();
+        session_start();
+        
         Messages::add(
             "<strong>Logged out</strong> successfully.<hr>
             Note: Must be logged in to use the system.", 
             "dark"
         );
-        header('Location: /user/login');
+
+        sleep(1);
     }
 }
 

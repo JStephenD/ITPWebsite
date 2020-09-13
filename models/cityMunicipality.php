@@ -1,11 +1,11 @@
-<?php
-
-namespace models;
-use PDO;
-
+<?php   
 class CityMunicipality {
-    public static function addCityMunicipality($table, $data) {
-        $query = Connection::connect()->prepare(
+    function __construct($db) {
+        $this->db = $db;
+    }
+
+    function addCityMunicipality($table, $data) {
+        $query = $this->db->prepare(
             "INSERT INTO $table(cmdesc, latitude, longitude, cmclass, remarks)
             VALUES (:cmdesc, :latitude, :longitude, :cmclass, :remarks)"
         );
@@ -13,9 +13,9 @@ class CityMunicipality {
         $query = null;
     }
 
-    public static function getCityMunicipalities($table, $id=null) {
+    function getCityMunicipalities($table, $id=null) {
         if (isset($id)) {
-            $query = Connection::connect()->prepare(
+            $query = $this->db->prepare(
                 "SELECT * FROM $table WHERE id = :id"
             );
             $query->bindParam(':id', $id, PDO::PARAM_STR);
@@ -23,15 +23,15 @@ class CityMunicipality {
             return $query->fetch();
             $query = null;
         } else {
-            $query = Connection::connect()->query(
+            $query = $this->db->query(
                 "SELECT * FROM $table ORDER BY id"
             );
-            return $query->fetchAll();
+            return $query->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 
-    public static function updateCityMunicipality($table, $data) {
-        $query = Connection::connect()->prepare(
+    function updateCityMunicipality($table, $data) {
+        $query = $this->db->prepare(
             "UPDATE $table SET 
                 cmdesc = :cmdesc,  
                 latitude = :latitude,
@@ -43,8 +43,8 @@ class CityMunicipality {
         $query->execute($data);
     }
 
-    public static function deleteCityMunicipality($table, $data) {
-        $query = Connection::connect()->prepare(
+    function deleteCityMunicipality($table, $data) {
+        $query = $this->db->prepare(
             "DELETE FROM $table WHERE id = :id"
         );
         $query->execute($data);

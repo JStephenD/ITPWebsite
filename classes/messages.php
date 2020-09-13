@@ -1,6 +1,4 @@
 <?php
-namespace classes;
-
 class Messages {
     function __construct() {
         if (!isset($_SESSION['messages'])) {
