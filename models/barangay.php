@@ -47,7 +47,7 @@ class Barangay {
             $result = $this->db->query(
                 "SELECT * FROM $table ORDER BY id"
             );
-            return $result->fetchAll();
+            return $result->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 

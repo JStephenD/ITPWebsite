@@ -1,6 +1,6 @@
 <?php
 
-ob_start(); 
+ob_start();
 session_start();
 
 // AUTOLOAD
@@ -48,9 +48,9 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute(['GET', 'POST'], '/user/logout', ['User', 'logout']);
     $r->addRoute(['GET', 'POST'], '/user/account/{id:\d+}', ['User', 'account']);
 
-    $r->addRoute(['GET'], '/mapping', ['Mapping', 'mapping']);    
+    $r->addRoute(['GET'], '/mapping', ['Mapping', 'mapping']);
 
-    // $r->addRoute(['GET'], '/', ['Others', 'home']);
+    $r->addRoute(['GET'], '/', ['Others', 'home']);
 });
 
 // Fetch method and URI from somewhere

@@ -115,7 +115,6 @@
                     },
                     allowOutsideClick: () => !Swal.isLoading()
                 }).then((res) => {
-                    console.log(res);
                     if (res.isConfirmed) {
                         Swal.fire({
                             title: 'Success!',

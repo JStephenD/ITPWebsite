@@ -232,11 +232,7 @@ mdk-header--fixed mdk-header-layout__content--scrollable">
                                                         <li class="list-group-item">
                                                             <div class="media
                                             align-items-center">
-                                                                <a href="/profile.html">
-                                                                    <img src="/assets/images/avatars/person-1.jpg" class="img-fluid
-                                                    rounded-circle
-                                                    mr-2" width="35" alt="">
-                                                                </a>
+                                                                
                                                                 <div class="media-body">
                                                                     <div class="w-100">I
                                                                         started
@@ -254,11 +250,7 @@ mdk-header--fixed mdk-header-layout__content--scrollable">
                                                         <li class="list-group-item">
                                                             <div class="media
                                             align-items-center">
-                                                                <a href="/profile.html">
-                                                                    <img src="/assets/images/avatars/person-11.jpg" class="img-fluid
-                                                    rounded-circle
-                                                    mr-2" width="35" alt="">
-                                                                </a>
+                                                                
                                                                 <div class="media-body">
                                                                     <div class="w-100">Can
                                                                         we
@@ -275,11 +267,7 @@ mdk-header--fixed mdk-header-layout__content--scrollable">
                                                         <li class="list-group-item">
                                                             <div class="media
                                             align-items-center">
-                                                                <a href="/profile.html">
-                                                                    <img src="/assets/images/avatars/person-12.jpg" class="img-fluid
-                                                    rounded-circle
-                                                    mr-2" width="35" alt="">
-                                                                </a>
+                                                                
                                                                 <div class="media-body">
                                                                     <div class="w-100">We
                                                                         need

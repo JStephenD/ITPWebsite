@@ -59,13 +59,13 @@
 </div>
 
 <script>
-    window.onload = function () {
+    window.addEventListener('load', () => {
         let form = document.querySelector('#form-edit');
         let url = window.location.href;
 
         document.querySelector('#update').addEventListener('click', (ev) => {
-            let formdata = new FormData(form);
             ev.preventDefault();
+            let formdata = new FormData(form);
 
             Swal.fire({
                 title: 'Update Barangay data?',
@@ -85,6 +85,8 @@
                                 throw new Error(res.statusText)
                             }
                             return res.json()
+                        })
+                        .then((json) => {
                         })
                         .catch((error) => {
                             Swal.showValidationMessage(
@@ -123,5 +125,5 @@
                 target.value = 0;
             }
         });
-    };
+    });
 </script>

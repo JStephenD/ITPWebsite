@@ -46,8 +46,7 @@
 
         document.querySelector('#update').addEventListener('click', (ev) => {
             ev.preventDefault();
-            let formdata = new FormData(form);
-            formdata.set('my', 'variable');
+            let formdata = new FormData(form);    
 
             Swal.fire({
                 title: 'Update City/Municipality data?',
@@ -60,7 +59,7 @@
                 preConfirm: () => {
                     return fetch(url, {
                             method: 'POST',
-                            body: formdata
+                            body: formdata,
                         })
                         .then((res) => {
                             if (!res.ok) {

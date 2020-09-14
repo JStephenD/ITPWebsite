@@ -53,7 +53,7 @@ class CovidTrace extends Controller {
 
             $result = $this->citymun->updateCityMunicipality('citymun', $data);
             header('Content-Type: application/json');
-            echo json_encode(['1', '2', '3']);
+            echo json_encode('');
         } else {
             $id = $vars['id'];
             $cm = $this->citymun->getCityMunicipalities('citymun', $id);
@@ -91,8 +91,9 @@ class CovidTrace extends Controller {
 
             sleep(1);
 
-            $resultset = $this->brgy->addBarangay($table, $data);        
-            
+            $resultset = $this->brgy->addBarangay($table, $data);
+            header('Content-Type: application/json');
+            echo json_encode('');
         } else {
             $cityMunicipalities = $this->citymun->getCityMunicipalities('citymun');
 
@@ -130,10 +131,8 @@ class CovidTrace extends Controller {
             sleep(1);
 
             $result = $this->brgy->updateBarangay('barangay', $data);
-
             header('Content-Type: application/json');
-            $temp = ['1', '2', '3'];
-            echo json_encode($temp);
+            echo json_encode('');
         } else {
             $id = $vars['id'];
             $cityMunicipalities = $this->citymun->getCityMunicipalities('citymun');
