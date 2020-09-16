@@ -3,13 +3,15 @@
         <legend>Edit City / Municipality Information</legend>
         <span class="sep"></span>
         <div class="citymun">
-            <select name="cmclass" class="select" required>
-                <option value="City" <?= $cm['cmclass'] == 'city' ? 'selected' : ''; ?>>
-                    City</option>
-                <option value="Municipality" <?= $cm['cmclass'] == 'city' ? 'selected' : ''; ?>>
-                    Municipality</option>
-            </select>
-            <img src="/assets/images/caret-square-up-solid.svg" alt="caret">
+            <label for="cmclass">
+                Location Classification
+                <select name="cmclass" id="cmclass" class="select" required>
+                    <option value="City" <?= $cm['cmclass'] == 'city' ? 'selected' : ''; ?>>
+                        City</option>
+                    <option value="Municipality" <?= $cm['cmclass'] == 'city' ? 'selected' : ''; ?>>
+                        Municipality</option>
+                </select>
+            </label>
         </div>
         <div class="field">
             <input type="text" class="input" autocomplete="off" name="cmdesc" placeholder=" " required value="<?= $cm['cmdesc']; ?>">
@@ -41,12 +43,14 @@
 
 <script>
     window.addEventListener('load', () => {
+        $('#cmclass').select2();
+
         let url = window.location.href;
         let form = document.querySelector('#form-edit');
 
         document.querySelector('#update').addEventListener('click', (ev) => {
             ev.preventDefault();
-            let formdata = new FormData(form);    
+            let formdata = new FormData(form);
 
             Swal.fire({
                 title: 'Update City/Municipality data?',
@@ -67,8 +71,7 @@
                             }
                             return res.json()
                         })
-                        .then(json => {
-                        })
+                        .then(json => {})
                         .catch((error) => {
                             Swal.showValidationMessage(
                                 `Request failed: ${error}`

@@ -6,27 +6,31 @@
         <legend>Barangay Form</legend>
         <span class="sep"></span>
         <div class="select-section">
-            <div class="citymun">
-                <select name="idcm" id="citymun" class="select" required>
-                    <option value="-1" disabled selected>Select City</option>
-                    <?php if (isset($cityMunicipalities)) {
-                        foreach ($cityMunicipalities as $row) { ?>
-                            <option value="<?= $row['id']; ?>">
-                                <?= $row['cmdesc']; ?>
-                            </option>
-                    <?php }
-                    } ?>
-                </select>
-                <img src="/assets/images/caret-square-up-solid.svg" alt="caret">
-            </div>
-            <div class="blevel">
-                <select name="blevel" id="blevel" class="select">
-                    <option value="-1" disabled selected>Select Level</option>
-                    <option value="Level 1">Level 1</option>
-                    <option value="Level 2">Level 2</option>
-                </select>
-                <img src="/assets/images/caret-square-up-solid.svg" alt="caret">
-            </div>
+            <label for="citymun">
+                Select Location
+                <div class="citymun">
+                    <select name="idcm" id="citymun" class="select" required>
+                        <option value="-1" disabled selected>Select City</option>
+                        <?php if (isset($cityMunicipalities)) {
+                            foreach ($cityMunicipalities as $row) { ?>
+                                <option value="<?= $row['id']; ?>">
+                                    <?= $row['cmdesc']; ?>
+                                </option>
+                        <?php }
+                        } ?>
+                    </select>
+                </div>
+            </label>
+            <label for="blevel">
+                Select Barangay Level
+                <div class="blevel">
+                    <select name="blevel" id="blevel" class="select">
+                        <option value="-1" disabled selected>Select Level</option>
+                        <option value="Level 1">Level 1</option>
+                        <option value="Level 2">Level 2</option>
+                    </select>
+                </div>
+            </label>
         </div>
         <div class="bnameestpop">
             <div class="field input-bname">
@@ -64,6 +68,9 @@
 
 <script>
     window.addEventListener('load', () => {
+        $('#citymun').select2();
+        $('#blevel').select2();
+
         let form = document.querySelector('#form-add');
         let url = window.location.href;
 

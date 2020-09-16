@@ -12,6 +12,7 @@
 <script src="/assets/vendor/material-design-kit.js"></script>
 <script src="/assets/js/jquery.dataTables.min.js"></script>
 <script src="/assets/js/sweetalert.js"></script>
+<script src="/assets/js/select2.min.js"></script>
 
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 

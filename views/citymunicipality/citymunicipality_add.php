@@ -3,12 +3,14 @@
         <legend>City / Municipality Form</legend>
         <span class="sep"></span>
         <div class="citymun">
-            <select name="cmclass" id="cmclass" class="select" required>
-                <option disabled value="-1" selected>Select Classification</option>
-                <option value="City">City</option>
-                <option value="Municipality">Municipality</option>
-            </select>
-            <img src="/assets/images/caret-square-up-solid.svg" alt="caret">
+            <label for="cmclass">
+                Location Classification
+                <select name="cmclass" id="cmclass" class="select" required>
+                    <option disabled value="-1" selected>Select Classification</option>
+                    <option value="City">City</option>
+                    <option value="Municipality">Municipality</option>
+                </select>
+            <label for="cmclass">
         </div>
         <div class="field">
             <input type="text" class="input" autocomplete="off" id="cmdesc" name="cmdesc" placeholder=" " required>
@@ -40,6 +42,8 @@
 
 <script>
     window.addEventListener('load', () => {
+        $('#cmclass').select2();
+
         let form = document.querySelector('#form-add');
         let url = window.location.href;
 

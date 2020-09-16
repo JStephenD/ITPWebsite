@@ -19,7 +19,8 @@
 .citymun,
 .blevel {
   position: relative;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
 }
 .select {
   padding: .5em 4em .5em .8em;
@@ -42,7 +43,7 @@
   position: absolute;
   pointer-events: none;
   padding: .2em;
-  height: 2em;
+  height: 100%;
   right: .2em;
   transform: rotate(0deg);
   transition: transform var(--transition-speed-fast);
