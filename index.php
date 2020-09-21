@@ -14,8 +14,11 @@ function loadClasses($class)
     ];
 
     foreach ($dirs as $dir) {
+        echo '<pre>';
         print_r($dir . $class . '.php');
+        echo '</pre>';
         if (file_exists($dir . $class . '.php')) {
+            echo 'found';
             require_once $dir . $class . '.php';
         }
     }
