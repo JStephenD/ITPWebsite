@@ -35,6 +35,7 @@ DEFINE(
 
 function load_classes($class_name)
 {
+    print_r($class_name);
     $filename = ucfirst($class_name) . '.php';
     $file = __BASE . DIRECTORY_SEPARATOR . 'classes/' . ucfirst($class_name) . $filename;
 
