@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2020 at 01:32 PM
+-- Generation Time: Sep 21, 2020 at 03:06 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.32
 
@@ -106,10 +106,10 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` tinytext NOT NULL,
   `password` tinytext NOT NULL,
-  `first_name` tinytext DEFAULT 'first_name',
-  `last_name` tinytext DEFAULT 'last_name',
+  `first_name` varchar(255) DEFAULT '''first_name''',
+  `last_name` varchar(255) DEFAULT '''last_name''',
   `birthday` date DEFAULT '1950-01-01',
-  `dp_url` text DEFAULT '\'uploads/profile_picture/default.png\''
+  `dp_url` varchar(255) DEFAULT '''\\''uploads/profile_picture/default.png\\'''''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
