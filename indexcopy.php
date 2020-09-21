@@ -6,33 +6,36 @@ session_start();
 // AUTOLOAD
 function loadClasses($class)
 {
-    var_dump($class);
-    echo '<br><br>';
     $dirs = [
-        $_SERVER['DOCUMENT_ROOT'] . '/controllers/',
-        $_SERVER['DOCUMENT_ROOT'] . '/models/',
-        $_SERVER['DOCUMENT_ROOT'] . '/classes/',
-        $_SERVER['DOCUMENT_ROOT'] . '/ajaj/',
+        __DIR__ . '/controllers/',
+        __DIR__ . '/models/',
+        __DIR__ . '/classes/',
+        __DIR__ . '/ajaj/',
     ];
 
     foreach ($dirs as $dir) {
         if (file_exists($dir . $class . '.php')) {
             require_once $dir . $class . '.php';
         }
+        if (file_exists($dir . strtolower($class) . '.php')) {
+            require_once $dir . strtolower($class) . '.php';
+        }
     }
 }
 
 spl_autoload_register('loadClasses');
-var_dump($_SERVER);
+
 $messages = new Messages();
 $db = new Connection();
 
-require 'classes/loader.php';
+require 'classes/Loader.php';
 require 'vendor/autoload.php';
 
 require 'vendor/vlucas/phpdotenv/src/Dotenv.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+if (file_exists(__DIR__ . '/.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+}
 //
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
@@ -72,7 +75,7 @@ switch ($routeInfo[0]) {
         require_once 'views/modules/header.php';
         require_once 'views/modules/navbar.php';
         $messages->show();
-
+            
         require_once 'views/home.php';
 
         require_once 'views/modules/sidebar.php';
@@ -86,7 +89,7 @@ switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::FOUND:
         $classname = $routeInfo[1][0];
         $method = $routeInfo[1][1];
-
+        
         $vars = $routeInfo[2];
 
         if ($httpMethod == 'GET') {
@@ -94,7 +97,7 @@ switch ($routeInfo[0]) {
             require_once __DIR__ . '/views/modules/navbar.php';
             $messages->show();
         }
-
+        
         $class = new $classname($db->connect());
         call_user_func_array([$class, $method], [$vars, $httpMethod]);
 
