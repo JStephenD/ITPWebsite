@@ -6,7 +6,7 @@ class Others extends Controller{
     }
 
     function home($vars, $httpmethod) {
-        $this->utils->login_required();
+        // $this->utils->login_required();
 
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
             require_once $_SERVER['DOCUMENT_ROOT'] . '/views/home.php';
