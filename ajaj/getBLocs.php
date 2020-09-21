@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/models/connection.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/models/barangay.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/Connection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/Barangay.php';
 
 $db = new Connection();
 $barangay = new Barangay($db->connect());

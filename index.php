@@ -14,19 +14,14 @@ function loadClasses($class)
     ];
 
     foreach ($dirs as $dir) {
-        echo '<pre>';
-        print_r($dir . $class . '.php');
-        echo '</pre>';
         if (file_exists($dir . $class . '.php')) {
-            echo 'found';
             require_once $dir . $class . '.php';
+        }
+        if (file_exists($dir . strtolower($class) . '.php')) {
+            require_once $dir . strtolower($class) . '.php';
         }
     }
 }
-
-echo '<pre>';
-print_r(scandir($_SERVER['DOCUMENT_ROOT']));
-echo '</pre><br><br>';
 
 spl_autoload_register('loadClasses');
 

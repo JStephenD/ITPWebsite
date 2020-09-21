@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/models/connection.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/models/cityMunicipality.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/Connection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/CityMunicipality.php';
 
 $db = new Connection();
 $citymun = new CityMunicipality($db->connect());
