@@ -5,6 +5,8 @@ session_start();
 
 // AUTOLOAD
 function loadClasses($class) {
+    var_dump($class);
+    echo '<br><br>';
     $dirs = [
         $_SERVER['DOCUMENT_ROOT'] . '/controllers/',
         $_SERVER['DOCUMENT_ROOT'] . '/models/',
