@@ -6,6 +6,8 @@ session_start();
 // AUTOLOAD
 function loadClasses($class)
 {
+    var_dump($class);
+    echo '<br><br>';
     $dirs = [
         $_SERVER['DOCUMENT_ROOT'] . '/controllers/',
         $_SERVER['DOCUMENT_ROOT'] . '/models/',
@@ -20,10 +22,8 @@ function loadClasses($class)
     }
 }
 
-print_r(scandir($_SERVER['DOCUMENT_ROOT']));
-
 spl_autoload_register('loadClasses');
-
+var_dump($_SERVER);
 $messages = new Messages();
 $db = new Connection();
 
@@ -35,7 +35,7 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 //
 
-$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+$dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->addRoute(['GET', 'POST'], '/citymunicipality/add', ['CovidTrace', 'citymunicipality_add']);
     $r->addRoute(['GET', 'POST'], '/citymunicipality/listing', ['CovidTrace', 'citymunicipality_listing']);
     $r->addRoute(['GET', 'POST'], '/citymunicipality/edit/{id:\d+}', ['CovidTrace', 'citymunicipality_edit']);
@@ -72,7 +72,7 @@ switch ($routeInfo[0]) {
         require_once 'views/modules/header.php';
         require_once 'views/modules/navbar.php';
         $messages->show();
-            
+
         require_once 'views/home.php';
 
         require_once 'views/modules/sidebar.php';
@@ -86,25 +86,24 @@ switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::FOUND:
         $classname = $routeInfo[1][0];
         $method = $routeInfo[1][1];
-        
+
         $vars = $routeInfo[2];
 
-        if ($httpMethod == 'GET')  {
-            require_once __DIR__.'/views/modules/header.php';
-            require_once __DIR__.'/views/modules/navbar.php';
+        if ($httpMethod == 'GET') {
+            require_once __DIR__ . '/views/modules/header.php';
+            require_once __DIR__ . '/views/modules/navbar.php';
             $messages->show();
         }
-        
+
         $class = new $classname($db->connect());
         call_user_func_array([$class, $method], [$vars, $httpMethod]);
 
         if ($httpMethod == 'GET') {
-            require_once __DIR__.'/views/modules/sidebar.php';
-            require_once __DIR__.'/views/modules/sidebar_right.php';
-            require_once __DIR__.'/views/modules/footer.php';
+            require_once __DIR__ . '/views/modules/sidebar.php';
+            require_once __DIR__ . '/views/modules/sidebar_right.php';
+            require_once __DIR__ . '/views/modules/footer.php';
         }
 
         break;
 }
 ob_end_flush();
-?>
