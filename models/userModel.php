@@ -12,12 +12,13 @@ class UserModel {
                 username, 
                 first_name, 
                 last_name, 
-                birthday 
+                birthday,
+                dp_url
             FROM $table 
             WHERE username = :username"
         );
         $query->execute(array('username'=>$data['username']));
-        return $query->fetch();
+        return $query->fetch(PDO::FETCH_ASSOC);
     }
 
     function signUp($table, $data) {
@@ -33,18 +34,16 @@ class UserModel {
         $query->execute($data);
     }
 
-    function login($table, $data) {
-        // if (!self::getUserByUsername($table, $data)) {
-        //     return 'userDoesNotExist';
-        // }
-
+    function login($table, $data)
+    {
         $query = $this->db->prepare(
             "SELECT 
                 id,
                 username, 
                 first_name, 
                 last_name, 
-                birthday
+                birthday,
+                dp_url
             FROM $table 
             WHERE
                 username = :username AND
@@ -66,7 +65,8 @@ class UserModel {
             "UPDATE $table SET
                 first_name = :first_name,
                 last_name = :last_name,
-                birthday = :birthday
+                birthday = :birthday,
+                dp_url = :dp_url
             WHERE id = :id
             "
         );

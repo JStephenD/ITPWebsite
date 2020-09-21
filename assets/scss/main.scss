@@ -35,22 +35,39 @@ abbr {
     }
   }
 }
+.drawer-menu {
+  .dp-img {
+    width: 100px;
+    height: auto;
+    padding: 1em;
+  }
+  .dp-text {
+    font-size: 1.2em;
+    color: rebeccapurple;
+  }
+}
 .drawer-menu-item {
   width: 100%;
   overflow: hidden;
   padding: 0 0.625em;
-  color: #708ca4;
+  $defaultcolor: #708ca4;
+  color: $defaultcolor;
 
   transition: 300ms ease;
 
   &:focus-within,
   &:hover {
     color: white;
+    cursor: pointer;
     border-left: 0.5em solid rgb(6, 214, 160);
   }
 
   &:focus-within .submenu {
     max-height: 20em;
+  }
+
+  &.drawer-active {
+    color: rebeccapurple;
   }
 
   span,
@@ -109,7 +126,7 @@ abbr {
   $border-color: #ef476f;
   $transition-slow: 500ms;
   $transition-fast: 300ms;
-  max-width: 500px;
+  max-width: 800px;
   width: 30%;
 
   margin: 2em auto;
@@ -242,6 +259,11 @@ abbr {
 
   .date {
     width: 100%;
+  }
+
+  .dp_img {
+    width: 50%;
+    height: auto;
   }
 }
 .select-section {

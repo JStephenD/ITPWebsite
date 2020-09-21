@@ -43,12 +43,12 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute(['GET', 'POST'], '/barangay/edit/{id:\d+}', ['CovidTrace', 'barangay_edit']);
     $r->addRoute(['GET', 'POST'], '/barangay/delete/{id:\d+}', ['CovidTrace', 'barangay_delete']);
 
-    $r->addRoute(['GET', 'POST'], '/user/signup', ['User', 'signup']);
-    $r->addRoute(['GET', 'POST'], '/user/login', ['User', 'login']);
-    $r->addRoute(['GET', 'POST'], '/user/logout', ['User', 'logout']);
-    $r->addRoute(['GET', 'POST'], '/user/account/{id:\d+}', ['User', 'account']);
+    $r->addRoute(['GET', 'POST'], '/user/signup', ['User', 'user_signup']);
+    $r->addRoute(['GET', 'POST'], '/user/login', ['User', 'user_login']);
+    $r->addRoute(['GET', 'POST'], '/user/logout', ['User', 'user_logout']);
+    $r->addRoute(['GET', 'POST'], '/user/account', ['User', 'user_account']);
 
-    $r->addRoute(['GET'], '/mapping', ['Mapping', 'mapping']);
+    $r->addRoute(['GET', 'POST'], '/mapping', ['Mapping', 'mapping']);
 
     $r->addRoute(['GET'], '/', ['Others', 'home']);
 });
@@ -91,7 +91,7 @@ switch ($routeInfo[0]) {
             require_once __DIR__.'/views/modules/navbar.php';
             $messages->show();
         }
-
+        
         $class = new $classname($db->connect());
         call_user_func_array([$class, $method], [$vars, $httpMethod]);
 

@@ -311,5 +311,5 @@ mdk-header--fixed mdk-header-layout__content--scrollable">
                     </div>
                 </div>
                 <!-- content here -->
-                <div class="mdk-header-layout__content top-navbar
+                <div id="main-content" class="mdk-header-layout__content top-navbar
     mdk-header-layout__content--scrollable h-100">

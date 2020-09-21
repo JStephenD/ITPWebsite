@@ -32,10 +32,14 @@
                 </div>
                 <!-- DASHBOARDS MENU -->
                 <ul class="drawer-menu" id="dasboardMenu" data-children=".drawer-submenu">
-                    <li class="drawer-menu-item <?= strpos($method, 'user') ? 'active' : '' ?>">
+                    <?php if (isset($_SESSION['user'])) { ?>
+                        <img class="dp-img" id="dp-img" src="<?= '../' . $_SESSION['user']['dp_url'] ;?>" alt="dp_img">
+                        <span class="dp-text" id="dp-text"><?= $_SESSION['user']['first_name'] ;?></span>
+                    <?php } ?>
+                    <li class="drawer-menu-item <?= preg_match('/user/', $method) ? 'drawer-active' : 'inactive' ?>">
                         <button>
                             <i class="fas fa-user"></i>
-                            <span class="sidebar-text">
+                            <span id="sidebar-user-text" class="sidebar-text">
                                 User <?= isset($_SESSION['user']) ? ' ( ' . $_SESSION['user']['first_name'] . ' ) ' : ''; ?>
                             </span>
                         </button>
@@ -48,7 +52,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="drawer-menu-item <?= strpos($method, 'citymunicipality') ? 'active' : '' ?>">
+                    <li class="drawer-menu-item <?= preg_match('/citymunicipality/', $method) ? 'drawer-active' : 'inactive' ?>">
                         <button>
                             <i class="fas fa-city"></i>
                             <span class="sidebar-text">
@@ -57,12 +61,18 @@
                         </button>
                         <div class="submenu">
                             <ul>
-                                <li><a href="/citymunicipality/listing"><i class="fas fa-bars"></i>Listing</a></li>
-                                <li><a href="/citymunicipality/add"><i class="fas fa-plus-circle"></i>Add</a></li>
+                                <li>
+                                    <a id="sidebar-citymun-listing" href="/citymunicipality/listing">
+                                        <i class="fas fa-bars"></i>
+                                        Listing</a></li>
+                                <li>
+                                    <a id="sidebar-citymun-add" href="/citymunicipality/add">
+                                        <i class="fas fa-plus-circle"></i>
+                                        Add</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li class="drawer-menu-item <?= strpos($method, 'barangay') ? 'active' : '' ?>">
+                    <li class="drawer-menu-item <?= preg_match('/barangay/', $method) ? 'drawer-active' : '' ?>">
                         <button>
                             <i class="fas fa-home"></i>
                             <span class="sidebar-text">
@@ -71,12 +81,18 @@
                         </button>
                         <div class="submenu">
                             <ul>
-                                <li><a href="/barangay/listing"><i class="fas fa-bars"></i>Listing</a></li>
-                                <li><a href="/barangay/add"><i class="fas fa-plus-circle"></i>Add</a></li>
+                                <li>
+                                    <a id="sidebar-barangay-listing" href="/barangay/listing">
+                                        <i class="fas fa-bars"></i>
+                                        Listing</a></li>
+                                <li>
+                                    <a id="sidebar-barangay-add" href="/barangay/add">
+                                        <i class="fas fa-plus-circle"></i>
+                                        Add</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li class="drawer-menu-item <?= strpos($method, 'mapping') ? 'active' : '' ?>">
+                    <li class="drawer-menu-item <?= preg_match('/mapping/', $method) ? 'drawer-active' : '' ?>">
                         <button>
                             <i class="fas fa-map-signs"></i>
                             <span class="sidebar-text">
@@ -85,7 +101,10 @@
                         </button>
                         <div class="submenu">
                             <ul>
-                                <li><a href="/mapping"><i class="fas fa-map-marked-alt"></i>Mapping</a></li>
+                                <li>
+                                    <a id="sidebar-mapping" href="/mapping">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                        Mapping</a></li>
                             </ul>
                         </div>
                     </li>

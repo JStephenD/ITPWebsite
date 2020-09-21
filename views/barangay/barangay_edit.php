@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<main id="main">
     <form method="POST" class="form" id="form-edit">
         <legend>Barangay Form</legend>
         <span class="sep"></span>
@@ -60,7 +60,7 @@
                 <i class="fas fa-list-ul"></i>Listing</a>
         </div>
     </form>
-</div>
+</main>
 
 <script>
     window.addEventListener('load', () => {

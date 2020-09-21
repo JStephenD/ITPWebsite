@@ -7,8 +7,11 @@ class User extends Controller {
         $this->utils = new Utils();
     }
 
-    public function signup($vars, $httpmethod){
-        if ($httpmethod == 'POST') {
+    public function user_signup($vars, $httpmethod)
+    {
+        if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/user_signup.php';
+        } else if ($httpmethod == 'POST') {
             $username = isset($_POST['username']) ? $_POST['username'] : '';
             $password = isset($_POST['password']) ? hash('sha256', $_POST['password']) : '';
 
@@ -32,13 +35,14 @@ class User extends Controller {
                 $result = $this->userModel->signUp('user', $data);
             }
             
-        } else {
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/user_signup.php';
         }
     }
-    
-    public function login($vars, $httpmethod){
-        if ($httpmethod == 'POST') {
+
+    public function user_login($vars, $httpmethod)
+    {
+        if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/user_login.php';
+        } else if ($httpmethod == 'POST') {
             $username = $_POST['username'];
             $data = [
                 'username' => $_POST['username'],
@@ -59,52 +63,110 @@ class User extends Controller {
                 );
                 header('Location: /user/login?username=' . $username);
             } else {
+                unset($_SESSION['user']);
                 $_SESSION['user'] = $result;
                 Messages::add(
                     "Welcome user <strong>". $username ."</strong>. Login successful.", 
                     "primary"
                 );
-                header('Location: /user/account/' . $_SESSION['user']['id']);
+                header('Location: /user/account');
             }
-        } else {
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/user_login.php';
         }
     }
 
-    public function account($vars, $httpmethod) {
+    public function user_account($vars, $httpmethod)
+    {
         $this->utils->login_required();
 
-        if ($httpmethod == 'POST') {
-            $data = [
-                'first_name' => $_POST['first-name'],
-                'last_name' => $_POST['last-name'],
-                'birthday' => $_POST['birthday'],
-                'id' => $vars['id']
-            ];
+        $user = $_SESSION['user'];
 
-            var_dump($_POST);
+        $id = $user['id'];
+        $first_name = $user['first_name'];
+        $last_name = $user['last_name'];
+        $birthday = $user['birthday'];
+        $dp_url = $user['dp_url'];
 
-            $result = $this->userModel->updateAccount('user', $data);
-
-            Messages::add(
-                "User Profile updated successfully.",
-                "success"
-            );
-            $username = $_SESSION['user']['username'];
-            $_SESSION['user'] = $this->userModel->getUserByUsername('user', ['username' => $username]);
-            header('Location: /user/account/' . $vars['id']);
-        } else {
-            $user = $_SESSION['user'];
-
-            $first_name = $user['first_name'];
-            $last_name = $user['last_name'];
-            $birthday = $user['birthday'];
-
+        if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
             require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/user_account.php';
+        } else if ($httpmethod == 'POST') {
+            if ($_POST['updatedDP'] == 'true') {
+                $file = $_FILES['dp'];
+
+                $fname = $file['name'];
+                $ftype = $file['type'];
+                $ftmpName = $file['tmp_name'];
+                $fsize = $file['size'];
+                $ferror = $file['error'];
+
+                $fext = explode('.', $fname);
+                $fextActual = strtolower(end($fext));
+
+                $allowed = ['jpg', 'jpeg', 'png'];
+
+                if (in_array($fextActual, $allowed)) {
+                    if ($ferror == 0) {
+                        if ($fsize < (1024 * 1024 * 5)) {
+                            $imgFileName = uniqid('', true) . "." . $fextActual;
+                            $fdest = 'uploads/profile_picture/' . $imgFileName;
+
+                            try {
+                                unlink($_SESSION['user']['dp_url']);
+                            } catch (Exception $e) {
+                            }
+                            move_uploaded_file($ftmpName, $fdest);
+
+                            $data = [
+                                'first_name' => (isset($_POST['first-name']) ? $_POST['first-name'] : $first_name),
+                                'last_name' => (isset($_POST['last-name']) ? $_POST['last-name'] : $last_name),
+                                'birthday' => (isset($_POST['birthday']) ? $_POST['birthday'] : $birthday),
+                                'dp_url' => $fdest,
+                                'id' => $_SESSION['user']['id']
+                            ];
+
+                            $result = $this->userModel->updateAccount('user', $data);
+
+                            $username = $_SESSION['user']['username'];
+                            unset($_SESSION['user']);
+                            $_SESSION['user'] = $this->userModel->getUserByUsername('user', ['username' => $username]);
+                            if (isset($_POST['dp_upload'])) {
+                                header('Content-Type: application/json');
+                                echo json_encode($_SESSION['user']);
+
+                                return;
+                            }
+
+                            sleep(1);
+
+                            header('Content-Type: application/json');
+                            echo json_encode($_SESSION['user']);
+                        }
+                    }
+                }
+            } else {
+                $data = [
+                    'first_name' => (isset($_POST['first-name']) ? $_POST['first-name'] : $first_name),
+                    'last_name' => (isset($_POST['last-name']) ? $_POST['last-name'] : $last_name),
+                    'birthday' => (isset($_POST['birthday']) ? $_POST['birthday'] : $birthday),
+                    'dp_url' => $_SESSION['user']['dp_url'],
+                    'id' => $_SESSION['user']['id']
+                ];
+
+                $result = $this->userModel->updateAccount('user', $data);
+
+                $username = $_SESSION['user']['username'];
+                unset($_SESSION['user']);
+                $_SESSION['user'] = $this->userModel->getUserByUsername('user', ['username' => $username]);
+
+                sleep(1);
+
+                header('Content-Type: application/json');
+                echo json_encode($_SESSION['user']);
+            }
         }
     }
 
-    public function logout($vars, $httpmethod) {
+    public function user_logout($vars, $httpmethod)
+    {
         session_unset();
         session_destroy();
         session_start();

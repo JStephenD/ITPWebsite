@@ -19,6 +19,7 @@ window.onload = function () {
     Swal.fire({
       title: "Confirm Logout",
       icon: "warning",
+      showCancelButton: true,
       showLoaderOnConfirm: true,
       preConfirm: () => {
         return fetch("/user/logout", {
