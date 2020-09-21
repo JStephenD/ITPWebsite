@@ -4,29 +4,30 @@ ob_start();
 session_start();
 
 // AUTOLOAD
-function loadClasses($class)
-{
-    $dirs = [
-        __DIR__ . '/controllers/',
-        __DIR__ . '/models/',
-        __DIR__ . '/classes/',
-        __DIR__ . '/ajaj/',
-    ];
+// function loadClasses($class)
+// {
+//     $dirs = [
+//         __DIR__ . '/controllers/',
+//         __DIR__ . '/models/',
+//         __DIR__ . '/classes/',
+//         __DIR__ . '/ajaj/',
+//     ];
 
-    foreach ($dirs as $dir) {
-        if (file_exists($dir . $class . '.php')) {
-            require_once $dir . $class . '.php';
-        }
-    }
-}
+//     foreach ($dirs as $dir) {
+//         if (file_exists($dir . $class . '.php')) {
+//             require_once $dir . $class . '.php';
+//         }
+//     }
+// }
 
-echo '<pre>';
-print_r(scandir($_SERVER['DOCUMENT_ROOT']));
-echo '</pre><br><br>';
+// echo '<pre>';
+// print_r(scandir($_SERVER['DOCUMENT_ROOT']));
+// echo '</pre><br><br>';
 
-require_once __DIR__ . '/classes/messages.php';
+// require_once __DIR__ . '/classes/messages.php';
 
-spl_autoload_register('loadClasses');
+// spl_autoload_register('loadClasses');
+spl_autoload_extensions('.php');
 
 $messages = new Messages();
 $db = new Connection();
