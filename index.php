@@ -33,7 +33,7 @@ spl_autoload_register('loadClasses');
 $messages = new Messages();
 $db = new Connection();
 
-require 'classes/loader.php';
+require 'classes/Loader.php';
 require 'vendor/autoload.php';
 
 require 'vendor/vlucas/phpdotenv/src/Dotenv.php';
