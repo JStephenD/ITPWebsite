@@ -20,7 +20,11 @@ function loadClasses($class)
     }
 }
 
+echo '<pre>';
 print_r(scandir($_SERVER['DOCUMENT_ROOT']));
+echo '</pre><br><br>';
+
+require_once __DIR__ . '/classes/messages.php';
 
 spl_autoload_register('loadClasses');
 
