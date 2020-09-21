@@ -20,7 +20,7 @@ function loadClasses($class) {
 }
 
 spl_autoload_register('loadClasses');
-
+var_dump($_SERVER);
 $messages = new Messages();
 $db = new Connection();
 
