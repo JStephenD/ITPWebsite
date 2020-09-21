@@ -4,52 +4,30 @@ ob_start();
 session_start();
 
 // AUTOLOAD
-// function loadClasses($class)
-// {
-//     $dirs = [
-//         __DIR__ . '/controllers/',
-//         __DIR__ . '/models/',
-//         __DIR__ . '/classes/',
-//         __DIR__ . '/ajaj/',
-//     ];
-
-//     foreach ($dirs as $dir) {
-//         if (file_exists($dir . $class . '.php')) {
-//             require_once $dir . $class . '.php';
-//         }
-//     }
-// }
-
-// echo '<pre>';
-// print_r(scandir($_SERVER['DOCUMENT_ROOT']));
-// echo '</pre><br><br>';
-
-// require_once __DIR__ . '/classes/messages.php';
-
-// spl_autoload_register('loadClasses');
-// spl_autoload_extensions('.php');
-DEFINE(
-    '__BASE',
-    realpath(dirname(__FILE__))
-);
-
-function load_classes($class_name)
+function loadClasses($class)
 {
-    $filename = ucfirst($class_name) . '.php';
-    $file = __BASE . DIRECTORY_SEPARATOR . 'classes/' . ucfirst($class_name) . $filename;
+    $dirs = [
+        __DIR__ . '/controllers/',
+        __DIR__ . '/models/',
+        __DIR__ . '/classes/',
+        __DIR__ . '/ajaj/',
+    ];
 
-    print_r($class_name, $file);
-
-    // First file (model) doesnt exist
-    if (!file_exists($file)) {
-        return false;
-    } else {
-        // include class
-        require $file;
+    foreach ($dirs as $dir) {
+        print_r($dir . $class . '.php');
+        if (file_exists($dir . $class . '.php')) {
+            require_once $dir . $class . '.php';
+        }
     }
 }
 
-spl_autoload_register('load_classes');
+echo '<pre>';
+print_r(scandir($_SERVER['DOCUMENT_ROOT']));
+echo '</pre><br><br>';
+
+require_once __DIR__ . '/classes/messages.php';
+
+spl_autoload_register('loadClasses');
 
 $messages = new Messages();
 $db = new Connection();
