@@ -62,10 +62,10 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
 
     $r->addRoute(['GET'], '/', ['Others', 'home']);
 
-    $r->addRoute(['GET', 'POST'], __DIR__ . '/user/signup', ['User', 'user_signup']);
-    $r->addRoute(['GET', 'POST'], __DIR__ . '/user/login', ['User', 'user_login']);
-    $r->addRoute(['GET', 'POST'], __DIR__ . '/user/logout', ['User', 'user_logout']);
-    $r->addRoute(['GET', 'POST'], __DIR__ . '/user/account', ['User', 'user_account']);
+    $r->addRoute(['GET', 'POST'], '/../user/signup', ['User', 'user_signup']);
+    $r->addRoute(['GET', 'POST'], '/../user/login', ['User', 'user_login']);
+    $r->addRoute(['GET', 'POST'], '/../user/logout', ['User', 'user_logout']);
+    $r->addRoute(['GET', 'POST'], '/../user/account', ['User', 'user_account']);
 });
 
 // Fetch method and URI from somewhere
