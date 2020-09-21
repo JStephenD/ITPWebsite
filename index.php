@@ -7,10 +7,10 @@ session_start();
 function loadClasses($class)
 {
     $dirs = [
-        $_SERVER['DOCUMENT_ROOT'] . '/controllers/',
-        $_SERVER['DOCUMENT_ROOT'] . '/models/',
-        $_SERVER['DOCUMENT_ROOT'] . '/classes/',
-        $_SERVER['DOCUMENT_ROOT'] . '/ajaj/',
+        __DIR__ . '/controllers/',
+        __DIR__ . '/models/',
+        __DIR__ . '/classes/',
+        __DIR__ . '/ajaj/',
     ];
 
     foreach ($dirs as $dir) {
