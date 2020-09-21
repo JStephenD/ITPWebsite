@@ -27,7 +27,27 @@ session_start();
 // require_once __DIR__ . '/classes/messages.php';
 
 // spl_autoload_register('loadClasses');
-spl_autoload_extensions('.php');
+// spl_autoload_extensions('.php');
+DEFINE(
+    '__BASE',
+    realpath(dirname(__FILE__))
+);
+
+function load_classes($class_name)
+{
+    $filename = ucfirst($class_name) . '.php';
+    $file = __BASE . DIRECTORY_SEPARATOR . 'classes/' . ucfirst($class_name) . $filename;
+
+    // First file (model) doesnt exist
+    if (!file_exists($file)) {
+        return false;
+    } else {
+        // include class
+        require $file;
+    }
+}
+
+spl_autoload_register('load_classes');
 
 $messages = new Messages();
 $db = new Connection();
