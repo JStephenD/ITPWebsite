@@ -62,10 +62,10 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
 
     $r->addRoute(['GET'], '/', ['Others', 'home']);
 
-    $r->addRoute(['GET', 'POST'], '/apps/citymunicipality/add', ['CovidTrace', 'citymunicipality_add']);
-    $r->addRoute(['GET', 'POST'], '/apps/citymunicipality/listing', ['CovidTrace', 'citymunicipality_listing']);
-    $r->addRoute(['GET', 'POST'], '/apps/citymunicipality/edit/{id:\d+}', ['CovidTrace', 'citymunicipality_edit']);
-    $r->addRoute(['GET', 'POST'], '/apps/citymunicipality/delete/{id:\d+}', ['CovidTrace', 'citymunicipality_delete']);
+    $r->addRoute(['GET', 'POST'], __DIR__ . '/user/signup', ['User', 'user_signup']);
+    $r->addRoute(['GET', 'POST'], __DIR__ . '/user/login', ['User', 'user_login']);
+    $r->addRoute(['GET', 'POST'], __DIR__ . '/user/logout', ['User', 'user_logout']);
+    $r->addRoute(['GET', 'POST'], __DIR__ . '/user/account', ['User', 'user_account']);
 });
 
 // Fetch method and URI from somewhere
