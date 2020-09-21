@@ -1,119 +1,123 @@
 <?php
 
-ob_start();
-session_start();
+echo '<pre>';
+print_r($_SERVER);
+echo '</pre>';
 
-// AUTOLOAD
-function loadClasses($class)
-{
-    $dirs = [
-        __DIR__ . '/controllers/',
-        __DIR__ . '/models/',
-        __DIR__ . '/classes/',
-        __DIR__ . '/ajaj/',
-    ];
+// ob_start();
+// session_start();
 
-    foreach ($dirs as $dir) {
-        if (file_exists($dir . $class . '.php')) {
-            require_once $dir . $class . '.php';
-        }
-        if (file_exists($dir . strtolower($class) . '.php')) {
-            require_once $dir . strtolower($class) . '.php';
-        }
-    }
-}
+// // AUTOLOAD
+// function loadClasses($class)
+// {
+//     $dirs = [
+//         __DIR__ . '/controllers/',
+//         __DIR__ . '/models/',
+//         __DIR__ . '/classes/',
+//         __DIR__ . '/ajaj/',
+//     ];
 
-spl_autoload_register('loadClasses');
+//     foreach ($dirs as $dir) {
+//         if (file_exists($dir . $class . '.php')) {
+//             require_once $dir . $class . '.php';
+//         }
+//         if (file_exists($dir . strtolower($class) . '.php')) {
+//             require_once $dir . strtolower($class) . '.php';
+//         }
+//     }
+// }
 
-$messages = new Messages();
-$db = new Connection();
+// spl_autoload_register('loadClasses');
 
-require 'classes/Loader.php';
-require 'vendor/autoload.php';
+// $messages = new Messages();
+// $db = new Connection();
 
-require 'vendor/vlucas/phpdotenv/src/Dotenv.php';
-if (file_exists(__DIR__ . '/.env')) {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-    $dotenv->load();
-}
-//
+// require 'classes/Loader.php';
+// require 'vendor/autoload.php';
 
-$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    $r->addRoute(['GET', 'POST'], '/citymunicipality/add', ['CovidTrace', 'citymunicipality_add']);
-    $r->addRoute(['GET', 'POST'], '/citymunicipality/listing', ['CovidTrace', 'citymunicipality_listing']);
-    $r->addRoute(['GET', 'POST'], '/citymunicipality/edit/{id:\d+}', ['CovidTrace', 'citymunicipality_edit']);
-    $r->addRoute(['GET', 'POST'], '/citymunicipality/delete/{id:\d+}', ['CovidTrace', 'citymunicipality_delete']);
+// require 'vendor/vlucas/phpdotenv/src/Dotenv.php';
+// if (file_exists(__DIR__ . '/.env')) {
+//     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+//     $dotenv->load();
+// }
+// //
 
-    $r->addRoute(['GET', 'POST'], '/barangay/add', ['CovidTrace', 'barangay_add']);
-    $r->addRoute(['GET', 'POST'], '/barangay/listing', ['CovidTrace', 'barangay_listing']);
-    $r->addRoute(['GET', 'POST'], '/barangay/edit/{id:\d+}', ['CovidTrace', 'barangay_edit']);
-    $r->addRoute(['GET', 'POST'], '/barangay/delete/{id:\d+}', ['CovidTrace', 'barangay_delete']);
+// $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+//     $r->addRoute(['GET', 'POST'], '/citymunicipality/add', ['CovidTrace', 'citymunicipality_add']);
+//     $r->addRoute(['GET', 'POST'], '/citymunicipality/listing', ['CovidTrace', 'citymunicipality_listing']);
+//     $r->addRoute(['GET', 'POST'], '/citymunicipality/edit/{id:\d+}', ['CovidTrace', 'citymunicipality_edit']);
+//     $r->addRoute(['GET', 'POST'], '/citymunicipality/delete/{id:\d+}', ['CovidTrace', 'citymunicipality_delete']);
 
-    $r->addRoute(['GET', 'POST'], '/user/signup', ['User', 'user_signup']);
-    $r->addRoute(['GET', 'POST'], '/user/login', ['User', 'user_login']);
-    $r->addRoute(['GET', 'POST'], '/user/logout', ['User', 'user_logout']);
-    $r->addRoute(['GET', 'POST'], '/user/account', ['User', 'user_account']);
+//     $r->addRoute(['GET', 'POST'], '/barangay/add', ['CovidTrace', 'barangay_add']);
+//     $r->addRoute(['GET', 'POST'], '/barangay/listing', ['CovidTrace', 'barangay_listing']);
+//     $r->addRoute(['GET', 'POST'], '/barangay/edit/{id:\d+}', ['CovidTrace', 'barangay_edit']);
+//     $r->addRoute(['GET', 'POST'], '/barangay/delete/{id:\d+}', ['CovidTrace', 'barangay_delete']);
 
-    $r->addRoute(['GET', 'POST'], '/mapping', ['Mapping', 'mapping']);
+//     $r->addRoute(['GET', 'POST'], '/user/signup', ['User', 'user_signup']);
+//     $r->addRoute(['GET', 'POST'], '/user/login', ['User', 'user_login']);
+//     $r->addRoute(['GET', 'POST'], '/user/logout', ['User', 'user_logout']);
+//     $r->addRoute(['GET', 'POST'], '/user/account', ['User', 'user_account']);
 
-    $r->addRoute(['GET'], '/', ['Others', 'home']);
+//     $r->addRoute(['GET', 'POST'], '/mapping', ['Mapping', 'mapping']);
 
-    $r->addRoute(['GET', 'POST'], '/apps/citymunicipality/add', ['CovidTrace', 'citymunicipality_add']);
-    $r->addRoute(['GET', 'POST'], '/apps/citymunicipality/listing', ['CovidTrace', 'citymunicipality_listing']);
-    $r->addRoute(['GET', 'POST'], '/apps/citymunicipality/edit/{id:\d+}', ['CovidTrace', 'citymunicipality_edit']);
-    $r->addRoute(['GET', 'POST'], '/apps/citymunicipality/delete/{id:\d+}', ['CovidTrace', 'citymunicipality_delete']);
-});
+//     $r->addRoute(['GET'], '/', ['Others', 'home']);
 
-// Fetch method and URI from somewhere
-$httpMethod = $_SERVER['REQUEST_METHOD'];
-$uri = $_SERVER['REQUEST_URI'];
+//     $r->addRoute(['GET', 'POST'], '/apps/citymunicipality/add', ['CovidTrace', 'citymunicipality_add']);
+//     $r->addRoute(['GET', 'POST'], '/apps/citymunicipality/listing', ['CovidTrace', 'citymunicipality_listing']);
+//     $r->addRoute(['GET', 'POST'], '/apps/citymunicipality/edit/{id:\d+}', ['CovidTrace', 'citymunicipality_edit']);
+//     $r->addRoute(['GET', 'POST'], '/apps/citymunicipality/delete/{id:\d+}', ['CovidTrace', 'citymunicipality_delete']);
+// });
 
-// Strip query string (?foo=bar) and decode URI
-if (false !== $pos = strpos($uri, '?')) {
-    $uri = substr($uri, 0, $pos);
-}
-$uri = rawurldecode($uri);
+// // Fetch method and URI from somewhere
+// $httpMethod = $_SERVER['REQUEST_METHOD'];
+// $uri = $_SERVER['REQUEST_URI'];
 
-$routeInfo = $dispatcher->dispatch($httpMethod, $uri);
-switch ($routeInfo[0]) {
-    case FastRoute\Dispatcher::NOT_FOUND:
-        require_once 'views/modules/header.php';
-        require_once 'views/modules/navbar.php';
-        $messages->show();
+// // Strip query string (?foo=bar) and decode URI
+// if (false !== $pos = strpos($uri, '?')) {
+//     $uri = substr($uri, 0, $pos);
+// }
+// $uri = rawurldecode($uri);
 
-        var_dump([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-        require_once 'views/home.php';
+// $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+// switch ($routeInfo[0]) {
+//     case FastRoute\Dispatcher::NOT_FOUND:
+//         require_once 'views/modules/header.php';
+//         require_once 'views/modules/navbar.php';
+//         $messages->show();
 
-        require_once 'views/modules/sidebar.php';
-        require_once 'views/modules/sidebar_right.php';
-        require_once 'views/modules/footer.php';
-        break;
-    case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-        $allowedMethods = $routeInfo[1];
-        // ... 405 Method Not Allowed
-        break;
-    case FastRoute\Dispatcher::FOUND:
-        $classname = $routeInfo[1][0];
-        $method = $routeInfo[1][1];
+//         var_dump([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+//         require_once 'views/home.php';
+
+//         require_once 'views/modules/sidebar.php';
+//         require_once 'views/modules/sidebar_right.php';
+//         require_once 'views/modules/footer.php';
+//         break;
+//     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+//         $allowedMethods = $routeInfo[1];
+//         // ... 405 Method Not Allowed
+//         break;
+//     case FastRoute\Dispatcher::FOUND:
+//         $classname = $routeInfo[1][0];
+//         $method = $routeInfo[1][1];
         
-        $vars = $routeInfo[2];
+//         $vars = $routeInfo[2];
 
-        if ($httpMethod == 'GET')  {
-            require_once __DIR__.'/views/modules/header.php';
-            require_once __DIR__.'/views/modules/navbar.php';
-            $messages->show();
-        }
+//         if ($httpMethod == 'GET')  {
+//             require_once __DIR__.'/views/modules/header.php';
+//             require_once __DIR__.'/views/modules/navbar.php';
+//             $messages->show();
+//         }
         
-        $class = new $classname($db->connect());
-        call_user_func_array([$class, $method], [$vars, $httpMethod]);
+//         $class = new $classname($db->connect());
+//         call_user_func_array([$class, $method], [$vars, $httpMethod]);
 
-        if ($httpMethod == 'GET') {
-            require_once __DIR__.'/views/modules/sidebar.php';
-            require_once __DIR__.'/views/modules/sidebar_right.php';
-            require_once __DIR__.'/views/modules/footer.php';
-        }
+//         if ($httpMethod == 'GET') {
+//             require_once __DIR__.'/views/modules/sidebar.php';
+//             require_once __DIR__.'/views/modules/sidebar_right.php';
+//             require_once __DIR__.'/views/modules/footer.php';
+//         }
 
-        break;
-}
-ob_end_flush();
+//         break;
+// }
+// ob_end_flush();
 ?>

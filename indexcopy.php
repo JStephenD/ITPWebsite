@@ -57,6 +57,11 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute(['GET', 'POST'], '/mapping', ['Mapping', 'mapping']);
 
     $r->addRoute(['GET'], '/', ['Others', 'home']);
+
+    $r->addRoute(['GET', 'POST'], '/apps/citymunicipality/add', ['CovidTrace', 'citymunicipality_add']);
+    $r->addRoute(['GET', 'POST'], '/apps/citymunicipality/listing', ['CovidTrace', 'citymunicipality_listing']);
+    $r->addRoute(['GET', 'POST'], '/apps/citymunicipality/edit/{id:\d+}', ['CovidTrace', 'citymunicipality_edit']);
+    $r->addRoute(['GET', 'POST'], '/apps/citymunicipality/delete/{id:\d+}', ['CovidTrace', 'citymunicipality_delete']);
 });
 
 // Fetch method and URI from somewhere
@@ -75,7 +80,8 @@ switch ($routeInfo[0]) {
         require_once 'views/modules/header.php';
         require_once 'views/modules/navbar.php';
         $messages->show();
-            
+
+        var_dump([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
         require_once 'views/home.php';
 
         require_once 'views/modules/sidebar.php';
