@@ -80,7 +80,6 @@ switch ($routeInfo[0]) {
         require_once 'views/modules/navbar.php';
         $messages->show();
 
-        var_dump([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
         require_once 'views/home.php';
 
         require_once 'views/modules/sidebar.php';
@@ -103,7 +102,6 @@ switch ($routeInfo[0]) {
             $messages->show();
         }
 
-        var_dump($uri, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
         $class = new $classname($db->connect());
         call_user_func_array([$class, $method], [$vars, $httpMethod]);
 
