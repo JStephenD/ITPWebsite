@@ -37,8 +37,10 @@ require 'classes/Loader.php';
 require 'vendor/autoload.php';
 
 require 'vendor/vlucas/phpdotenv/src/Dotenv.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+if (file_exists(__DIR__ . '/.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+}
 //
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
