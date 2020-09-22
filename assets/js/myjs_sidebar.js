@@ -22,6 +22,8 @@ let sidebar_barangay_listing = document.querySelector(
 let sidebar_barangay_add = document.querySelector("#sidebar-barangay-add");
 
 let sidebar_mapping = document.querySelector("#sidebar-mapping");
+let sidebar_mapping_citymun = document.querySelector("#sidebar-mapping-citymun");
+let sidebar_mapping_barangay = document.querySelector("#sidebar-mapping-barangay");
 
 function addExtJs(src) {
   let script = document.createElement("script");
@@ -197,5 +199,43 @@ sidebar_mapping.addEventListener("click", async (ev) => {
       addExtJs("/assets/js/mapping/mapping.js");
       changeDrawerActive(ev.target);
       history.pushState("", "", "/mapping");
+    });
+});
+sidebar_mapping_citymun.addEventListener("click", async (ev) => {
+  ev.preventDefault();
+  let formdata = new FormData();
+  formdata.append("ajax", "ajax");
+
+  fetch("/mapping/citymunicipality", {
+    method: "POST",
+    body: formdata,
+  })
+    .then((res) => {
+      return res.text();
+    })
+    .then((text) => {
+      main_content.innerHTML = text;
+      addExtJs("/assets/js/mapping/mapping_citymun.js");
+      changeDrawerActive(ev.target);
+      history.pushState("", "", "/mapping/citymunicipality");
+    });
+});
+sidebar_mapping_barangay.addEventListener("click", async (ev) => {
+  ev.preventDefault();
+  let formdata = new FormData();
+  formdata.append("ajax", "ajax");
+
+  fetch("/mapping/barangay", {
+    method: "POST",
+    body: formdata,
+  })
+    .then((res) => {
+      return res.text();
+    })
+    .then((text) => {
+      main_content.innerHTML = text;
+      addExtJs("/assets/js/mapping/mapping_barangay.js");
+      changeDrawerActive(ev.target);
+      history.pushState("", "", "/mapping/barangay");
     });
 });

@@ -1,11 +1,14 @@
 if (typeof mymap == "undefined") {
+  $('#city_or_mun_select').select2();
+  $('#brgy_select').select2();
+
+  let city_or_mun_select = document.querySelector('#city_or_mun_select');
+  let brgy_select = document.querySelector('#brgy_select');
+
   let formdata = new FormData();
   formdata.append('getLocation', 'getLocation');
 
-  fetch('/mapping', {
-    method: 'POST',
-    body: formdata
-  })
+  fetch('/ajaj/getIpLocation.php')
     .then(res => {
       if (res.ok) {
         return res.json();
@@ -57,7 +60,7 @@ if (typeof mymap == "undefined") {
             .setOpacity(0.7);
           cm_markers.push(marker);
         });
-        addMarkersToMap(mymap, cm_markers);
+        addMarkersToMap(cm_markers, mymap);
       });
 
       getBLocs().then((res) => {
@@ -75,18 +78,18 @@ if (typeof mymap == "undefined") {
             .setOpacity(0.7);
           brg_markers.push(marker);
         });
-        addMarkersToMap(mymap, brg_markers);
+        addMarkersToMap(brg_markers, mymap);
       });
 
       mymap.on("zoomend", (ev) => {
         let zoomlevel = mymap.getZoom();
         // console.log(zoomlevel)
         if (zoomlevel < 10) {
-          removeMarkersFromMap(mymap, brg_markers);
+          removeMarkersFromMap(brg_markers, mymap);
           show_brg_markers = false;
           brgs_checkbox.checked = show_brg_markers;
         } else {
-          addMarkersToMap(mymap, brg_markers);
+          addMarkersToMap(brg_markers, mymap);
           show_brg_markers = true;
           brgs_checkbox.checked = show_brg_markers;
         }
@@ -97,17 +100,17 @@ if (typeof mymap == "undefined") {
       let urhere_checkbox = document.querySelector("#urhere");
       cms_checkbox.addEventListener("click", (ev) => {
         if (show_cm_markers) {
-          removeMarkersFromMap(mymap, cm_markers);
+          removeMarkersFromMap(cm_markers, mymap);
         } else {
-          addMarkersToMap(mymap, cm_markers);
+          addMarkersToMap(cm_markers, mymap);
         }
         show_cm_markers = !show_cm_markers;
       });
       brgs_checkbox.addEventListener("click", (ev) => {
         if (show_brg_markers) {
-          removeMarkersFromMap(mymap, brg_markers);
+          removeMarkersFromMap(brg_markers, mymap);
         } else {
-          addMarkersToMap(mymap, brg_markers);
+          addMarkersToMap(brg_markers, mymap);
         }
         show_brg_markers = !show_brg_markers;
       });

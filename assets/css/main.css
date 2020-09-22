@@ -443,6 +443,20 @@ abbr .abbr-delete {
   min-height: 90%;
 }
 
+.mapping-controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 2em;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.mapping-controls .citymun,
+.mapping-controls .brgy {
+  min-width: 20%;
+}
+
 .mapping-options {
   margin: 2em auto;
   width: 80%;

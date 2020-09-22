@@ -33,8 +33,8 @@
                 <!-- DASHBOARDS MENU -->
                 <ul class="drawer-menu" id="dasboardMenu" data-children=".drawer-submenu">
                     <?php if (isset($_SESSION['user'])) { ?>
-                        <img class="dp-img" id="dp-img" src="<?= '../' . $_SESSION['user']['dp_url'] ;?>" alt="dp_img">
-                        <span class="dp-text" id="dp-text"><?= $_SESSION['user']['first_name'] ;?></span>
+                        <img class="dp-img" id="dp-img" src="<?= '/' . $_SESSION['user']['dp_url']; ?>" alt="dp_img">
+                        <span class="dp-text" id="dp-text"><?= $_SESSION['user']['first_name']; ?></span>
                     <?php } ?>
                     <li class="drawer-menu-item <?= preg_match('/user/', $method) ? 'drawer-active' : 'inactive' ?>">
                         <button>
@@ -105,6 +105,14 @@
                                     <a id="sidebar-mapping" href="/mapping">
                                         <i class="fas fa-map-marked-alt"></i>
                                         Mapping</a></li>
+                                <li>
+                                    <a id="sidebar-mapping-citymun" href="/mapping/citymunicipality">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                        City/Municipality Mapping</a></li>
+                                <li>
+                                    <a id="sidebar-mapping-barangay" href="/mapping/barangay">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                        Barangay Mapping</a></li>
                             </ul>
                         </div>
                     </li>

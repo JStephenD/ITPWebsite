@@ -49,6 +49,24 @@ class CityMunicipality {
         );
         $query->execute($data);
     }
+
+    function getCities($table)
+    {
+        $query = $this->db->query(
+            "SELECT * FROM $table WHERE cmclass = 'City'"
+        );
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function getMunicipalities($table)
+    {
+        $query = $this->db->query(
+            "SELECT * FROM $table WHERE cmclass = 'Municipality'"
+        );
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 ?>

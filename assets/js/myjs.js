@@ -80,14 +80,21 @@ async function getBLocs() {
       });
 }
 
-function addMarkersToMap(map, markers) {
+function addMarkersToMap(markers, map) {
   for (let marker of markers) {
     marker.addTo(map);
   }
 }
 
-function removeMarkersFromMap(map, markers) {
+function removeMarkersFromMap(markers, map) {
   for (let marker of markers) {
     map.removeLayer(marker);
+  }
+}
+
+function clearSelect(select) {
+  let len = select.options.length;
+  for (i = len - 1; i >= 0; i--) {
+    select.options[i] = null;
   }
 }

@@ -14,12 +14,24 @@ class Mapping extends Controller
 
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
             require_once $_SERVER['DOCUMENT_ROOT'] . '/views/mapping/mapping.php';
-        } else if (isset($_POST['getLocation'])) {
-            $ipadd = $this->utils->getPublicIp();
-            $loc = $this->utils->getLocation($ipadd);
+        }
+    }
 
-            header('Content-Type: application/json');
-            echo json_encode($loc);
+    function mapping_citymun($vars, $httpmethod)
+    {
+        $this->utils->login_required();
+
+        if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/mapping/mapping_citymun.php';
+        }
+    }
+
+    function mapping_barangay($vars, $httpmethod)
+    {
+        $this->utils->login_required();
+
+        if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/mapping/mapping_barangay.php';
         }
     }
 }

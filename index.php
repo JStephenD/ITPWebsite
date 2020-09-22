@@ -59,6 +59,8 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute(['GET', 'POST'], '/user/account', ['User', 'user_account']);
 
     $r->addRoute(['GET', 'POST'], '/mapping', ['Mapping', 'mapping']);
+    $r->addRoute(['GET', 'POST'], '/mapping/citymunicipality', ['Mapping', 'mapping_citymun']);
+    $r->addRoute(['GET', 'POST'], '/mapping/barangay', ['Mapping', 'mapping_barangay']);
 
     $r->addRoute(['GET'], '/', ['Others', 'home']);
 });
