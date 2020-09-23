@@ -1,4 +1,8 @@
-<main id="main">
+<main id="main" class="p-5">
+    <a id="addbrgy" class="btn btn-outline-dark rounded" href="/barangay/add">
+        ➕ Add Barangay
+    </a>
+    <hr>
     <table id="blist" class="hover row-borders">
         <thead>
             <tr>

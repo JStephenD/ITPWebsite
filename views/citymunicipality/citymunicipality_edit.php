@@ -1,4 +1,4 @@
-<main id="main">
+<main id="main" class="p-5">
     <form method="POST" class="form" id="form-edit">
         <legend>Edit City / Municipality Information</legend>
         <span class="sep"></span>

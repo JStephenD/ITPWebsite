@@ -1,4 +1,4 @@
-<div class="mapping-main">
+<main id="main" class="mapping-main p-5">
     <div class="mapping-controls">
         <div class="citymun">
             <select id="city_or_mun_select">
@@ -36,8 +36,8 @@
             <label for="urhere">Toggle Ip Location Label</label>
         </div>
     </div>
-</div>
+    </div>
 
-<?php if (!isset($_POST['ajax'])) { ?>
-    <script defer="defer" src="/assets/js/mapping/mapping.js"></script>
-<?php } ?>
+    <?php if (!isset($_POST['ajax'])) { ?>
+        <script defer="defer" src="/assets/js/mapping/mapping.js"></script>
+    <?php } ?>

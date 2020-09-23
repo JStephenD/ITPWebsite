@@ -28,4 +28,25 @@ if (typeof table_delete == "undefined") {
       });
     });
   });
+
+  let addcitymun = document.querySelector('#addcitymun');
+  addcitymun.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    let formdata = new FormData();
+    formdata.append("ajax", "ajax");
+
+    fetch("/citymunicipality/add", {
+      method: "POST",
+      body: formdata,
+    })
+      .then((res) => {
+        return res.text();
+      })
+      .then((text) => {
+        main_content.innerHTML = text;
+        addExtJs("/assets/js/citymun/citymun_add.js");
+        changeDrawerActive(sidebar_citymun_add);
+        history.pushState("", "", "/citymunicipality/add");
+      });
+  }); 
 }

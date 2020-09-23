@@ -416,10 +416,10 @@ abbr .abbr-delete {
 
 .link-unstyled, .link-unstyled:visited, .link-unstyled:hover, .link-unstyled:active, .link-unstyled:focus, .link-unstyled:active:hover {
   font-style: inherit;
-  color: inherit;
+  color: inherit !important;
   background-color: transparent;
   font-size: inherit;
-  text-decoration: none;
+  text-decoration: none !important;
   font-variant: inherit;
   font-weight: inherit;
   line-height: inherit;

@@ -71,17 +71,17 @@ if (typeof mymap == "undefined") {
                     });
             }
 
-            getCMLocs().then((res) => {
-                res.forEach((row) => {
-                    cmlocs.push(row);
+            // getCMLocs().then((res) => {
+            //     res.forEach((row) => {                    
+            //         cmlocs.push(row);
 
-                    let marker = L.marker([row["latitude"], row["longitude"]])
-                        .bindPopup(`${row["cmclass"]}: ${row["cmdesc"]}`)
-                        .setOpacity(0.7);
-                    cm_markers.push(marker);
-                });
-                addMarkersToMap(cm_markers, mymap);
-            });
+            //         let marker = L.marker([row["latitude"], row["longitude"]])
+            //             .bindPopup(`${row["cmclass"]}: ${row["cmdesc"]}`)
+            //             .setOpacity(0.7);
+            //         cm_markers.push(marker);
+            //     });
+            //     addMarkersToMap(cm_markers, mymap);
+            // });
 
             setCityMunOptions('/ajaj/getCMLocs.php');
             current_option = 'all';
