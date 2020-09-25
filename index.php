@@ -32,12 +32,12 @@ spl_autoload_register('loadClasses');
 $messages = new Messages();
 $db = new Connection();
 
-require 'classes/Loader.php';
-require 'vendor/autoload.php';
+require_once 'classes/Loader.php';
+require_once 'vendor/autoload.php';
 
-require 'vendor/vlucas/phpdotenv/src/Dotenv.php';
-if (file_exists(__DIR__ . '/.env')) {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+
+if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'], '/.env');
     $dotenv->load();
 }
 //

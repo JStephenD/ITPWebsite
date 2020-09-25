@@ -434,9 +434,7 @@ abbr .abbr-delete {
 }
 
 .mapping-main {
-  padding: 1em 5em;
   height: 100%;
-  width: 100%;
 }
 
 #covidTraceMap {

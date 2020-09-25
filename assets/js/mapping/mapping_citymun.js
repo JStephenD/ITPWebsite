@@ -1,9 +1,11 @@
 if (typeof mymap == "undefined") {
     let city_or_mun_select = $('#city_or_mun_select');
     let citymun_select = $('#citymun_select');
+    let brgy_select = $('#brgy_select');
 
     city_or_mun_select.select2();
     citymun_select.select2();
+    brgy_select.select2();
 
     let current_option = 'all';
 
@@ -70,18 +72,6 @@ if (typeof mymap == "undefined") {
                         addMarkersToMap(cm_markers, mymap);
                     });
             }
-
-            // getCMLocs().then((res) => {
-            //     res.forEach((row) => {                    
-            //         cmlocs.push(row);
-
-            //         let marker = L.marker([row["latitude"], row["longitude"]])
-            //             .bindPopup(`${row["cmclass"]}: ${row["cmdesc"]}`)
-            //             .setOpacity(0.7);
-            //         cm_markers.push(marker);
-            //     });
-            //     addMarkersToMap(cm_markers, mymap);
-            // });
 
             setCityMunOptions('/ajaj/getCMLocs.php');
             current_option = 'all';

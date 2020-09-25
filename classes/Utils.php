@@ -56,6 +56,12 @@ class Utils {
     }
 
     function getIpData($ipadd) {
+        require_once '../vendor/autoload.php';
+
+        if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/.env')) {
+            $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'], '/.env');
+            $dotenv->load();
+        }
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -75,6 +81,9 @@ class Utils {
 
         $response = curl_exec($curl);
         $err = curl_error($curl);
+        var_dump($_ENV);
+        var_dump(getenv('ipdata'));
+        var_dump($response);
 
         curl_close($curl);
 
