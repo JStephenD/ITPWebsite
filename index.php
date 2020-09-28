@@ -11,10 +11,10 @@ session_start();
 function loadClasses($class)
 {
     $dirs = [
-        __DIR__ . '\\controllers\\',
-        __DIR__ . '\\models\\',
-        __DIR__ . '\\classes\\',
-        __DIR__ . '\\ajaj\\',
+        __DIR__ . '/controllers/',
+        __DIR__ . '/models/',
+        __DIR__ . '/classes/',
+        __DIR__ . '/ajaj/',
     ];    
 
     foreach ($dirs as $dir) {
