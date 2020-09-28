@@ -44,7 +44,7 @@ mdk-header--fixed mdk-header-layout__content--scrollable">
                                                 <li>
                                                     <a href="/account.html" class="dropdown-item
                                     active">
-                                                        <img src="http://flags.fmcdn.net/data/flags/w1160/us.png" style="width:
+                                                        <!-- <img src="http://flags.fmcdn.net/data/flags/w1160/us.png" style="width: -->
                                         25px;
                                         vertical-align:
                                         middle" alt="English">
@@ -53,7 +53,7 @@ mdk-header--fixed mdk-header-layout__content--scrollable">
                                                 </li>
                                                 <li>
                                                     <a href="/account.html" class="dropdown-item">
-                                                        <img src="http://flags.fmcdn.net/data/flags/w1160/fr.png" style="width:
+                                                        <!-- <img src="http://flags.fmcdn.net/data/flags/w1160/fr.png" style="width: -->
                                         25px;
                                         vertical-align:
                                         middle" alt="French">
@@ -62,7 +62,7 @@ mdk-header--fixed mdk-header-layout__content--scrollable">
                                                 </li>
                                                 <li>
                                                     <a href="/account.html" class="dropdown-item">
-                                                        <img src="http://flags.fmcdn.net/data/flags/w1160/de.png" style="width:
+                                                        <!-- <img src="http://flags.fmcdn.net/data/flags/w1160/de.png" style="width: -->
                                         25px;
                                         vertical-align:
                                         middle" alt="English">
