@@ -10,10 +10,6 @@
                 <div class="drawer-spacer">
                     <div class="media
                                 align-items-center">
-
-                        <!-- <a href="index.html"
-                                    class="drawer-brand-circle
-                                    mr-2">H</a> -->
                         <a href="/">
                             <img src="/assets/images/CIT logo.png" alt="H" width="50px" height="50px" />
                         </a>
@@ -35,6 +31,25 @@
                     <?php if (isset($_SESSION['user'])) { ?>
                         <img class="dp-img" id="dp-img" src="<?= '/' . $_SESSION['user']['dp_url']; ?>" alt="dp_img">
                         <span class="dp-text" id="dp-text"><?= $_SESSION['user']['first_name']; ?></span>
+
+                        <?php if ($utils->checkPermission($_SESSION['user']['perms'], 'admin')) { ?>
+                            <li class="drawer-menu-item <?= preg_match('/admin/', $method) ? 'drawer-active' : 'inactive' ?>">
+                                <button>
+                                    <i class="fas fa-users-cog"></i>
+                                    <span class="sidebar-text">
+                                        Admin
+                                    </span>
+                                </button>
+                                <div class="submenu">
+                                    <ul>
+                                        <li>
+                                            <a id="sidebar-admin-accounts" href="/admin/accounts">
+                                                <i class="fas fa-users"></i>
+                                                Accounts</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        <?php } ?>
                     <?php } ?>
                     <li class="drawer-menu-item <?= preg_match('/user/', $method) ? 'drawer-active' : 'inactive' ?>">
                         <button>
@@ -116,19 +131,6 @@
                             </ul>
                         </div>
                     </li>
-
-
-
-                    <!-- <li class="drawer-menu-item">
-                        <a href="/personalDetails.html">
-                            <i class="material-icons">
-                                face
-                            </i>
-                            <span class="drawer-menu-text">
-                                Personal Details
-                            </span>
-                        </a>
-                    </li> -->
                 </ul>
             </nav>
         </div>

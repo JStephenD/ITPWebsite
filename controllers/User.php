@@ -4,7 +4,7 @@ class User extends Controller {
     function __construct($db) {
         $this->db = $db;
         $this->userModel = new UserModel($this->db);
-        $this->utils = new Utils();
+        parent::__construct();
     }
 
     public function user_signup($vars, $httpmethod)
@@ -42,6 +42,28 @@ class User extends Controller {
     {
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
             require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/user_login.php';
+        } else if (isset($_POST['checkUser'])) {
+            $username = $_POST['username'];
+
+            if ($this->userModel->getUserByUsername(
+                'user',
+                ['username' => $username]
+            )) {
+                $response = [
+                    'status' => 200,
+                    'statusText' => 'ok',
+                    'responseText' => 'User Exists'
+                ];
+            } else {
+                $response = [
+                    'status' => 500,
+                    'statusText' => 'server error',
+                    'responseText' => 'User Does Not Exists'
+                ];
+            }
+            header('Content-Type: application/json');
+            echo json_encode($response);
+
         } else if ($httpmethod == 'POST') {
             $username = $_POST['username'];
             $data = [
@@ -177,7 +199,7 @@ class User extends Controller {
             "dark"
         );
 
-        sleep(1);
+        sleep(.8);
     }
 }
 

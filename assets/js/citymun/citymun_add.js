@@ -55,7 +55,7 @@ if (typeof citymun_add_form == "undefined") {
             timer: 1000,
             timerProgressBar: true,
           }).then((res) => {
-            window.location = "/citymunicipality/listing";
+            sidebar_citymun_add.click();
           });
         }
       });

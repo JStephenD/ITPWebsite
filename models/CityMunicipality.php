@@ -13,18 +13,23 @@ class CityMunicipality {
         $query = null;
     }
 
-    function getCityMunicipalities($table, $id=null) {
-        if (isset($id)) {
+    function getCityMunicipalities($table, $id = null, $cmdesc = null) {
+        if (isset($cmdesc)) {
+            $query = $this->db->prepare(
+                "SELECT * FROM $table WHERE cmdesc = :cmdesc"
+            );
+            $query->execute(['cmdesc' => $cmdesc]);
+            return $query->fetch(PDO::FETCH_ASSOC);
+        } else if (isset($id)) {
             $query = $this->db->prepare(
                 "SELECT * FROM $table WHERE id = :id"
             );
             $query->bindParam(':id', $id, PDO::PARAM_STR);
             $query->execute();
-            return $query->fetch();
-            $query = null;
+            return $query->fetch(PDO::FETCH_ASSOC);
         } else {
             $query = $this->db->query(
-                "SELECT * FROM $table ORDER BY id"
+                "SELECT * FROM $table ORDER BY cmdesc"
             );
             return $query->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -53,7 +58,7 @@ class CityMunicipality {
     function getCities($table)
     {
         $query = $this->db->query(
-            "SELECT * FROM $table WHERE cmclass = 'City'"
+            "SELECT * FROM $table WHERE cmclass = 'City' ORDER BY cmdesc"
         );
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
@@ -62,7 +67,7 @@ class CityMunicipality {
     function getMunicipalities($table)
     {
         $query = $this->db->query(
-            "SELECT * FROM $table WHERE cmclass = 'Municipality'"
+            "SELECT * FROM $table WHERE cmclass = 'Municipality' ORDER BY cmdesc"
         );
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);

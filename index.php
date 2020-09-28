@@ -11,11 +11,11 @@ session_start();
 function loadClasses($class)
 {
     $dirs = [
-        __DIR__ . '/controllers/',
-        __DIR__ . '/models/',
-        __DIR__ . '/classes/',
-        __DIR__ . '/ajaj/',
-    ];
+        __DIR__ . '\\controllers\\',
+        __DIR__ . '\\models\\',
+        __DIR__ . '\\classes\\',
+        __DIR__ . '\\ajaj\\',
+    ];    
 
     foreach ($dirs as $dir) {
         if (file_exists($dir . $class . '.php')) {
@@ -30,6 +30,7 @@ function loadClasses($class)
 spl_autoload_register('loadClasses');
 
 $messages = new Messages();
+$utils = new Utils();
 $db = new Connection();
 
 require_once 'classes/Loader.php';
@@ -62,7 +63,12 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute(['GET', 'POST'], '/mapping/citymunicipality', ['Mapping', 'mapping_citymun']);
     $r->addRoute(['GET', 'POST'], '/mapping/barangay', ['Mapping', 'mapping_barangay']);
 
+    $r->addRoute(['GET', 'POST'], '/admin/accounts', ['Admin', 'admin_accounts']);
+    $r->addRoute(['GET', 'POST'], '/admin/accounts/delete/{id:\d+}', ['Admin', 'admin_accounts_delete']);
+    $r->addRoute(['GET', 'POST'], '/admin/test', ['Admin', 'test']);
+
     $r->addRoute(['GET'], '/', ['Others', 'home']);
+    $r->addRoute(['GET'], '/redirect', ['Others', 'redirect']);
 });
 
 // Fetch method and URI from somewhere
@@ -90,7 +96,9 @@ switch ($routeInfo[0]) {
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         $allowedMethods = $routeInfo[1];
-        // ... 405 Method Not Allowed
+
+        echo 'method not allowed';
+
         break;
     case FastRoute\Dispatcher::FOUND:
         $classname = $routeInfo[1][0];

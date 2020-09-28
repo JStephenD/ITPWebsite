@@ -1,4 +1,4 @@
-<main id="main" class="p-5">
+<main id="main" class="p-4">
     <a id="addbrgy" class="btn btn-outline-dark rounded" href="/barangay/add">
         ➕ Add Barangay
     </a>

@@ -1,6 +1,3 @@
-    <!-- main content -->
-
-    <!-- form -->
 <div style="margin-left: 50%; transform: translateX(-50%);">
     <h1 style="color:lightsalmon">ERROR 404</h1>
     <p>To sir:</p>

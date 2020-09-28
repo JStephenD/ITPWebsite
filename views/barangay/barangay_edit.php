@@ -1,4 +1,4 @@
-<main id="main" class="p-5">
+<main id="main" class="p-4">
     <form method="POST" class="form" id="form-edit">
         <legend>Barangay Form</legend>
         <span class="sep"></span>

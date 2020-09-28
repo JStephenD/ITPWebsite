@@ -13,12 +13,29 @@ class UserModel {
                 first_name, 
                 last_name, 
                 birthday,
-                dp_url
+                dp_url,
+                perms
             FROM $table 
             WHERE username = :username"
         );
         $query->execute(array('username'=>$data['username']));
         return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getAllUsers($data = [], $table = 'user') {
+        $query = $this->db->prepare(
+            "SELECT * 
+            FROM $table
+            "
+        );
+        $query->execute($data);
+        $temp = $query->fetchAll(PDO::FETCH_ASSOC);
+        $res = [];
+        foreach ($temp as $row) {
+            unset($row['password']);
+            array_push($res, $row);
+        }
+        return $res;
     }
 
     function signUp($table, $data) {
@@ -43,7 +60,8 @@ class UserModel {
                 first_name, 
                 last_name, 
                 birthday,
-                dp_url
+                dp_url,
+                perms
             FROM $table 
             WHERE
                 username = :username AND

@@ -32,20 +32,17 @@ class Barangay {
         $query = null;
     }
 
-    function getBarangays($table, $id=null) {
-        if (isset($id)) {
+    function getBarangays($table, $idcm = null)
+    {
+        if (isset($idcm)) {
             $query = $this->db->prepare(
-                "SELECT * FROM $table WHERE id = :id"
+                "SELECT * FROM $table WHERE idcm = :idcm ORDER BY bname"
             );
-            $query->bindParam(':id', $id, PDO::PARAM_STR);
-            $query->execute();
-            return $query->fetch();
-
-            $query = null;
-
+            $query->execute(['idcm' => $idcm]);
+            return $query->fetchAll(PDO::FETCH_ASSOC);
         } else {
             $result = $this->db->query(
-                "SELECT * FROM $table ORDER BY id"
+                "SELECT * FROM $table ORDER BY bname"
             );
             return $result->fetchAll(PDO::FETCH_ASSOC);
         }

@@ -36,8 +36,8 @@
             <label for="urhere">Toggle Ip Location Label</label>
         </div>
     </div>
-    </div>
+</main>
 
-    <?php if (!isset($_POST['ajax'])) { ?>
-        <script defer="defer" src="/assets/js/mapping/mapping.js"></script>
-    <?php } ?>
+<?php if (!isset($_POST['ajax'])) { ?>
+    <script defer="defer" src="/assets/js/mapping/mapping.js"></script>
+<?php } ?>

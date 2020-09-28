@@ -9,13 +9,12 @@
 }
 
 .action {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .action .table-edit {
@@ -438,7 +437,7 @@ abbr .abbr-delete {
 }
 
 #covidTraceMap {
-  min-height: 90%;
+  min-height: 75%;
 }
 
 .mapping-controls {
@@ -446,13 +445,23 @@ abbr .abbr-delete {
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 2em;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  padding-bottom: 2em;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
-.mapping-controls .citymun,
-.mapping-controls .brgy {
-  min-width: 20%;
+.mapping-controls-select {
+  position: relative;
+}
+
+.mapping-controls-select label {
+  position: absolute;
+  top: -2em;
+}
+
+.mapping-controls-select select {
+  width: 200px;
 }
 
 .mapping-options {
@@ -463,5 +472,14 @@ abbr .abbr-delete {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+}
+
+#admin_accounts .admin_accounts_dp_image {
+  width: 100px;
+  height: 100px;
+}
+
+#admin_accounts .admin_accounts_dp_row {
+  text-align: center;
 }
 /*# sourceMappingURL=main.css.map */

@@ -8,8 +8,11 @@
   }
 }
 .action {
-  display: flex;
-  flex-direction: row;
+  // display: flex;
+  // flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
   .table-edit {
     color: rgb(70, 70, 70);
     margin: 0 0.5em;
@@ -333,17 +336,26 @@ abbr {
   // width: 100%;
 }
 #covidTraceMap {
-  min-height: 90%;
+  min-height: 75%;
 }
 .mapping-controls {
   display: flex;
   margin-bottom: 2em;
+  padding-bottom: 2em;
 
-  justify-content: space-around;
+  justify-content: space-evenly;
 
-  .citymun,
-  .brgy {
-    min-width: 20%;
+  &-select {
+    position: relative;
+
+    label {
+      position: absolute;
+      top: -2em;
+    }
+
+    select {
+      width: 200px;
+    }
   }
 }
 .mapping-options{
@@ -351,4 +363,13 @@ abbr {
   width: 80%;
   display: flex;
   justify-content: space-around;
+}
+#admin_accounts {
+  .admin_accounts_dp_image{
+    width: 100px;
+    height: 100px;
+  }
+  .admin_accounts_dp_row {
+    text-align: center;
+  }
 }

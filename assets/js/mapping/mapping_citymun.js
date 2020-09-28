@@ -43,6 +43,7 @@ if (typeof mymap == "undefined") {
                 .addTo(mymap);
 
             let cm_markers = [];
+            let brgy_markers = [];
 
             let cmlocs = [];
 
@@ -55,10 +56,14 @@ if (typeof mymap == "undefined") {
                     })
                     .then(json => {
                         citymun_select.empty().trigger('change');
+                        brgy_select.empty().trigger("change");
                         removeMarkersFromMap(cm_markers, mymap);
+                        removeMarkersFromMap(brgy_markers, mymap);
                         cm_markers.length = 0;
+                        brgy_markers.length = 0;
 
                         citymun_select.append(new Option('<- ->', '-1'));
+                        brgy_select.append(new Option("<- ->", "-1"));
 
                         json.forEach(row => {
                             let option = new Option(row['cmdesc'], `[${row['latitude']}, ${row['longitude']}]`);
@@ -71,6 +76,67 @@ if (typeof mymap == "undefined") {
                         })
                         addMarkersToMap(cm_markers, mymap);
                     });
+            }
+
+            function setBrgyOptions(ajaj_url, citymun_filter) {
+              let formdata = new FormData();
+              formdata.append("citymun_filter", citymun_filter);
+
+              fetch(ajaj_url, {
+                method: "POST",
+                body: formdata,
+              })
+                .then((res) => {
+                  if (res.ok) {
+                    return res.json();
+                  }
+                })
+                .then((json) => {
+                  brgy_select.empty().trigger("change");
+                  removeMarkersFromMap(cm_markers, mymap);
+                  removeMarkersFromMap(brgy_markers, mymap);
+                  cm_markers.length = 0;
+                  brgy_markers.length = 0;
+
+                  brgy_select.append(new Option("<- ->", "-1"));
+
+                  let city_icon = L.icon({
+                    iconUrl: "/assets/images/city-hall.png",
+                    iconSize: [25, 35],
+                    iconAnchor: [12.5, 35],
+                  });
+
+                  let brgy_icon = L.icon({
+                    iconUrl: "/assets/images/houses.png",
+                    iconSize: [25, 35],
+                    iconAnchor: [12.5, 0],
+                  });
+
+                  json.forEach((row) => {
+                    if ("cmdesc" in row) {
+                      cm_markers.push(
+                        L.marker([row["latitude"], row["longitude"]], {
+                          icon: city_icon,
+                        }).bindPopup(`${row["cmdesc"]}`)
+                      );
+                    } else if ("bname" in row) {
+                      brgy_markers.push(
+                        L.marker([row["latitude"], row["longitude"]], {
+                          icon: brgy_icon,
+                        }).bindPopup(`${row["bname"]}`)
+                      );
+
+                      brgy_select.append(
+                        new Option(
+                          row["bname"],
+                          `[${row["latitude"]}, ${row["longitude"]}]`
+                        )
+                      );
+                    }
+                  });
+                  addMarkersToMap(cm_markers, mymap);
+                  addMarkersToMap(brgy_markers, mymap);
+                });
             }
 
             setCityMunOptions('/ajaj/getCMLocs.php');
@@ -93,12 +159,22 @@ if (typeof mymap == "undefined") {
                 }
             });
 
-            citymun_select.on('select2:select', (ev) => {
-                let data = ev.params.data;
-                if (data['id'] != '-1') {
-                    [lat_pan, long_pan] = JSON.parse(data['id']);
-                    mymap.panTo([lat_pan, long_pan]);
-                }
+            citymun_select.on("select2:select", (ev) => {
+              let data = ev.params.data;
+              if (data["id"] != "-1") {
+                [lat_pan, long_pan] = JSON.parse(data["id"]);
+                mymap.flyTo([lat_pan, long_pan], 13);
+              }
+
+              setBrgyOptions("/ajaj/getBLocsFromCity.php", data.text);
+            });
+
+            brgy_select.on("select2:select", (ev) => {
+              let data = ev.params.data;
+              if (data["id"] != "-1") {
+                [lat_pan, long_pan] = JSON.parse(data["id"]);
+                mymap.flyTo([lat_pan, long_pan], 13);
+              }
             });
         });
 }

@@ -102,8 +102,8 @@
     });
 </script>
 
-<script src="/assets/js/myjs.js"></script>
-<script src="/assets/js/myjs_sidebar.js"></script>
+<script defer="defer" src="/assets/js/myjs.js"></script>
+<script defer="defer" src="/assets/js/myjs_sidebar.js"></script>
 </body>
 
 </html>

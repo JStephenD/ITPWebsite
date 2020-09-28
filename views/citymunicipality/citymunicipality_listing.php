@@ -1,4 +1,4 @@
-<main id="main" class="p-5">
+<main id="main" class="p-4">
     <a id="addcitymun" class="btn btn-outline-dark rounded" href="/citymunicipality/add">
         ➕ Add City/Municipality
     </a>
@@ -29,7 +29,10 @@
                             </a>
                         </abbr>
                         <abbr title="Delete">
-                            <i data-href="/citymunicipality/delete/<?= $row['id']; ?>" data-name="<?= $row['cmdesc']; ?>" class="fas fa-backspace table-delete abbr-delete">
+                            <i 
+                                data-href="/citymunicipality/delete/<?= $row['id']; ?>" 
+                                data-name="<?= $row['cmdesc']; ?>" 
+                                class="fas fa-backspace table-delete abbr-delete">
                             </i>
                         </abbr>
                     </td>

@@ -1,5 +1,39 @@
-if (typeof login_temp == "undefined") {
-  let login_temp = "temp";
+if (typeof form == "undefined") {
+  let form = document.querySelector("#login-form");
+  let username = document.querySelector("#username");
+  let url = window.location.href;
+
+  username.addEventListener("blur", (ev) => {
+    if (username.value == "") return;
+    let formdata = new FormData(form);
+    formdata.append("checkUser", "");
+
+    fetch(url, {
+      method: "POST",
+      body: formdata,
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      })
+      .then((json) => {
+        if (json.status == 500) {
+          Swal.fire({
+            title: "Error",
+            icon: "warning",
+            text: json.responseText,
+            timer: 1000,
+            timerProgressBar: true,
+          });
+          username.value = "";
+        }
+      })
+      .catch((err) => {
+        Swal.showValidationMessage(`Response failed: ${err}`);
+      });
+  });
 
   const strengthText = ["", "bad 💩", "ok 😐", "decent 🙂", "solid 💪"];
 

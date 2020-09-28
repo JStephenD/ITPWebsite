@@ -95,13 +95,13 @@ if (typeof signup_temp == "undefined") {
         if (!res.ok) {
           throw new Error(res.statusText);
         }
-        console.log("res", res);
         return res.json();
       })
       .then((json) => {
         if (json.status == 500) {
           Swal.fire({
             title: "Error",
+            icon: 'warning',
             text: json.responseText,
             timer: 1000,
             timerProgressBar: true,

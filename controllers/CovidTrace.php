@@ -5,11 +5,15 @@ class CovidTrace extends Controller {
         $this->db = $db;
         $this->citymun = new CityMunicipality($this->db);
         $this->brgy = new Barangay($this->db);
-        $this->utils = new Utils();
+        parent::__construct();
     }
 
     function citymunicipality_add($vars, $httpmethod) {
         $this->utils->login_required();
+        $this->utils->permsRequired(
+            (isset($_SESSION['user']['perms'])) ? $_SESSION['user']['perms'] : '0',
+            ['citymun_add']
+        );
 
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
             require_once $_SERVER['DOCUMENT_ROOT'] . '/views/citymunicipality/citymunicipality_add.php';
@@ -32,6 +36,10 @@ class CovidTrace extends Controller {
 
     function citymunicipality_listing($vars, $httpmethod) {
         $this->utils->login_required();
+        $this->utils->permsRequired(
+            (isset($_SESSION['user']['perms'])) ? $_SESSION['user']['perms'] : '0',
+            ['citymun_listing']
+        );
 
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
             $cms = $this->citymun->getCityMunicipalities('citymun');
@@ -41,10 +49,15 @@ class CovidTrace extends Controller {
 
     function citymunicipality_edit($vars, $httpmethod) {
         $this->utils->login_required();
+        $this->utils->permsRequired(
+            (isset($_SESSION['user']['perms'])) ? $_SESSION['user']['perms'] : '0',
+            ['citymun_edit'],
+            '/citymunicipality/listing'
+        );
 
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
-            $id = $vars['id'];
-            $cm = $this->citymun->getCityMunicipalities('citymun', $id);
+            // $id = $vars['id'];
+            // $cm = $this->citymun->getCityMunicipalities('citymun', $id);
             require_once $_SERVER['DOCUMENT_ROOT'] . '/views/citymunicipality/citymunicipality_edit.php';
         } else if ($httpmethod == 'POST') {
             $data = array(
@@ -66,6 +79,11 @@ class CovidTrace extends Controller {
 
     function citymunicipality_delete($vars, $httpmethod) {
         $this->utils->login_required();
+        $this->utils->permsRequired(
+            (isset($_SESSION['user']['perms'])) ? $_SESSION['user']['perms'] : '0',
+            ['citymun_delete'],
+            '/citymunicipality/listing'
+        );
 
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
             $id = $vars['id'];
@@ -83,6 +101,10 @@ class CovidTrace extends Controller {
 
     function barangay_add($vars, $httpmethod) {
         $this->utils->login_required();
+        $this->utils->permsRequired(
+            (isset($_SESSION['user']['perms'])) ? $_SESSION['user']['perms'] : '0',
+            ['brgy_add', 'citymun_listing']
+        );
 
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
             $cityMunicipalities = $this->citymun->getCityMunicipalities('citymun');
@@ -110,6 +132,10 @@ class CovidTrace extends Controller {
 
     function barangay_listing($vars, $httpmethod) {
         $this->utils->login_required();
+        $this->utils->permsRequired(
+            (isset($_SESSION['user']['perms'])) ? $_SESSION['user']['perms'] : '0',
+            ['brgy_listing', 'citymun_listing']
+        );
 
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
             $brngys = $this->brgy->getBarangays('barangay');
@@ -126,6 +152,11 @@ class CovidTrace extends Controller {
 
     function barangay_edit($vars, $httpmethod) {
         $this->utils->login_required();
+        $this->utils->permsRequired(
+            (isset($_SESSION['user']['perms'])) ? $_SESSION['user']['perms'] : '0',
+            ['brgy_edit', 'citymun_listing'],
+            '/barangay/listing'
+        );
 
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
             $id = $vars['id'];
@@ -154,6 +185,11 @@ class CovidTrace extends Controller {
 
     function barangay_delete($vars, $httpmethod) {
         $this->utils->login_required();
+        $this->utils->permsRequired(
+            (isset($_SESSION['user']['perms'])) ? $_SESSION['user']['perms'] : '0',
+            ['brgy_delete'],
+            '/barangay/listing'
+        );
 
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
             $id = $vars['id'];

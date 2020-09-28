@@ -57,6 +57,8 @@ if (typeof brgy_add_form == "undefined") {
             icon: "success",
             timer: 1000,
             timerProgressBar: true,
+          }).then((res) => {
+            sidebar_barangay_add.click();
           });
         }
       });
