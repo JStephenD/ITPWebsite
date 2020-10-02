@@ -373,3 +373,19 @@ abbr {
     text-align: center;
   }
 }
+#employee-log-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &+ .input-group {
+      margin-top: 2em;
+    }
+  }
+}

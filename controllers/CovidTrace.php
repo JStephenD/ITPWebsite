@@ -17,7 +17,6 @@ class CovidTrace extends Controller {
 
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
             require_once $_SERVER['DOCUMENT_ROOT'] . '/views/citymunicipality/citymunicipality_add.php';
-            return;
         } else if ($httpmethod == 'POST') {
             $table = 'citymun';
             $data = array(
@@ -56,8 +55,6 @@ class CovidTrace extends Controller {
         );
 
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
-            // $id = $vars['id'];
-            // $cm = $this->citymun->getCityMunicipalities('citymun', $id);
             require_once $_SERVER['DOCUMENT_ROOT'] . '/views/citymunicipality/citymunicipality_edit.php';
         } else if ($httpmethod == 'POST') {
             $data = array(
@@ -162,6 +159,8 @@ class CovidTrace extends Controller {
             $id = $vars['id'];
             $cityMunicipalities = $this->citymun->getCityMunicipalities('citymun');
             $brngy = $this->brgy->getBarangays('barangay', $id);
+            // $this->utils->pre_r([$brngy, $cityMunicipalities]);
+
             require_once $_SERVER['DOCUMENT_ROOT'] . '/views/barangay/barangay_edit.php';
         } else if ($httpmethod == 'POST') {
             $data = array(

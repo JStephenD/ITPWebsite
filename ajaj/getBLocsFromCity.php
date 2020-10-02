@@ -14,7 +14,7 @@ $cm = $citymun->getCityMunicipalities('citymun', null, $citymun_filter);
 $idcm = $cm['id'];
 array_push($res, $cm);
 
-$brgy = $barangay->getBarangays('barangay', $idcm);
+$brgy = $barangay->getBarangays('barangay', null, $idcm);
 if ($brgy) {
     array_push($res, ...$brgy);
 }

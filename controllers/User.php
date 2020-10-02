@@ -7,8 +7,7 @@ class User extends Controller {
         parent::__construct();
     }
 
-    public function user_signup($vars, $httpmethod)
-    {
+    public function user_signup($vars, $httpmethod) {
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
             require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/user_signup.php';
         } else if ($httpmethod == 'POST') {
@@ -38,8 +37,7 @@ class User extends Controller {
         }
     }
 
-    public function user_login($vars, $httpmethod)
-    {
+    public function user_login($vars, $httpmethod) {
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
             require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/user_login.php';
         } else if (isset($_POST['checkUser'])) {
@@ -96,9 +94,13 @@ class User extends Controller {
         }
     }
 
-    public function user_account($vars, $httpmethod)
-    {
+    public function user_account($vars, $httpmethod) {
         $this->utils->login_required();
+        $this->utils->permsRequired(
+            (isset($_SESSION['user']['perms'])) ? $_SESSION['user']['perms'] : '0',
+            ['user_account'],
+            '/'
+        );
 
         $user = $_SESSION['user'];
 
@@ -202,5 +204,3 @@ class User extends Controller {
         sleep(.8);
     }
 }
-
-?>

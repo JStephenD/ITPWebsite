@@ -131,6 +131,26 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="drawer-menu-item <?= preg_match('/tracing/', $method) ? 'drawer-active' : '' ?>">
+                        <button>
+                            <i class="fas fa-journal-whills"></i>
+                            <span class="sidebar-text">
+                                Daily Logs
+                            </span>
+                        </button>
+                        <div class="submenu">
+                            <ul>
+                                <li>
+                                    <a id="sidebar-tracing-employee" href="/tracing/employee">
+                                        <i class="fas fa-user-tie"></i>
+                                        Employee Logging</a></li>
+                                <li>
+                                    <a id="sidebar-tracing-customer" href="/tracing/customer">
+                                        <i class="fas fa-user"></i>
+                                        Customer Logging</a></li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
             </nav>
         </div>

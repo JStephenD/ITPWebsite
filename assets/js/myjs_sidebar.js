@@ -23,6 +23,9 @@ let sidebar_mapping = document.querySelector("#sidebar-mapping");
 let sidebar_mapping_citymun = document.querySelector("#sidebar-mapping-citymun");
 let sidebar_mapping_barangay = document.querySelector("#sidebar-mapping-barangay");
 
+let sidebar_tracing_employee = document.querySelector('#sidebar-tracing-employee');
+let sidebar_tracing_customer = document.querySelector('#sidebar-tracing-customer');
+
 function addExtJs(src) {
   let script = document.createElement("script");
   script.type = "text/javascript";
@@ -152,3 +155,20 @@ sidebar_mapping_barangay.addEventListener("click", async (ev) => {
   );
 });
 
+// TRACING
+sidebar_tracing_employee.addEventListener('click', (ev) => {
+  switchPageContent(
+    ev,
+    '/tracing/employee',
+    '/assets/js/tracing/employee_log.js',
+    '/tracing/employee'
+  );
+});
+sidebar_tracing_customer.addEventListener('click', (ev) => {
+  switchPageContent(
+    ev,
+    '/tracing/customer',
+    '/assets/js/tracing/customer_log.js',
+    '/tracing/customer'
+  );
+});

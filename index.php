@@ -67,6 +67,10 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute(['GET', 'POST'], '/admin/accounts/delete/{id:\d+}', ['Admin', 'admin_accounts_delete']);
     $r->addRoute(['GET', 'POST'], '/admin/test', ['Admin', 'test']);
 
+    $r->addRoute(['GET', 'POST'], '/tracing/employee', ['Tracing', 'tracing_employee_log']);
+    $r->addRoute(['POST'], '/tracing/employee/add', ['Tracing', 'tracing_employee_add']);
+    $r->addRoute(['GET', 'POST'], '/tracing/customer', ['Tracing', 'tracing_customer_log']);
+
     $r->addRoute(['GET'], '/', ['Others', 'home']);
     $r->addRoute(['GET'], '/redirect', ['Others', 'redirect']);
 });

@@ -164,9 +164,9 @@ if (typeof mymap == "undefined") {
               if (data["id"] != "-1") {
                 [lat_pan, long_pan] = JSON.parse(data["id"]);
                 mymap.flyTo([lat_pan, long_pan], 13);
-              }
 
-              setBrgyOptions("/ajaj/getBLocsFromCity.php", data.text);
+                setBrgyOptions("/ajaj/getBLocsFromCity.php", data.text);
+              }
             });
 
             brgy_select.on("select2:select", (ev) => {

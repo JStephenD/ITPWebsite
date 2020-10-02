@@ -10,7 +10,7 @@
                         <?php if (isset($cityMunicipalities)) {
                             foreach ($cityMunicipalities as $row) { ?>
                                 <option value="<?= $row['id']; ?>" <?= $brngy['idcm'] ==
-                                                                        $row['id'] ? 'selected' : ''; ?>>
+                                    $row['id'] ? 'selected' : ''; ?>>
                                     <?= $row['cmdesc']; ?>
                                 </option>
                         <?php }
