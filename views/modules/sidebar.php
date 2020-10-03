@@ -141,6 +141,10 @@
                         <div class="submenu">
                             <ul>
                                 <li>
+                                    <a id="sidebar-tracing-logs-view" href="/tracing/logs/view">
+                                        <i class="fas fa-eye"></i>
+                                        View Logs</a></li>
+                                <li>
                                     <a id="sidebar-tracing-employee" href="/tracing/employee">
                                         <i class="fas fa-user-tie"></i>
                                         Employee Logging</a></li>

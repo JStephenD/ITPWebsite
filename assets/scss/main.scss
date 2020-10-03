@@ -387,5 +387,11 @@ abbr {
     &+ .input-group {
       margin-top: 2em;
     }
+    
+    #date,
+    #time,
+    #temp {
+      width: 100px;
+    }
   }
 }

@@ -26,15 +26,30 @@
                 Date
             </label>
 
-            <input type="text" id="date">
-
+            <input type="text" name="date" id="date" class="mx-2">
+            
             <label for="time">
                 Time
             </label>
 
-            <input type="text" id="time">
+            <input type="text" name="time" id="time" class="mx-2">
+            <button type="button" id="set-current-time" class="btn btn-small">Set current time</button>
         </div>
 
+        <div class="input-group">
+            <label for="temp">
+                Temperature
+            </label>
+
+            <input type="number" name="temp" id="temp" value="0" class="ml-2">
+        </div>
+
+        <div class="buttons">
+            <button type="submit" class="btn btn-lg btn-success mr-2" name="save" id="submit">
+                <i class="fas fa-save"></i>Save</button>
+            <a type="button" class="btn btn-lg btn-primary ml-2" name="listing" href="/tracing/logs/view">
+                <i class="fas fa-list-ul"></i>View Logs</a>
+        </div>
     </form>
 </main>
 

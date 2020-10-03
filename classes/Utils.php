@@ -158,6 +158,11 @@ class Utils {
             'mapping_citymun'       => 0x0000001000,
 
             'user_account'          => 0x0000010000,
+
+            'logging_view'          => 0x0000100000,
+            'logging_employee_log'  => 0x0000200000,
+            'logging_customer_log'  => 0x0000400000,
+            'logging_edit'          => 0x0000800000,
         ];
     }
 

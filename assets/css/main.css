@@ -514,4 +514,10 @@ abbr .abbr-delete {
 #employee-log-form .input-group + .input-group {
   margin-top: 2em;
 }
+
+#employee-log-form .input-group #date,
+#employee-log-form .input-group #time,
+#employee-log-form .input-group #temp {
+  width: 100px;
+}
 /*# sourceMappingURL=main.css.map */
