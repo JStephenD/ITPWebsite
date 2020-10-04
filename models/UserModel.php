@@ -3,6 +3,7 @@
 class UserModel {
     function __construct($db) {
         $this->db = $db;
+        $this->table = 'user';
     }
 
     function getUserByUsername($table, $data) {
@@ -19,6 +20,28 @@ class UserModel {
             WHERE username = :username"
         );
         $query->execute(array('username'=>$data['username']));
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getUser($data) {
+        $filter = $data['filter'];
+        $value = $data['value'];
+        $query = $this->db->prepare(
+            "SELECT
+                id,
+                username,
+                first_name,
+                last_name,
+                birthday,
+                dp_url,
+                perms
+            FROM 
+                $this->table
+            WHERE
+                $filter = $value
+            "
+        );
+        $query->execute();
         return $query->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -78,6 +101,20 @@ class UserModel {
         }
     }
 
+    function updatePermissions($data) {
+        $query = $this->db->prepare(
+            "UPDATE $this->table SET
+                perms = :perms
+            WHERE id = :id
+            "
+        );
+        if ($query->execute($data)) {
+            return 'success';
+        } else {
+            return 'error';
+        }
+    }
+
     function updateAccount($table, $data) {
         $query = $this->db->prepare(
             "UPDATE $table SET
@@ -89,6 +126,19 @@ class UserModel {
             "
         );
         $query->execute($data);
+    }
+
+    function deleteAccount($table, $data) {
+        $query = $this->db->prepare(
+            "DELETE FROM $table
+            WHERE id = :id
+            "
+        );
+        if ($query->execute($data)) {
+            return 'success';
+        } else {
+            return 'error';
+        }
     }
 
     function logout($table, $data) {

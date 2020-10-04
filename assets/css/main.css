@@ -483,7 +483,9 @@ abbr .abbr-delete {
   text-align: center;
 }
 
-#employee-log-form {
+#employee-log-form,
+#customer-log-form,
+#customer-add-form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -499,7 +501,9 @@ abbr .abbr-delete {
           align-items: center;
 }
 
-#employee-log-form .input-group {
+#employee-log-form .input-group,
+#customer-log-form .input-group,
+#customer-add-form .input-group {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -511,13 +515,65 @@ abbr .abbr-delete {
           align-items: center;
 }
 
-#employee-log-form .input-group + .input-group {
+#employee-log-form .input-group + .input-group,
+#customer-log-form .input-group + .input-group,
+#customer-add-form .input-group + .input-group {
   margin-top: 2em;
+}
+
+#employee-log-form .input-group-label,
+#customer-log-form .input-group-label,
+#customer-add-form .input-group-label {
+  margin-top: 2em;
+  margin-bottom: 2em;
 }
 
 #employee-log-form .input-group #date,
 #employee-log-form .input-group #time,
-#employee-log-form .input-group #temp {
+#employee-log-form .input-group #temp,
+#customer-log-form .input-group #date,
+#customer-log-form .input-group #time,
+#customer-log-form .input-group #temp,
+#customer-add-form .input-group #date,
+#customer-add-form .input-group #time,
+#customer-add-form .input-group #temp {
   width: 100px;
+}
+
+.swal2-overflow {
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+}
+
+#admin-account-edit-form .perms-group-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+#admin-account-edit-form .perms-group-wrapper .perms-group {
+  width: 30%;
+  margin: 1em auto;
+  padding: 2em;
+  border: 1px dashed black;
+}
+
+#admin-account-edit-form .perms-group-wrapper .perms-group strong {
+  display: block;
+  margin-bottom: 1em;
+}
+
+#admin-account-edit-form .perms-group-wrapper .perms-group .check-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#admin-account-edit-form .perms-group-wrapper .perms-group .check-group input {
+  margin-right: 1em;
 }
 /*# sourceMappingURL=main.css.map */

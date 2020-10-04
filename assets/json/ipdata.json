@@ -1,9 +1,1 @@
-{
-    "locations": [
-        {
-            "ip": "49.148.58.241",
-            "latitude": 10.6689,
-            "longitude": 122.9466
-        }
-    ]
-}
+{"locations":[{"ip":"49.148.58.241","latitude":10.6689,"longitude":122.9466},{"ip":"49.148.53.240","latitude":10.6689,"longitude":122.9466}]}

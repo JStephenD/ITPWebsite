@@ -68,13 +68,15 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute(['GET', 'POST'], '/mapping/barangay', ['Mapping', 'mapping_barangay']);
 
     $r->addRoute(['GET', 'POST'], '/admin/accounts', ['Admin', 'admin_accounts']);
-    $r->addRoute(['GET', 'POST'], '/admin/accounts/delete/{id:\d+}', ['Admin', 'admin_accounts_delete']);
+    $r->addRoute(['GET', 'POST'], '/admin/account/delete/{id:\d+}', ['Admin', 'admin_account_delete']);
+    $r->addRoute(['GET', 'POST'], '/admin/account/edit/{id:\d+}', ['Admin', 'admin_account_edit']);
     $r->addRoute(['GET', 'POST'], '/admin/test', ['Admin', 'test']);
 
     $r->addRoute(['GET', 'POST'], '/tracing/logs/view', ['Tracing', 'tracing_logs_view']);
     $r->addRoute(['GET', 'POST'], '/tracing/employee', ['Tracing', 'tracing_employee_log']);
     $r->addRoute(['POST'], '/tracing/employee/add', ['Tracing', 'tracing_employee_add']);
     $r->addRoute(['GET', 'POST'], '/tracing/customer', ['Tracing', 'tracing_customer_log']);
+    $r->addRoute(['GET', 'POST'], '/tracing/customer/add', ['Tracing', 'tracing_customer_add']);
 
     $r->addRoute(['GET'], '/', ['Others', 'home']);
     $r->addRoute(['GET'], '/redirect', ['Others', 'redirect']);

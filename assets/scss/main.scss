@@ -373,7 +373,9 @@ abbr {
     text-align: center;
   }
 }
-#employee-log-form {
+#employee-log-form,
+#customer-log-form,
+#customer-add-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -387,11 +389,45 @@ abbr {
     &+ .input-group {
       margin-top: 2em;
     }
+    &-label {
+      margin-top: 2em;
+      margin-bottom: 2em;
+    }
     
     #date,
     #time,
     #temp {
       width: 100px;
+    }
+  }
+}
+.swal2-overflow {
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+}
+#admin-account-edit-form {
+  .perms-group-wrapper {
+    display: flex;
+    flex-direction: row;
+
+    .perms-group {
+      width: 30%;
+      margin: 1em auto;
+      padding: 2em;
+      border: 1px dashed black;
+
+      strong {
+        display: block;
+        margin-bottom: 1em;
+      }
+
+      .check-group {
+        display: flex;
+      
+        input {
+          margin-right: 1em;
+        }
+      }
     }
   }
 }

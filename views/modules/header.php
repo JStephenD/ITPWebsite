@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/assets/vendor/simplebar.css">
     <link rel="stylesheet" href="/assets/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="/assets/css/select2.min.css">
+    <link rel="stylesheet" href="/assets/css/sweetalert2@10.min.css">
     <link rel="stylesheet" href="/assets/css/timepicker.css">
 
     <link rel="stylesheet" href="/assets/css/mycss.css">

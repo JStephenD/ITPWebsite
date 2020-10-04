@@ -11,7 +11,8 @@
 <script src="/assets/vendor/dom-factory.js"></script>
 <script src="/assets/vendor/material-design-kit.js"></script>
 <script src="/assets/js/jquery.dataTables.min.js"></script>
-<script src="/assets/js/sweetalert.js"></script>
+<!-- <script src="/assets/js/sweetalert.js"></script> -->
+<script src="/assets/js/sweetalert2@10.min.js"></script>
 <script src="/assets/js/select2.min.js"></script>
 <script src="/assets/js/timepicker.js"></script>
 

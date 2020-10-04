@@ -92,24 +92,21 @@ if (typeof form == 'undefined') {
                     fetch('/ajaj/tracing/getEmployees.php')
                         .then((res) => {
                             if (res.ok) {
-                                res.json()
-                                    .then((json) => {
-                                        employees_select.empty().trigger('change');
-                                        employees_select.append(
-                                            '<option disabled selected value="-1">Select Employee</option>'
-                                        );
+                                res.json().then((json) => {
+                                    employees_select.empty().trigger('change');
+                                    employees_select.append(
+                                        '<option disabled selected value="-1">Select Employee</option>'
+                                    );
 
-                                        json.forEach((row) => {
-                                            employees_select.append(new Option(
-                                                `${row.last_name}, 
-                                                ${row.first_name}`,
-                                                row.id,
-                                                false,
-                                                false
-                                            ));
-                                        })
-                                        employees_select.select2();
+                                    json.forEach((row) => {
+                                        employees_select.append(new Option(
+                                            `${row.last_name}, 
+                                            ${row.first_name}`,
+                                            row.id,
+                                        ));
                                     })
+                                    employees_select.select2();
+                                })
                             }
                         })
                         .catch((err) => {

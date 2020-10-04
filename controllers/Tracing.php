@@ -28,6 +28,7 @@ class Tracing extends Controller {
 
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
             $employees = $this->employeesModel->getEmployees();
+            $customers = $this->customersModel->getCustomers();
             $logs = $this->loggingModel->getLogs();
 
             require_once $_SERVER['DOCUMENT_ROOT'] . '/views/tracing/logs_view.php';
@@ -102,6 +103,34 @@ class Tracing extends Controller {
 
     // --------------------------------------------------------------------------------------------
 
+    function tracing_customer_add($vars, $httpmethod) {
+        $this->utils->login_required();
+        $this->utils->permsRequired(
+            (isset($_SESSION['user']['perms'])) ? $_SESSION['user']['perms'] : '0',
+            ['logging_customer_log']
+        );
+
+        if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/views/tracing/customer_add.php';
+        } else if ($httpmethod == 'POST') {
+            $data = [
+                'first_name' => $_POST['first-name'],
+                'last_name' => $_POST['last-name'],
+                'phone_number' => $_POST['phone-number'],
+                'email' => $_POST['email'],
+                'citymun_id' => intval($_POST['citymun-id']),
+                'barangay_id' => intval($_POST['barangay-id'])
+            ];
+
+            $res = $this->customersModel->addCustomer($data);
+
+            sleep(1);
+
+            header('Content-Type: application/json');
+            echo json_encode($res);
+        }
+    }
+
     function tracing_customer_log($vars, $httpmethod) {
         $this->utils->login_required();
         $this->utils->permsRequired(
@@ -110,7 +139,23 @@ class Tracing extends Controller {
         );
 
         if ($httpmethod == 'GET' || isset($_POST['ajax'])) {
+            $customers = $this->customersModel->getCustomers();
             require_once $_SERVER['DOCUMENT_ROOT'] . '/views/tracing/customer_log.php';
+        } else if ($httpmethod == 'POST') {
+            $data = [
+                'entry_type' => '2',
+                'profile_id' => $_POST['customer-id'],
+                'date' => $_POST['date'],
+                'time' => $_POST['time'],
+                'temp' => $_POST['temp']
+            ];
+
+            $res = $this->loggingModel->log($data);
+
+            sleep(1);
+
+            header('Content-Type: application/json');
+            echo json_encode($res);
         }
     }
 }

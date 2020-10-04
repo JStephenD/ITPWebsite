@@ -27,7 +27,7 @@
                             </a>
                         </abbr>
                         <abbr title="Delete">
-                            <i data-href="/admin/accounts/delete/<?= $row['id']; ?>" data-name="<?= $row['username']; ?>" class="fas fa-backspace table-delete abbr-delete">
+                            <i data-href="/admin/account/delete/<?= $row['id']; ?>" data-name="<?= $row['username']; ?>" class="fas fa-backspace table-delete abbr-delete">
                             </i>
                         </abbr>
                     </td>

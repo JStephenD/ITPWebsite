@@ -17,7 +17,7 @@
             </select>
 
             <small class="ml-5"><em>Name not found?</em></small>
-            <button href="/tracing/employee/add" id="add-employee" class="btn btn-outline-dark ml-2">
+            <button id="add-employee" class="btn btn-outline-dark ml-2">
                 ➕ Add profile</button>
         </div>
 
@@ -27,7 +27,7 @@
             </label>
 
             <input type="text" name="date" id="date" class="mx-2">
-            
+
             <label for="time">
                 Time
             </label>

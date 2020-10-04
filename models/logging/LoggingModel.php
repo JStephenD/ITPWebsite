@@ -25,7 +25,11 @@ class LoggingModel {
             )
             "
         );
-        $query->execute($data);
+        if ($query->execute($data)) {
+            return 'success';
+        } else {
+            return 'error';
+        }
     }
 
     function getLogs() {

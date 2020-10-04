@@ -39,18 +39,21 @@ class CustomersModel {
                     last_name,
                     phone_number,
                     email,
-                    address,
-                )
-            VALUES(
+                    citymun_id,
+                    barangay_id
+                ) VALUES(
                 :first_name,
                 :last_name,
                 :phone_number,
                 :email,
-                :address,
+                :citymun_id,
+                :barangay_id
             )"
         );
         if ($query->execute($data)) {
             return 'success';
+        } else {
+            return 'error';
         }
     }
 
@@ -63,7 +66,8 @@ class CustomersModel {
                 last_name = :last_name,
                 phone_number = :phone_number,
                 email = :email,
-                address = :address,
+                citymun_id = :citymun_id,
+                barangay_id = :barangay_id,
             WHERE
                 id = :id"
         );
