@@ -2,31 +2,28 @@ if (typeof form == 'undefined') {
     let url = window.location.href;
     let form = document.querySelector('#form-edit');
 
-    setTimeout(() => {
+    let id = window.location.pathname.match('/citymunicipality/edit/(\\d+)')[1];
+    let formdata = new FormData();
+    formdata.append('id', id);
 
-        id = window.location.pathname.match('/citymunicipality/edit/(\\d+)')[1];
-        let formdata = new FormData();
-        formdata.append('id', id);
+    fetch('/ajaj/getCitymunRecord.php', {
+        method: 'POST',
+        body: formdata
+    }).then(res => {
+        if (res.ok) {
+            res.json().then(json => {
+                let cmclass = document.querySelector('#cmclass');
+                cmclass.append(new Option('City', 'City', true, (json['cmclass'] == 'City')));
+                cmclass.append(new Option('Municipality', 'Municipality', false, (json['cmclass'] == 'Municipality')));
+                $('#cmclass').select2();
 
-        fetch('/ajaj/getCitymunRecord.php', {
-            method: 'POST',
-            body: formdata
-        }).then(res => {
-            if (res.ok) {
-                res.json().then(json => {
-                    let cmclass = document.querySelector('#cmclass');
-                    cmclass.append(new Option('City', 'City', true, (json['cmclass'] == 'City')));
-                    cmclass.append(new Option('Municipality', 'Municipality', false, (json['cmclass'] == 'Municipality')));
-                    $('#cmclass').select2();
-
-                    document.querySelector('#cmdesc').value = json['cmdesc'];
-                    document.querySelector('#latitude').value = json['latitude'];
-                    document.querySelector('#longitude').value = json['longitude'];
-                    document.querySelector('#remarks').value = json['remarks'];
-                })
-            }
-        });
-    }, 1500);
+                document.querySelector('#cmdesc').value = json['cmdesc'];
+                document.querySelector('#latitude').value = json['latitude'];
+                document.querySelector('#longitude').value = json['longitude'];
+                document.querySelector('#remarks').value = json['remarks'];
+            })
+        }
+    });
 
     document.querySelector('#update').addEventListener('click', (ev) => {
         ev.preventDefault();
