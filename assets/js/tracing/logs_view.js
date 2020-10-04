@@ -1,4 +1,4 @@
-if (typeof temp == 'undefined') {
-    temp = 1;
+if (typeof table == 'undefined') {
+    let table = document.querySelector('table');
     $('#logs-view').DataTable();
 }

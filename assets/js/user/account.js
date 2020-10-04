@@ -86,6 +86,7 @@ if (typeof form == 'undefined') {
                     timer: 1000,
                     timerProgressBar: true,
                 });
+                window.location.href = '/user/account';
             }
         });
     });
