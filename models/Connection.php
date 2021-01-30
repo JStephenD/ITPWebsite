@@ -4,9 +4,9 @@ class Connection {
     function connect() {
         if (isset($_ENV['JAWSDB_URL'])) {
             $link = new PDO(
-                "mysql:host=rnr56s6e2uk326pj.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;dbname=nqbm92ewjv9oqm14",
-                "st8kgrqw37r08zwn",
-                "j3csfl00p3xnxan6"
+                "mysql:host=l0ebsc9jituxzmts.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;dbname=b8km5t6m6l4mxo4u",
+                "xvu0jilf06y7bwa8",
+                "qgsl04kvg5ug653o"
             );
             $link->exec("set names utf8");
             return $link;
