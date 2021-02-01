@@ -1,12 +1,17 @@
 <?php
 class Messages {
     function __construct() {
+        $this->setup();
+    }
+
+    public function setup() {
         if (!isset($_SESSION['messages'])) {
             $_SESSION['messages'] = [];
         }
     }
 
     public static function add($message, $type) {
+        $this->setup();
         array_push($_SESSION['messages'], 
             ["message" => $message, "type" => $type]
         );
