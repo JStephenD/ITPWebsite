@@ -1,23 +1,22 @@
 <?php
 class Messages {
     function __construct() {
-        $this->setup();
-    }
-
-    public function setup() {
-        if (!isset($_SESSION['messages'])) {
-            $_SESSION['messages'] = [];
-        }
+        
     }
 
     public static function add($message, $type) {
-        $this->setup();
+        if (!isset($_SESSION['messages'])) {
+            $_SESSION['messages'] = [];
+        }
         array_push($_SESSION['messages'], 
             ["message" => $message, "type" => $type]
         );
     }
 
     public function show() {
+        if (!isset($_SESSION['messages'])) {
+            $_SESSION['messages'] = [];
+        }
         foreach ($_SESSION['messages'] as $row) {
             $message = $row['message'];
             $type = $row['type'];
