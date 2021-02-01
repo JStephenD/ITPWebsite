@@ -202,5 +202,7 @@ class User extends Controller {
         );
 
         sleep(.8);
+
+        echo json_encode("");
     }
 }

@@ -24,6 +24,7 @@ window.onload = function () {
         })
           .then((res) => {
             if (!res.ok) {
+              console.log(res)
               throw new Error(res.statusText);
             }
           })
