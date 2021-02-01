@@ -195,14 +195,14 @@ class User extends Controller {
         session_destroy();
         session_start();
         
-        Messages::add(
-            "<strong>Logged out</strong> successfully.<hr>
-            Note: Must be logged in to use the system.", 
-            "dark"
-        );
+        // Messages::add(
+        //     "<strong>Logged out</strong> successfully.<hr>
+        //     Note: Must be logged in to use the system.", 
+        //     "dark"
+        // );
 
         sleep(.8);
 
-        echo json_encode("");
+        // echo json_encode("");
     }
 }
